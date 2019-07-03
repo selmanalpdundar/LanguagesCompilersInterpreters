@@ -8,7 +8,7 @@
   #include <llvm-c/IRReader.h>
   #include <llvm-c/Transforms/Scalar.h>
   #include <llvm-c/Transforms/Utils.h>
-
+  #include "llvm/IR/Module.h"
   #include "ast.h"
   #include "utils.h"
 
@@ -34,8 +34,11 @@
 
 %token GE LE EQ NE
 %token FALSE TRUE
-%token IF ELSE WHILE PRINT
+%token INCREMENT
+%token DECREMENT
+%token IF ELSE WHILE PRINT 
 %token BOOL_TYPE INT_TYPE
+%token AND OR
 %token <id> ID
 %token <value> VAL
 %type  <expr>  expr
@@ -43,8 +46,10 @@
 %type  <stmt>  stmts
 %type  <type>  type
 
+
 %nonassoc IF_ALONE
 %nonassoc ELSE
+%left AND OR
 %left GE LE EQ NE '>' '<'
 %left '+' '-'
 %left '*' '/'
@@ -87,11 +92,12 @@ stmt: '{' stmts '}'                         { $$ = $2; }
       | IF '(' expr ')' stmt ELSE stmt      { $$ = make_ifelse($3, $5, $7); }
       | WHILE '(' expr ')' stmt             { $$ = make_while($3, $5); }
       | PRINT expr ';'                      { $$ = make_print($2); }
+      | INCREMENT expr ';'                  { $$ = make_increment($2);}
 
 expr: VAL             { $$ = literal($1); }
       | FALSE         { $$ = bool_lit(0); }
       | TRUE          { $$ = bool_lit(1); }
-      | ID            { $$ = variable($1); }
+      | ID          { $$ = variable($1); }
       | '(' expr ')'  { $$ = $2; }
 
       | expr '+' expr { $$ = binop($1, '+', $3); }
@@ -106,7 +112,8 @@ expr: VAL             { $$ = literal($1); }
       | expr LE  expr { $$ = binop($1, LE, $3); }
       | expr '>' expr { $$ = binop($1, '>', $3); }
       | expr '<' expr { $$ = binop($1, '<', $3); }
-
+      | expr AND expr { $$ = binop($1, AND , $3); }
+      | expr OR expr  { $$ = binop($1, OR , $3); }
       ;
 
 %%

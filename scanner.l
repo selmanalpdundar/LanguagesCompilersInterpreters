@@ -5,6 +5,7 @@
   #include <llvm-c/Core.h>
 
   void yyerror(LLVMModuleRef module, LLVMBuilderRef builder, const char* s);
+  
 %}
 
 DIGIT    [0-9]
@@ -29,6 +30,10 @@ false              { return FALSE; }
 \<=                { return LE; }
 ==                 { return EQ; }
 !=                 { return NE; }
+\&&                {return AND;}
+\|\|               {return OR;}
+\++                {return INCREMENT;}
+\--                {return DECREMENT;}
 .                  yyerror(NULL, NULL, "Unexpected character");
 
 %%

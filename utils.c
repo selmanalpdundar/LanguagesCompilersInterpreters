@@ -1,3 +1,14 @@
+/**
+ * @file utils.c
+ * @author your name (you@domain.com)
+ * @brief 
+ * @version 0.1
+ * @date 2019-06-27
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
+
 #include <stdlib.h>
 #include <string.h>
 
@@ -18,6 +29,12 @@ struct vector {
   void **data;
 };
 
+
+/**
+ * @brief Test
+ * 
+ * @param v 
+ */
 void vector_init(struct vector *v) {
   v->capacity = 16;
   v->data = calloc(v->capacity, sizeof(v->data[0]));

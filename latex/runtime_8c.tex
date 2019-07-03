@@ -1,0 +1,77 @@
+\hypertarget{runtime_8c}{}\doxysection{runtime.\+c File Reference}
+\label{runtime_8c}\index{runtime.c@{runtime.c}}
+{\ttfamily \#include \char`\"{}stdint.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stdio.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{runtime_8c_a765e015a9ec4bc9dea4a4091a358de18}{print\+\_\+i32}} (int32\+\_\+t x)
+\item 
+void \mbox{\hyperlink{runtime_8c_a6fce0fec941f1fe6b837460340571587}{print\+\_\+i1}} (int x)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+your name (\href{mailto:you@domain.com}{\texttt{ you@domain.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2019-\/06-\/27
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2019 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{runtime_8c_a6fce0fec941f1fe6b837460340571587}\label{runtime_8c_a6fce0fec941f1fe6b837460340571587}} 
+\index{runtime.c@{runtime.c}!print\_i1@{print\_i1}}
+\index{print\_i1@{print\_i1}!runtime.c@{runtime.c}}
+\doxysubsubsection{\texorpdfstring{print\_i1()}{print\_i1()}}
+{\footnotesize\ttfamily void print\+\_\+i1 (\begin{DoxyParamCaption}\item[{int}]{x }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 29 of file runtime.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{29                      \{}
+\DoxyCodeLine{30   \textcolor{keywordflow}{if} (x) \{}
+\DoxyCodeLine{31     printf(\textcolor{stringliteral}{"true\(\backslash\)n"});}
+\DoxyCodeLine{32   \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{33     printf(\textcolor{stringliteral}{"false\(\backslash\)n"});}
+\DoxyCodeLine{34   \}}
+\DoxyCodeLine{35 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{runtime_8c_a765e015a9ec4bc9dea4a4091a358de18}\label{runtime_8c_a765e015a9ec4bc9dea4a4091a358de18}} 
+\index{runtime.c@{runtime.c}!print\_i32@{print\_i32}}
+\index{print\_i32@{print\_i32}!runtime.c@{runtime.c}}
+\doxysubsubsection{\texorpdfstring{print\_i32()}{print\_i32()}}
+{\footnotesize\ttfamily void print\+\_\+i32 (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{x }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 20 of file runtime.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{20                           \{}
+\DoxyCodeLine{21   printf(\textcolor{stringliteral}{"\%d\(\backslash\)n"}, x);}
+\DoxyCodeLine{22 \}}
+
+\end{DoxyCode}

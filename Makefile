@@ -1,6 +1,8 @@
 CFLAGS=-g `llvm-config --cflags`
 CXXFLAGS=-g
 
+LDFLAGS="-L/usr/local/opt/llvm@7/lib -Wl,-rpath,/usr/local/opt/llvm@7/lib"
+
 LEX_SOURCES=$(wildcard *.l) 
 LEX_OBJECTS=$(patsubst %.l,%.c,${LEX_SOURCES}) $(patsubst %.l,%.h,${LEX_SOURCES})
 
@@ -20,7 +22,7 @@ LLVM_LINK_FLAGS=`llvm-config --libs --cflags --ldflags core analysis irreader ex
 all: parser.c runtime.bc compiler
 
 compiler: ${OBJECTS}
-	$(CXX) $(LLVM_LINK_FLAGS) $(CXXFLAGS) -o $@ $^
+	$(CXX) -o $@ $^ $(LLVM_LINK_FLAGS) $(CXXFLAGS) -rdynamic
 
 runtime.bc: runtime.c
 	clang -c -emit-llvm $^

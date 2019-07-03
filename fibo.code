@@ -15,4 +15,11 @@ int idx;
     print curr;
     idx = idx + 1;
   }
+
+
+  print ( false || false );
+
+  print( true && false );
+
+
 }

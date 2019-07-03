@@ -1,0 +1,53 @@
+\hypertarget{structstmt}{}\doxysection{stmt Struct Reference}
+\label{structstmt}\index{stmt@{stmt}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structstmt_af444b77a3c91fa1d5c90c1b55288d00a}\label{structstmt_af444b77a3c91fa1d5c90c1b55288d00a}} 
+enum stmt\+\_\+type {\bfseries type}
+\item 
+\mbox{\Hypertarget{structstmt_ac40fc27e2910d2ee2e750baec6222bfa}\label{structstmt_ac40fc27e2910d2ee2e750baec6222bfa}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>struct \{\\
+\>\>size\_t {\bfseries id}\\
+\>\>struct \mbox{\hyperlink{structexpr}{expr}} $\ast$ {\bfseries expr}\\
+\>\} {\bfseries assign}\\
+\>struct \{\\
+\>\>struct \mbox{\hyperlink{structstmt}{stmt}} $\ast$ {\bfseries fst}\\
+\>\>struct \mbox{\hyperlink{structstmt}{stmt}} $\ast$ {\bfseries snd}\\
+\>\} {\bfseries seq}\\
+\>struct \{\\
+\>\>struct \mbox{\hyperlink{structexpr}{expr}} $\ast$ {\bfseries cond}\\
+\>\>struct \mbox{\hyperlink{structstmt}{stmt}} $\ast$ {\bfseries if\_body}\\
+\>\>struct \mbox{\hyperlink{structstmt}{stmt}} $\ast$ {\bfseries else\_body}\\
+\>\} {\bfseries ifelse}\\
+\>struct \{\\
+\>\>struct \mbox{\hyperlink{structexpr}{expr}} $\ast$ {\bfseries cond}\\
+\>\>struct \mbox{\hyperlink{structstmt}{stmt}} $\ast$ {\bfseries body}\\
+\>\} {\bfseries while\_}\\
+\>struct \{\\
+\>\>struct \mbox{\hyperlink{structexpr}{expr}} $\ast$ {\bfseries expr}\\
+\>\} {\bfseries print}\\
+\>struct \{\\
+\>\>struct \mbox{\hyperlink{structexpr}{expr}} $\ast$ {\bfseries expr}\\
+\>\} {\bfseries increment}\\
+\>struct \{\\
+\>\>struct \mbox{\hyperlink{structexpr}{expr}} $\ast$ {\bfseries expr}\\
+\>\} {\bfseries decrement}\\
+\}; \\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 76 of file ast.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ast_8h}{ast.\+h}}\end{DoxyCompactItemize}

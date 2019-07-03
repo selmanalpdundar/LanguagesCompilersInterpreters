@@ -1,10 +1,26 @@
+/**
+ * @file ast.c is a Abstract Syntax Tree
+ * @author Selman ALPÜNDAR(selman.alp@hotmail.com.tr)
+ * @brief 
+ * @version 0.1
+ * @date 2019-06-27
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
 #include <stdio.h>
 #include <stdlib.h>
-
 #include "ast.h"
 #include "y.tab.h"
 #include "utils.h"
 
+
+/**
+ * @brief It gives the type name of the value type.
+ * 
+ * @param t is a value type.
+ * @return const char*  is a type name.
+ */
 const char *type_name(enum value_type t) {
   switch (t) {
     case INTEGER: return "int";
@@ -14,14 +30,25 @@ const char *type_name(enum value_type t) {
   }
 }
 
+/*!
+ * @brief allocate a bool litee
+ * 
+ * @param v 
+ * @return struct expr* 
+ */
 struct expr* bool_lit(int v) {
-  
   struct expr* r = malloc(sizeof(struct expr));
   r->type = BOOL_LIT;
   r->value = v;
   return r;
 }
 
+/**
+ * @brief 
+ * It takes a  value to create a new integer literal.
+ * @param v is a value of integer literal.
+ * @return struct expr* is an expression.
+ */
 struct expr* literal(int v) {
   struct expr* r = malloc(sizeof(struct expr));
   r->type = LITERAL;
@@ -29,6 +56,13 @@ struct expr* literal(int v) {
   return r;
 }
 
+
+/**
+ * @brief 
+ * It takes an identifier to create new variable with it.
+ * @param id is an identifier for variable.
+ * @return struct expr* is an expression.
+ */
 struct expr* variable(size_t id) {
   struct expr* r = malloc(sizeof(struct expr));
   r->type = VARIABLE;
@@ -36,7 +70,14 @@ struct expr* variable(size_t id) {
   return r;
 }
 
-
+/**
+ * @brief 
+ * It takes left-hand side, right hand side expression and operatin identifier to create new expression.
+ * @param lhs is a left-hand side expression.
+ * @param op  is a operation identifier.
+ * @param rhs is a right-hand side expression.
+ * @return struct expr*  is an expression.
+ */
 struct expr* binop(struct expr *lhs, int op, struct expr *rhs) {
   struct expr* r = malloc(sizeof(struct expr));
   r->type = BIN_OP;
@@ -46,6 +87,11 @@ struct expr* binop(struct expr *lhs, int op, struct expr *rhs) {
   return r;
 }
 
+/**
+ * @brief 
+ * IT takes an expression to print.
+ * @param expr is an expression
+ */
 void print_expr(struct expr *expr) {
   switch (expr->type) {
     case BOOL_LIT:
@@ -68,6 +114,7 @@ void print_expr(struct expr *expr) {
         case NE: printf(" != "); break;
         case GE: printf(" >= "); break;
         case LE: printf(" <= "); break;
+        case AND: printf(" && "); break;
         default: printf(" %c ", expr->binop.op); break;
       }
       print_expr(expr->binop.rhs);
@@ -76,12 +123,23 @@ void print_expr(struct expr *expr) {
   }
 }
 
+/**
+ * @brief 
+ * it print a number as indent to print space.
+ * @param indent is a number of space.
+ */
 static void print_indent(int indent) {
   while (indent--) {
     printf("  ");
   }
 }
 
+/**
+ * @brief takes an statement and print it
+ * 
+ * @param stmt 
+ * @param indent  
+ */
 void print_stmt(struct stmt *stmt, int indent) {
   switch (stmt->type) {
     case STMT_SEQ:
@@ -130,6 +188,12 @@ void print_stmt(struct stmt *stmt, int indent) {
   }
 }
 
+
+/**
+ * @brief 
+ * 
+ * @param expr 
+ */
 void emit_stack_machine(struct expr *expr) {
   switch (expr->type) {
     case BOOL_LIT:
@@ -160,17 +224,30 @@ void emit_stack_machine(struct expr *expr) {
         case LE: printf("le\n"); break;
         case '>': printf("gt\n"); break;
         case '<': printf("lt\n"); break;
+        case  AND: printf("and\n"); break;
       }
       break;
   }
 }
 
+
 static int next_reg = 0;
 
+/**
+ * @brief 
+ * It cretes new register.
+ * @return int is a register. 
+ */
 static int gen_reg() {
   return next_reg++;
 }
 
+/**
+ * @brief 
+ * It takes an expression to emit register machine.
+ * @param expr is an expression.
+ * @return int is a register.
+ */
 int emit_reg_machine(struct expr *expr) {
   int result_reg = gen_reg();
   switch (expr->type) {
@@ -209,6 +286,12 @@ int emit_reg_machine(struct expr *expr) {
   return result_reg;
 }
 
+/**
+ * @brief 
+ * It takes an expression and return the value type of the expression.
+ * @param expr is an expression
+ * @return enum value_type  
+ */
 enum value_type check_types(struct expr *expr) {
   switch (expr->type) {
     case BOOL_LIT:
@@ -251,7 +334,20 @@ enum value_type check_types(struct expr *expr) {
             return BOOLEAN;
           else
             return ERROR;
-
+        case AND:
+          if (lhs == BOOLEAN && rhs == BOOLEAN)
+            return BOOLEAN;
+          else if (lhs == INTEGER && rhs == INTEGER)
+            return INTEGER;
+          else
+            return ERROR;
+        case OR:
+          if (lhs == BOOLEAN || rhs == BOOLEAN)
+            return BOOLEAN;
+          else if (lhs == INTEGER || rhs == INTEGER)
+            return INTEGER;
+          else
+            return ERROR;
       }
 
       default:
@@ -260,6 +356,11 @@ enum value_type check_types(struct expr *expr) {
   }
 }
 
+/**
+ * @brief 
+ * It takes an expression to free it from memory.
+ * @param expr  is an expression.
+ */
 void free_expr(struct expr *expr) {
   switch (expr->type) {
     case BOOL_LIT:
@@ -276,6 +377,13 @@ void free_expr(struct expr *expr) {
   }
 }
 
+/**
+ * @brief 
+ * TODO:
+ * @param fst 
+ * @param snd 
+ * @return struct stmt* 
+ */
 struct stmt* make_seq(struct stmt *fst, struct stmt *snd) {
   struct stmt* r = malloc(sizeof(struct stmt));
   r->type = STMT_SEQ;
@@ -284,6 +392,14 @@ struct stmt* make_seq(struct stmt *fst, struct stmt *snd) {
   return r;
 }
 
+
+/**
+ * @brief 
+ * It takes a id and an expression to assign a expression to given id.
+ * @param id is an integer value that descripte to ?..
+ * @param e is an expression.
+ * @return struct stmt* 
+ */
 struct stmt* make_assign(size_t id, struct expr *e) {
   struct stmt* r = malloc(sizeof(struct stmt));
   r->type = STMT_ASSIGN;
@@ -292,6 +408,13 @@ struct stmt* make_assign(size_t id, struct expr *e) {
   return r;
 }
 
+/**
+ * @brief 
+ * It takes an expression and a statement to create while loop.
+ * @param e is an expression.
+ * @param body is a statement.
+ * @return struct stmt* 
+ */
 struct stmt* make_while(struct expr *e, struct stmt *body) {
   struct stmt* r = malloc(sizeof(struct stmt));
   r->type = STMT_WHILE;
@@ -300,6 +423,14 @@ struct stmt* make_while(struct expr *e, struct stmt *body) {
   return r;
 }
 
+/**
+ * @brief 
+ * It takes an expression and two statement to create if else condition. Also, to create if we assign else_body null.
+ * @param e is an expression.
+ * @param if_body is a statement.
+ * @param else_body is a statement.
+ * @return struct stmt* 
+ */
 struct stmt* make_ifelse(struct expr *e, struct stmt *if_body, struct stmt *else_body) {
   struct stmt* r = malloc(sizeof(struct stmt));
   r->type = STMT_IF;
@@ -309,10 +440,25 @@ struct stmt* make_ifelse(struct expr *e, struct stmt *if_body, struct stmt *else
   return r;
 }
 
+/**
+ * @brief 
+ *  It takes an expression as a condition part of the if. It also takes a statement to construct body of if condition.
+ * @param e is an expresion
+ * @param body is an statement to be used body of the if.
+ * @return struct stmt* is a statement
+ */
 struct stmt* make_if(struct expr *e, struct stmt *body) {
   return make_ifelse(e, body, NULL);
 }
 
+
+
+/**
+ * @brief 
+ * It takes an expression to create a statement.
+ * @param e is an expression.
+ * @return struct stmt* is a statement.
+ */
 struct stmt* make_print(struct expr *e) {
   struct stmt* r = malloc(sizeof(struct stmt));
   r->type = STMT_PRINT;
@@ -320,6 +466,35 @@ struct stmt* make_print(struct expr *e) {
   return r;
 }
 
+/**
+ * @brief 
+ * It takes an expression to create a statement.
+ * @param e is an expression.
+ * @return struct stmt* is a statement.
+ */
+struct stmt* make_increment(struct expr *e){
+  struct stmt* r = malloc(sizeof(struct stmt));
+  r->type = STMT_INCREMENT;
+  r->increment.expr = e;
+}
+
+/**
+ * @brief 
+ * It takes a expression to create a statement.
+ * @param e is an expression.
+ * @return struct stmt* is a statement.
+ */
+struct stmt* make_decrement(struct expr *e){
+    struct stmt* r = malloc(sizeof(struct stmt));
+    r->type = STMT_DECREMENT;
+    r->decrement.expr = e;
+}
+
+/**
+ * @brief 
+ * It takes a statement to clear it from memeory
+ * @param stmt is a statement.
+ */
 void free_stmt(struct stmt *stmt) {
   switch (stmt->type) {
     case STMT_SEQ:
@@ -346,11 +521,23 @@ void free_stmt(struct stmt *stmt) {
       if (stmt->ifelse.else_body)
         free_stmt(stmt->ifelse.else_body);
       break;
+    case STMT_INCREMENT:
+      free_expr(stmt->increment.expr);
+      break;
+    case STMT_DECREMENT:
+      free_expr(stmt->decrement.expr);
+      break;
   }
 
   free(stmt);
 }
 
+/**
+ * @brief 
+ * It takes a statement and check If it is valid statement or not.
+ * @param stmt is a statement.
+ * @return int is used as a bool value zero or one.
+ */
 int valid_stmt(struct stmt *stmt) {
   switch (stmt->type) {
     case STMT_SEQ:
@@ -375,6 +562,14 @@ int valid_stmt(struct stmt *stmt) {
   }
 }
 
+/**
+ * @brief 
+ * It takes a expression and generete code for it.
+ * @param expr is an expression.
+ * @param module is a LLVMModuleRef.
+ * @param builder is a LLVMBuilderRef.
+ * @return LLVMValueRef
+ */
 LLVMValueRef codegen_expr(struct expr *expr, LLVMModuleRef module, LLVMBuilderRef builder) {
   switch (expr->type) {
     case BOOL_LIT:
@@ -402,12 +597,22 @@ LLVMValueRef codegen_expr(struct expr *expr, LLVMModuleRef module, LLVMBuilderRe
         case LE: return LLVMBuildICmp(builder, LLVMIntSLE, lhs, rhs, "letmp");
         case '>': return LLVMBuildICmp(builder, LLVMIntSGT, lhs, rhs, "gttmp");
         case '<': return LLVMBuildICmp(builder, LLVMIntSLT, lhs, rhs, "lttmp");
+        case AND: return LLVMBuildAnd(builder,lhs,rhs,"andtmp");
+        case OR: return LLVMBuildOr(builder,lhs,rhs,"ortmp");
       }
     }
   }
   return NULL;
 }
 
+
+/**
+ * @brief 
+ * It takes a statement to generate code for it.
+ * @param stmt is a statement.
+ * @param module is a LLVMModuleRef.
+ * @param builder is a LLVMBuilderRef.
+ */
 void codegen_stmt(struct stmt *stmt, LLVMModuleRef module, LLVMBuilderRef builder) {
   switch (stmt->type) {
     case STMT_SEQ: {
