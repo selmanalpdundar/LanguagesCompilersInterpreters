@@ -1,7 +1,6 @@
 CFLAGS=-g `llvm-config --cflags`
 CXXFLAGS=-g
 
-LDFLAGS="-L/usr/local/opt/llvm@7/lib -Wl,-rpath,/usr/local/opt/llvm@7/lib"
 
 LEX_SOURCES=$(wildcard *.l) 
 LEX_OBJECTS=$(patsubst %.l,%.c,${LEX_SOURCES}) $(patsubst %.l,%.h,${LEX_SOURCES})
