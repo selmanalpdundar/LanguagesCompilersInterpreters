@@ -20,6 +20,10 @@ int idx;
   print( false || false );
 
   print( true && false );
+  
 
+  ++curr;
+  ++curr;
+  print(curr);
 
 }

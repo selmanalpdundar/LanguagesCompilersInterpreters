@@ -16,6 +16,7 @@
 
 const char *type_name(enum value_type t);
 
+#define CONST(n) LLVMConstInt(LLVMInt32Type(), (n), 0)
 /**
  * @brief 
  * This is used for description of expression type.

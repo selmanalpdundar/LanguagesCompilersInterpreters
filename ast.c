@@ -492,6 +492,7 @@ struct stmt* make_increment(struct expr *e){
   struct stmt* r = malloc(sizeof(struct stmt));
   r->type = STMT_INCREMENT;
   r->increment.expr = e;
+  return r;
 }
 
 /**
@@ -504,6 +505,7 @@ struct stmt* make_decrement(struct expr *e){
     struct stmt* r = malloc(sizeof(struct stmt));
     r->type = STMT_DECREMENT;
     r->decrement.expr = e;
+    return r;
 }
 
 /**
@@ -622,6 +624,7 @@ LLVMValueRef codegen_expr(struct expr *expr, LLVMModuleRef module, LLVMBuilderRe
         case '<': return LLVMBuildICmp(builder, LLVMIntSLT, lhs, rhs, "lttmp");
         case AND: return LLVMBuildAnd(builder,lhs,rhs,"andtmp");
         case OR: return LLVMBuildOr(builder,lhs,rhs,"ortmp");
+        
       }
     }
 
@@ -702,16 +705,28 @@ void codegen_stmt(struct stmt *stmt, LLVMModuleRef module, LLVMBuilderRef builde
       break;
     }
 
-    case STMT_INCREMENT:
+    case STMT_INCREMENT:{
+        switch (stmt->increment.expr->type)        {
+        case LITERAL:
+           
+            LLVMBuildStore(builder,  LLVMBuildAdd(builder,LLVMConstInt(LLVMInt32Type(), stmt->increment.expr->value, 0), LLVMConstInt(LLVMInt32Type(), 1, 0), "addtmp"), vector_get(&global_types, stmt->increment.expr->id));
 
-      LLVMValueRef expr = codegen_expr(stmt->assign.expr, module, builder);
-      LLVMBuildStore(builder, expr, vector_get(&global_types, stmt->assign.id));
+          break;
+        case VARIABLE:
+             LLVMBuildStore(builder, LLVMBuildAdd(builder,LLVMBuildLoad(builder, vector_get(&global_types, stmt->increment.expr->id), "loadtmp"), LLVMConstInt(LLVMInt32Type(), 1, 0), "addtmp"), vector_get(&global_types, stmt->increment.expr->id));
+
+          break;
+        default:
+          break;
+        }  
+        
+      break;
+    }
+
+    case STMT_DECREMENT:{
 
       break;
-
-    case STMT_DECREMENT:
-      
-      break;
+    }
 
   }
 }
