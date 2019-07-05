@@ -12,6 +12,12 @@
 #include <stdlib.h>
 #include <string.h>
 
+/**
+ * @brief 
+ * 
+ * @param s 
+ * @return size_t 
+ */
 static size_t hash(const char *s) {
   size_t r = 0xcbf29ce484222325;
   while (*s) {
@@ -23,7 +29,10 @@ static size_t hash(const char *s) {
   return r;
 }
 
-/* vector */
+/**
+ * @brief 
+ * It is vector that can take any kind of data.
+ */
 struct vector {
   size_t capacity;
   void **data;
@@ -32,7 +41,7 @@ struct vector {
 
 /**
  * @brief Test
- * 
+ *  It initiates a vector with capacity 16
  * @param v 
  */
 void vector_init(struct vector *v) {
@@ -40,6 +49,13 @@ void vector_init(struct vector *v) {
   v->data = calloc(v->capacity, sizeof(v->data[0]));
 }
 
+/**
+ * @brief 
+ * It takes a vector and try to grow it. If the capatity of vector bigger then asked one, it does not do anything.
+ * It grows capacity of vector and assaign all them null and update capacity.
+ * @param v is a vector
+ * @param n is a size that we want to resize vector.
+ */
 void vector_grow(struct vector *v, size_t n) {
   if (n < v->capacity) {
     return;
@@ -51,22 +67,46 @@ void vector_grow(struct vector *v, size_t n) {
   v->capacity = n;
 }
 
+/**
+ * @brief 
+ * It takes a vector and free it from memory.
+ * @param v is a vector.
+ */
+
 void vector_fini(struct vector *v) {
   free(v->data);
 }
 
+
+/**
+ * @brief 
+ * It return an element of vector 
+ * @param v is an vector.
+ * @param idx is an id of the asked element.
+ * @return void* 
+ */
 void *vector_get(struct vector *v, size_t idx) {
-  vector_grow(v, idx + 1);
+  vector_grow(v, idx + 1); // it is uncesseray because we do not put new element just get it from vector.
   return v->data[idx];
 }
 
+/**
+ * @brief 
+ *  It takes a data to put it given index.
+ * @param v is a vector.
+ * @param idx  is an index of element.
+ * @param x is a data or given index.
+ */
 void vector_set(struct vector *v, size_t idx, void *x) {
   vector_grow(v, idx + 1);
   v->data[idx] = x;
 }
 
-/* string_int */
 
+/**
+ * @brief 
+ * String initilization. 
+ */
 struct string_int {
   struct vector rev;
   size_t count;
@@ -77,6 +117,13 @@ struct string_int {
   } *data;
 };
 
+
+
+/**
+ * @brief 
+ * 
+ * @param v 
+ */
 void string_int_init(struct string_int *v) {
   vector_init(&v->rev);
   v->count = 0;
@@ -84,6 +131,11 @@ void string_int_init(struct string_int *v) {
   v->data = calloc(v->capacity, sizeof(v->data[0]));
 }
 
+/**
+ * @brief 
+ * 
+ * @param v 
+ */
 void string_int_fini(struct string_int *v) {
   vector_fini(&v->rev);
   for (size_t i = 0; i < v->capacity; i++) {
@@ -93,6 +145,12 @@ void string_int_fini(struct string_int *v) {
   free(v->data);
 }
 
+/**
+ * @brief 
+ * 
+ * @param v 
+ * @param n 
+ */
 void string_int_resize(struct string_int *v, size_t n) {
   struct kv *newdata = calloc(n, sizeof(v->data[0]));
 
@@ -112,6 +170,13 @@ void string_int_resize(struct string_int *v, size_t n) {
   v->capacity = n;
 }
 
+/**
+ * @brief 
+ * 
+ * @param v 
+ * @param key 
+ * @return size_t 
+ */
 size_t string_int_get(struct string_int *v, const char *key) {
   size_t idx;
 
@@ -135,9 +200,25 @@ size_t string_int_get(struct string_int *v, const char *key) {
   return id;
 }
 
+/**
+ * @brief 
+ * 
+ * @param v 
+ * @param id 
+ * @return const char* 
+ */
 const char *string_int_rev(struct string_int *v, size_t id) {
   return vector_get(&v->rev, id);
 }
 
+/**
+ * @brief 
+ * 
+ */
 struct string_int global_ids;
+
+/**
+ * @brief 
+ * 
+ */
 struct vector global_types;

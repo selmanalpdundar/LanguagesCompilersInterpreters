@@ -704,6 +704,8 @@ void codegen_stmt(struct stmt *stmt, LLVMModuleRef module, LLVMBuilderRef builde
 
     case STMT_INCREMENT:
 
+      LLVMValueRef expr = codegen_expr(stmt->assign.expr, module, builder);
+      LLVMBuildStore(builder, expr, vector_get(&global_types, stmt->assign.id));
 
       break;
 
