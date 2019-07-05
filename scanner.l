@@ -1,8 +1,8 @@
 %{
-  #include "y.tab.h"
   #include <stdlib.h>
-  #include "utils.h"
   #include <llvm-c/Core.h>
+  #include "y.tab.h"
+  #include "utils.h"
 
   void yyerror(LLVMModuleRef module, LLVMBuilderRef builder, const char* s);
   
@@ -34,6 +34,6 @@ false              { return FALSE; }
 \|\|               {return OR;}
 \++                {return INCREMENT;}
 \--                {return DECREMENT;}
-.                  yyerror(NULL, NULL, "Unexpected character");
+.                  {yyerror(NULL, NULL, "Unexpected character");}
 
 %%

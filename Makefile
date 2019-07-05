@@ -27,4 +27,4 @@ runtime.bc: runtime.c
 	clang -c -emit-llvm $^
 
 clean: 
-	rm -rf compiler runtime.bc ${OBJECTS} ${LEX_OBJECTS} ${YACC_OBJECTS}
+	rm -rf compiler y.output y.tab.h runtime.bc ${OBJECTS} ${LEX_OBJECTS} ${YACC_OBJECTS}

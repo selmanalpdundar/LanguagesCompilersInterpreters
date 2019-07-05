@@ -8,7 +8,6 @@
   #include <llvm-c/IRReader.h>
   #include <llvm-c/Transforms/Scalar.h>
   #include <llvm-c/Transforms/Utils.h>
-  #include "llvm/IR/Module.h"
   #include "ast.h"
   #include "utils.h"
 
