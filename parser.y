@@ -37,7 +37,7 @@
 %token DECREMENT
 %token IF ELSE WHILE PRINT 
 %token BOOL_TYPE INT_TYPE
-%token AND OR
+%token AND OR XOR
 %token <id> ID
 %token <value> VAL
 %type  <expr>  expr
@@ -90,9 +90,12 @@ stmt: '{' stmts '}'                         { $$ = $2; }
       | IF '(' expr ')' stmt %prec IF_ALONE { $$ = make_if($3, $5); }
       | IF '(' expr ')' stmt ELSE stmt      { $$ = make_ifelse($3, $5, $7); }
       | WHILE '(' expr ')' stmt             { $$ = make_while($3, $5); }
-      | PRINT expr ';'                      { $$ = make_print($2); }
       | INCREMENT expr ';'                  { $$ = make_increment($2);}
+      | expr INCREMENT ';'                  { $$ = make_increment($1);}
       | DECREMENT expr ';'                  { $$ = make_decrement($2);}
+      | expr DECREMENT';'                   { $$ = make_decrement($1);}
+      | PRINT expr ';'                      { $$ = make_print($2); }
+
 
 expr: VAL             { $$ = literal($1); }
       | FALSE         { $$ = bool_lit(0); }
@@ -114,6 +117,7 @@ expr: VAL             { $$ = literal($1); }
       | expr '<' expr { $$ = binop($1, '<', $3); }
       | expr AND expr { $$ = binop($1, AND , $3); }
       | expr OR expr  { $$ = binop($1, OR , $3); }
+      | expr XOR expr { $$ = binop($1, XOR , $3); }
       ;
 
 %%

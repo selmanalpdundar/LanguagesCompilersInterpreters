@@ -363,6 +363,12 @@ enum value_type check_types(struct expr *expr) {
           else if (lhs == INTEGER || rhs == INTEGER)
             return INTEGER;
           else
+        case XOR:
+         if (lhs == BOOLEAN || rhs == BOOLEAN)
+            return BOOLEAN;
+          else if (lhs == INTEGER || rhs == INTEGER)
+            return INTEGER;
+          else
             return ERROR;
       }
 
@@ -624,6 +630,7 @@ LLVMValueRef codegen_expr(struct expr *expr, LLVMModuleRef module, LLVMBuilderRe
         case '<': return LLVMBuildICmp(builder, LLVMIntSLT, lhs, rhs, "lttmp");
         case AND: return LLVMBuildAnd(builder,lhs,rhs,"andtmp");
         case OR: return LLVMBuildOr(builder,lhs,rhs,"ortmp");
+        case XOR: return LLVMBuildXor(builder,lhs,rhs,"xortmp");
         
       }
     }
@@ -713,7 +720,7 @@ void codegen_stmt(struct stmt *stmt, LLVMModuleRef module, LLVMBuilderRef builde
                Print function take  an expression when I try to print incrementation of some constant e.g. print(++10)
                It gives error. 
              */
-           // LLVMBuildStore(builder,  LLVMBuildAdd(builder,LLVMConstInt(LLVMInt32Type(), stmt->increment.expr->value, 0), LLVMConstInt(LLVMInt32Type(), 1, 0), "addtmp"), vector_get(&global_types, stmt->increment.expr->id));
+            //LLVMBuildStore(builder,  LLVMBuildAdd(builder,LLVMConstInt(LLVMInt32Type(), stmt->increment.expr->value, 0), LLVMConstInt(LLVMInt32Type(), 1, 0), "addtmp"), vector_get(&global_types, stmt->increment.expr->id));
 
           break;
         case VARIABLE:
@@ -734,8 +741,9 @@ void codegen_stmt(struct stmt *stmt, LLVMModuleRef module, LLVMBuilderRef builde
                   /* Problem
                     Print function take  an expression when I try to print decrementation of some constant e.g. print(++10)
                     It gives error. 
+                    10 is iteal so we cannot store value of ++10 any where when I call ++10 it create statement.
                   */
-                // LLVMBuildStore(builder,  LLVMBuildAdd(builder,LLVMConstInt(LLVMInt32Type(), stmt->increment.expr->value, 0), LLVMConstInt(LLVMInt32Type(), 1, 0), "addtmp"), vector_get(&global_types, stmt->increment.expr->id));
+                 //LLVMBuildStore(builder,  LLVMBuildAdd(builder,LLVMConstInt(LLVMInt32Type(), stmt->increment.expr->value, 0), LLVMConstInt(LLVMInt32Type(), 1, 0), "addtmp"), vector_get(&global_types, stmt->increment.expr->id));
 
                 break;
               case VARIABLE:
