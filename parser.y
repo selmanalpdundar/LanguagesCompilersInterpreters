@@ -92,6 +92,7 @@ stmt: '{' stmts '}'                         { $$ = $2; }
       | WHILE '(' expr ')' stmt             { $$ = make_while($3, $5); }
       | PRINT expr ';'                      { $$ = make_print($2); }
       | INCREMENT expr ';'                  { $$ = make_increment($2);}
+      | DECREMENT expr ';'                  { $$ = make_decrement($2);}
 
 expr: VAL             { $$ = literal($1); }
       | FALSE         { $$ = bool_lit(0); }

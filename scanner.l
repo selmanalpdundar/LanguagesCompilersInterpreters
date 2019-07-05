@@ -33,7 +33,7 @@ false              { return FALSE; }
 \&&                {return AND;}
 \|\|               {return OR;}
 \++                {return INCREMENT;}
-\--                {return DECREMENT;}
+\-\-               {return DECREMENT;}
 .                  {yyerror(NULL, NULL, "Unexpected character");}
 
 %%

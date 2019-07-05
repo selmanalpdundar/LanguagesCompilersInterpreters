@@ -708,8 +708,12 @@ void codegen_stmt(struct stmt *stmt, LLVMModuleRef module, LLVMBuilderRef builde
     case STMT_INCREMENT:{
         switch (stmt->increment.expr->type)        {
         case LITERAL:
-           
-            LLVMBuildStore(builder,  LLVMBuildAdd(builder,LLVMConstInt(LLVMInt32Type(), stmt->increment.expr->value, 0), LLVMConstInt(LLVMInt32Type(), 1, 0), "addtmp"), vector_get(&global_types, stmt->increment.expr->id));
+            // TODO
+            /* Problem
+               Print function take  an expression when I try to print incrementation of some constant e.g. print(++10)
+               It gives error. 
+             */
+           // LLVMBuildStore(builder,  LLVMBuildAdd(builder,LLVMConstInt(LLVMInt32Type(), stmt->increment.expr->value, 0), LLVMConstInt(LLVMInt32Type(), 1, 0), "addtmp"), vector_get(&global_types, stmt->increment.expr->id));
 
           break;
         case VARIABLE:
@@ -724,7 +728,25 @@ void codegen_stmt(struct stmt *stmt, LLVMModuleRef module, LLVMBuilderRef builde
     }
 
     case STMT_DECREMENT:{
+      switch (stmt->decrement.expr->type)        {
+              case LITERAL:
+                  // TODO
+                  /* Problem
+                    Print function take  an expression when I try to print decrementation of some constant e.g. print(++10)
+                    It gives error. 
+                  */
+                // LLVMBuildStore(builder,  LLVMBuildAdd(builder,LLVMConstInt(LLVMInt32Type(), stmt->increment.expr->value, 0), LLVMConstInt(LLVMInt32Type(), 1, 0), "addtmp"), vector_get(&global_types, stmt->increment.expr->id));
 
+                break;
+              case VARIABLE:
+                  LLVMBuildStore(builder, LLVMBuildSub(builder,LLVMBuildLoad(builder, vector_get(&global_types, stmt->decrement.expr->id), "loadtmp"), LLVMConstInt(LLVMInt32Type(), 1, 0), "addtmp"), vector_get(&global_types, stmt->decrement.expr->id));
+
+                break;
+              default:
+                break;
+              }  
+              
+            break;
       break;
     }
 

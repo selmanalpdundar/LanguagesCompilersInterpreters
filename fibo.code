@@ -24,6 +24,11 @@ int idx;
 
   ++curr;
   ++curr;
+
+
   print(curr);
 
+  --curr;
+
+   print(curr);
 }
