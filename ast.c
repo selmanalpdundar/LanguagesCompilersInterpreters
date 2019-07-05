@@ -119,7 +119,7 @@ void print_expr(struct expr *expr) {
       }
       print_expr(expr->binop.rhs);
       printf(")");
-      break;
+      break;  
   }
 }
 
@@ -185,6 +185,22 @@ void print_stmt(struct stmt *stmt, int indent) {
       print_indent(indent);
       printf("}\n");
       break;
+
+    case STMT_INCREMENT:
+      print_indent(indent);
+      printf("++");
+      print_expr(stmt->increment.expr);
+      break;
+
+    case STMT_DECREMENT:
+      print_indent(indent);
+      printf("--");
+      print_expr(stmt->decrement.expr);
+      break;
+
+    default:
+      printf("Default");
+      
   }
 }
 
@@ -559,6 +575,13 @@ int valid_stmt(struct stmt *stmt) {
         check_types(stmt->ifelse.cond) == BOOLEAN &&
         valid_stmt(stmt->ifelse.if_body) &&
         (stmt->ifelse.else_body == NULL || valid_stmt(stmt->ifelse.else_body));
+
+    case STMT_INCREMENT:
+         return check_types(stmt->increment.expr) != ERROR;
+         
+    case STMT_DECREMENT:
+         return check_types(stmt->decrement.expr) != ERROR;
+ 
   }
 }
 
@@ -601,6 +624,7 @@ LLVMValueRef codegen_expr(struct expr *expr, LLVMModuleRef module, LLVMBuilderRe
         case OR: return LLVMBuildOr(builder,lhs,rhs,"ortmp");
       }
     }
+
   }
   return NULL;
 }
@@ -631,7 +655,7 @@ void codegen_stmt(struct stmt *stmt, LLVMModuleRef module, LLVMBuilderRef builde
       enum value_type arg_type = check_types(stmt->print.expr);
       LLVMValueRef print_fn = LLVMGetNamedFunction(module, arg_type == BOOLEAN ? "print_i1" : "print_i32");
       LLVMValueRef args[] = { codegen_expr(stmt->print.expr, module, builder) };
-      LLVMBuildCall(builder, print_fn, args, 1, "");
+      LLVMBuildCall(builder, print_fn, args, 1, "");  // It calles function by LLVMValueref with parameter
       break;
     }
 
@@ -677,5 +701,15 @@ void codegen_stmt(struct stmt *stmt, LLVMModuleRef module, LLVMBuilderRef builde
       LLVMPositionBuilderAtEnd(builder, cont_bb);
       break;
     }
+
+    case STMT_INCREMENT:
+
+
+      break;
+
+    case STMT_DECREMENT:
+      
+      break;
+
   }
 }

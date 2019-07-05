@@ -3,8 +3,8 @@
 
 /**
  * @brief 
- * 
- * @param x 
+ * It called by llvm to print a literal
+ * @param x is a literal
  */
 void print_i32(int32_t x) {
   printf("%d\n", x);
@@ -12,8 +12,8 @@ void print_i32(int32_t x) {
 
 /**
  * @brief 
- * 
- * @param x 
+ * It called by llvm to print a boolean literal
+ * @param x is a bool literal
  */
 void print_i1(int x) {
   if (x) {

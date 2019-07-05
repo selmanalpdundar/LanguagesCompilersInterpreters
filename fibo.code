@@ -17,7 +17,7 @@ int idx;
   }
 
 
-  print ( false || false );
+  print( false || false );
 
   print( true && false );
 
