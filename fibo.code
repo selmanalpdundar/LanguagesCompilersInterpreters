@@ -17,23 +17,32 @@ int idx;
   }
 
 
-  print( false || false );
-
-  print( true && false );
-  
-
-  print( true ^ false);
-  
-  ++curr;
-  ++curr;
   curr++;
-  curr++;
-
+  print(curr);
+  ++curr;
   print(curr);
 
   --curr;
+  print(curr);
   curr--;
-  curr--;
+  print(curr);
 
-   print(curr);
+  print( true && true );
+  print( true && false ); 
+  print( false && true );
+  print( false && false );
+
+
+  print( true || true );
+  print( true || false ); 
+  print( false || true );
+  print( false || false );
+
+
+  print( true ^ true );
+  print( true ^ false ); 
+  print( false ^ true );
+  print( false ^ false );
+
+
 }

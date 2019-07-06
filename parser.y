@@ -48,7 +48,7 @@
 
 %nonassoc IF_ALONE
 %nonassoc ELSE
-%left AND OR
+%left AND OR XOR
 %left GE LE EQ NE '>' '<'
 %left '+' '-'
 %left '*' '/'
@@ -100,17 +100,14 @@ stmt: '{' stmts '}'                         { $$ = $2; }
 expr: VAL             { $$ = literal($1); }
       | FALSE         { $$ = bool_lit(0); }
       | TRUE          { $$ = bool_lit(1); }
-      | ID          { $$ = variable($1); }
+      | ID            { $$ = variable($1); }
       | '(' expr ')'  { $$ = $2; }
-
       | expr '+' expr { $$ = binop($1, '+', $3); }
       | expr '-' expr { $$ = binop($1, '-', $3); }
       | expr '*' expr { $$ = binop($1, '*', $3); }
       | expr '/' expr { $$ = binop($1, '/', $3); }
-
       | expr EQ  expr { $$ = binop($1, EQ, $3); }
       | expr NE  expr { $$ = binop($1, NE, $3); }
-
       | expr GE  expr { $$ = binop($1, GE, $3); }
       | expr LE  expr { $$ = binop($1, LE, $3); }
       | expr '>' expr { $$ = binop($1, '>', $3); }

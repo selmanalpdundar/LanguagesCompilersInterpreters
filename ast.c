@@ -115,6 +115,8 @@ void print_expr(struct expr *expr) {
         case GE: printf(" >= "); break;
         case LE: printf(" <= "); break;
         case AND: printf(" && "); break;
+        case OR: printf(" || "); break;
+        case XOR: printf(" ^ "); break;
         default: printf(" %c ", expr->binop.op); break;
       }
       print_expr(expr->binop.rhs);
@@ -227,20 +229,21 @@ void emit_stack_machine(struct expr *expr) {
     case BIN_OP:
       emit_stack_machine(expr->binop.lhs);
       emit_stack_machine(expr->binop.rhs);
+
       switch (expr->binop.op) {
         case '+': printf("add\n"); break;
         case '-': printf("sub\n"); break;
         case '*': printf("mul\n"); break;
         case '/': printf("div\n"); break;
-
-        case EQ: printf("eq\n"); break;
-        case NE: printf("ne\n"); break;
-
-        case GE: printf("ge\n"); break;
-        case LE: printf("le\n"); break;
-        case '>': printf("gt\n"); break;
-        case '<': printf("lt\n"); break;
-        case  AND: printf("and\n"); break;
+        case EQ: printf("eq\n");   break;
+        case NE: printf("ne\n");   break;
+        case GE: printf("ge\n");   break;
+        case LE: printf("le\n");   break;
+        case '>': printf("gt\n");  break;
+        case '<': printf("lt\n");  break;
+        case AND: printf("and\n"); break;
+        case OR:  printf("or\n");  break;
+        case XOR:  printf("xor\n");  break;
       }
       break;
   }
@@ -295,6 +298,7 @@ int emit_reg_machine(struct expr *expr) {
         case LE: printf("r%d = le r%d, r%d\n", result_reg, lhs, rhs); break;
         case '>': printf("r%d = gt r%d, r%d\n", result_reg, lhs, rhs); break;
         case '<': printf("r%d = lt r%d, r%d\n", result_reg, lhs, rhs); break;
+        
       }
       break;
     }
@@ -358,18 +362,19 @@ enum value_type check_types(struct expr *expr) {
           else
             return ERROR;
         case OR:
-          if (lhs == BOOLEAN || rhs == BOOLEAN)
+          if (lhs == BOOLEAN && rhs == BOOLEAN)
             return BOOLEAN;
-          else if (lhs == INTEGER || rhs == INTEGER)
+          else if (lhs == INTEGER && rhs == INTEGER)
             return INTEGER;
           else
-        case XOR:
-         if (lhs == BOOLEAN || rhs == BOOLEAN)
+             return ERROR;
+         case XOR:
+          if (lhs == BOOLEAN && rhs == BOOLEAN)
             return BOOLEAN;
-          else if (lhs == INTEGER || rhs == INTEGER)
+          else if (lhs == INTEGER && rhs == INTEGER)
             return INTEGER;
           else
-            return ERROR;
+             return ERROR;
       }
 
       default:
@@ -616,20 +621,21 @@ LLVMValueRef codegen_expr(struct expr *expr, LLVMModuleRef module, LLVMBuilderRe
       LLVMValueRef lhs = codegen_expr(expr->binop.lhs, module, builder);
       LLVMValueRef rhs = codegen_expr(expr->binop.rhs, module, builder);
       switch (expr->binop.op) {
+        
         case '+': return LLVMBuildAdd(builder, lhs, rhs, "addtmp");
         case '-': return LLVMBuildSub(builder, lhs, rhs, "subtmp");
         case '*': return LLVMBuildMul(builder, lhs, rhs, "multmp");
         case '/': return LLVMBuildSDiv(builder, lhs, rhs, "divtmp");
 
-        case EQ: return LLVMBuildICmp(builder, LLVMIntEQ, lhs, rhs, "eqtmp");
-        case NE: return LLVMBuildICmp(builder, LLVMIntNE, lhs, rhs, "netmp");
-
-        case GE: return LLVMBuildICmp(builder, LLVMIntSGE, lhs, rhs, "getmp");
-        case LE: return LLVMBuildICmp(builder, LLVMIntSLE, lhs, rhs, "letmp");
+        case EQ:  return LLVMBuildICmp(builder, LLVMIntEQ, lhs, rhs, "eqtmp");
+        case NE:  return LLVMBuildICmp(builder, LLVMIntNE, lhs, rhs, "netmp");
+        case GE:  return LLVMBuildICmp(builder, LLVMIntSGE, lhs, rhs, "getmp");
+        case LE:  return LLVMBuildICmp(builder, LLVMIntSLE, lhs, rhs, "letmp");
         case '>': return LLVMBuildICmp(builder, LLVMIntSGT, lhs, rhs, "gttmp");
         case '<': return LLVMBuildICmp(builder, LLVMIntSLT, lhs, rhs, "lttmp");
+
         case AND: return LLVMBuildAnd(builder,lhs,rhs,"andtmp");
-        case OR: return LLVMBuildOr(builder,lhs,rhs,"ortmp");
+        case OR:  return LLVMBuildOr(builder,lhs,rhs,"ortmp");
         case XOR: return LLVMBuildXor(builder,lhs,rhs,"xortmp");
         
       }

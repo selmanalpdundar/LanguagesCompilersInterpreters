@@ -30,11 +30,11 @@ false              { return FALSE; }
 \<=                { return LE; }
 ==                 { return EQ; }
 !=                 { return NE; }
-\&&                {return AND;}
-\|\|               {return OR;}
-\^                 {return XOR;}
-\++                {return INCREMENT;}
-\-\-               {return DECREMENT;}
-.                  {yyerror(NULL, NULL, "Unexpected character");}
+\&&                { return AND; }
+\|\|               { return OR; }
+\^                 { return XOR; }
+\++                { return INCREMENT; }
+\-\-               { return DECREMENT; }
+.                  { yyerror(NULL, NULL, "Unexpected character"); } 
 
 %%
