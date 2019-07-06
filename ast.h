@@ -26,6 +26,7 @@ enum expr_type {
   LITERAL,
   VARIABLE,
   BIN_OP,
+  TERNARY_OP,
 };
 
 /**
@@ -44,6 +45,11 @@ struct expr {
       struct expr *rhs;
       int op;
     } binop; // for type == BIN_OP
+    struct {
+      struct expr *lhs; // left hand-side for binop
+      struct expr *mhs; // midle expression  
+      struct expr *rhs; // right hand-sie;
+    } ternary; // for type = TERNARY_OP
   };
   
 };
@@ -54,6 +60,7 @@ struct expr* bool_lit(int v);
 struct expr* literal(int v);
 struct expr* variable(size_t id);
 struct expr* binop(struct expr *lhs, int op, struct expr *rhs);
+struct expr* ternary(struct expr *lhs, struct expr *mhs, struct expr *rhs );
 
 void print_expr(struct expr *expr);
 void emit_stack_machine(struct expr *expr);

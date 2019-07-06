@@ -44,5 +44,14 @@ int idx;
   print( false ^ true );
   print( false ^ false );
 
+  prev = prev % 2;
+  curr = curr % 10;
+
+  print(curr);
+  print(prev);
+  print( curr % 2 );
+
+
+  
 
 }

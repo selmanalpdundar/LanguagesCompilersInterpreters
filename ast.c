@@ -87,6 +87,23 @@ struct expr* binop(struct expr *lhs, int op, struct expr *rhs) {
   return r;
 }
 
+// b = a < b ? a : b
+/*
+      if(a < b){
+        b = a  
+      } else {
+        b = b
+      }
+ */
+struct expr *ternary(struct expr *lhs, struct expr *mhs, struct expr *rhs ){
+  struct expr* r = malloc(sizeof(struct expr));
+  r->type = TERNARY_OP;
+  r->ternary.lhs = lhs;
+  r->ternary.mhs = mhs;
+  r->ternary.rhs = rhs;
+  return r;
+}
+
 /**
  * @brief 
  * IT takes an expression to print.
@@ -117,11 +134,19 @@ void print_expr(struct expr *expr) {
         case AND: printf(" && "); break;
         case OR: printf(" || "); break;
         case XOR: printf(" ^ "); break;
+        case REMAINDER: break;
         default: printf(" %c ", expr->binop.op); break;
       }
       print_expr(expr->binop.rhs);
       printf(")");
       break;  
+    case TERNARY_OP:
+      print_expr(expr->ternary.lhs);
+      printf(" ? ");
+      print_expr(expr->ternary.mhs);
+      printf(" : ");
+      print_expr(expr->ternary.rhs);
+      break;
   }
 }
 
@@ -244,8 +269,13 @@ void emit_stack_machine(struct expr *expr) {
         case AND: printf("and\n"); break;
         case OR:  printf("or\n");  break;
         case XOR:  printf("xor\n");  break;
+        case REMAINDER: printf("remainder\n"); break;
       }
       break;
+    case TERNARY_OP:{
+      
+      break;
+    }
   }
 }
 
@@ -302,6 +332,10 @@ int emit_reg_machine(struct expr *expr) {
       }
       break;
     }
+    case TERNARY_OP:{
+
+      break;
+    }
   }
   return result_reg;
 }
@@ -309,7 +343,7 @@ int emit_reg_machine(struct expr *expr) {
 /**
  * @brief 
  * It takes an expression and return the value type of the expression.
- * @param expr is an expression
+ * @param expr is an expression.
  * @return enum value_type  
  */
 enum value_type check_types(struct expr *expr) {
@@ -320,19 +354,33 @@ enum value_type check_types(struct expr *expr) {
     case LITERAL:
       return INTEGER;
 
-    case VARIABLE: {
+    case VARIABLE:{
       LLVMValueRef ptr = vector_get(&global_types, expr->id);
       LLVMTypeRef t = LLVMGetElementType(LLVMTypeOf(ptr));
       return LLVMGetIntTypeWidth(t) == 1 ? BOOLEAN : INTEGER;
     }
 
     case BIN_OP: {
+      
       enum value_type lhs = check_types(expr->binop.lhs);
       enum value_type rhs = check_types(expr->binop.rhs);
+      
       switch (expr->binop.op) {
         case '+':
+          if (lhs == INTEGER && rhs == INTEGER)
+            return INTEGER;
+          else
+            return ERROR;
         case '-':
+          if (lhs == INTEGER && rhs == INTEGER)
+            return INTEGER;
+          else
+            return ERROR;
         case '*':
+          if (lhs == INTEGER && rhs == INTEGER)
+            return INTEGER;
+          else
+            return ERROR;
         case '/':
           if (lhs == INTEGER && rhs == INTEGER)
             return INTEGER;
@@ -340,15 +388,30 @@ enum value_type check_types(struct expr *expr) {
             return ERROR;
 
         case EQ:
+          if (lhs == rhs && lhs != ERROR)
+            return BOOLEAN;
+          else
+            return ERROR;
         case NE:
           if (lhs == rhs && lhs != ERROR)
             return BOOLEAN;
           else
             return ERROR;
-
         case GE:
+            if (lhs == INTEGER && rhs == INTEGER)
+            return BOOLEAN;
+          else
+            return ERROR;
         case LE:
+          if (lhs == INTEGER && rhs == INTEGER)
+            return BOOLEAN;
+          else
+            return ERROR;
         case '>':
+            if (lhs == INTEGER && rhs == INTEGER)
+            return BOOLEAN;
+          else
+            return ERROR;
         case '<':
           if (lhs == INTEGER && rhs == INTEGER)
             return BOOLEAN;
@@ -368,7 +431,14 @@ enum value_type check_types(struct expr *expr) {
             return INTEGER;
           else
              return ERROR;
-         case XOR:
+        case XOR:
+          if (lhs == BOOLEAN && rhs == BOOLEAN)
+            return BOOLEAN;
+          else if (lhs == INTEGER && rhs == INTEGER)
+            return INTEGER;
+          else
+             return ERROR;
+        case REMAINDER:
           if (lhs == BOOLEAN && rhs == BOOLEAN)
             return BOOLEAN;
           else if (lhs == INTEGER && rhs == INTEGER)
@@ -376,10 +446,33 @@ enum value_type check_types(struct expr *expr) {
           else
              return ERROR;
       }
-
-      default:
-        return ERROR;
     }
+  case TERNARY_OP:{
+
+    enum value_type lhs = check_types(expr->ternary.lhs->binop.lhs);
+    enum value_type rhs = check_types( expr->ternary.lhs->binop.rhs);
+
+    if(lhs == BOOLEAN && rhs == BOOLEAN){
+
+      enum value_type mhs = check_types(expr->ternary.mhs);
+      enum value_type righs = check_types(expr->ternary.rhs);
+
+      if( mhs == BOOLEAN && righs == BOOLEAN ){ return BOOLEAN; } 
+      else if( mhs == INTEGER && righs == INTEGER){ return INTEGER; }
+
+    } else if(lhs == INTEGER && rhs == INTEGER){
+
+      enum value_type mhs = check_types(expr->ternary.mhs);
+      enum value_type righs = check_types(expr->ternary.rhs);
+
+      if( mhs == BOOLEAN && righs == BOOLEAN ){ return BOOLEAN; } 
+      else if( mhs == INTEGER && righs == INTEGER){ return INTEGER; }
+
+    }else {  return ERROR; }
+
+  }    
+  default:
+    return ERROR;
   }
 }
 
@@ -391,7 +484,11 @@ enum value_type check_types(struct expr *expr) {
 void free_expr(struct expr *expr) {
   switch (expr->type) {
     case BOOL_LIT:
+      free(expr);
+      break;
     case LITERAL:
+      free(expr);
+      break;
     case VARIABLE:
       free(expr);
       break;
@@ -400,6 +497,13 @@ void free_expr(struct expr *expr) {
       free_expr(expr->binop.lhs);
       free_expr(expr->binop.rhs);
       free(expr);
+      break;
+    case TERNARY_OP:
+      free_expr(expr->ternary.lhs->binop.lhs);
+      free_expr(expr->ternary.lhs->binop.rhs);
+      free_expr(expr->ternary.lhs);
+      free_expr(expr->ternary.mhs);
+      free_expr(expr->ternary.rhs);
       break;
   }
 }
@@ -637,8 +741,15 @@ LLVMValueRef codegen_expr(struct expr *expr, LLVMModuleRef module, LLVMBuilderRe
         case AND: return LLVMBuildAnd(builder,lhs,rhs,"andtmp");
         case OR:  return LLVMBuildOr(builder,lhs,rhs,"ortmp");
         case XOR: return LLVMBuildXor(builder,lhs,rhs,"xortmp");
-        
+        case REMAINDER: return LLVMBuildSRem(builder,lhs,rhs,"modtmp");
       }
+
+    }
+    case TERNARY_OP:{
+      LLVMValueRef truth = codegen_expr(expr->ternary.lhs,module,builder);
+      LLVMValueRef mhs = codegen_expr(expr->ternary.mhs, module, builder);
+      LLVMValueRef rhs = codegen_expr(expr->ternary.rhs, module, builder);
+      return LLVMBuildSelect(builder,truth,mhs,rhs,"");
     }
 
   }
