@@ -39,6 +39,7 @@
 %token BOOL_TYPE INT_TYPE 
 %token AND OR XOR REMAINDER
 %token <id> ID
+%token LEFTSHIFT RIGHTSHIFT
 %token QUESTION_MARK COLON
 %token <value> VAL
 %type  <expr>  expr
@@ -49,11 +50,11 @@
 
 %nonassoc IF_ALONE
 %nonassoc ELSE
-%left QUESTION_MARK COLON
 %left AND OR XOR
 %left GE LE EQ NE '>' '<'
 %left '+' '-'
 %left '*' '/' REMAINDER
+%left LEFTSHIFT RIGHTSHIFT
 
 %%
 program: decls stmt {
@@ -96,7 +97,7 @@ stmt: '{' stmts '}'                         {  $$ = $2;                       }
       | expr INCREMENT ';'                  {  $$ = make_increment($1);       }
       | DECREMENT expr ';'                  {  $$ = make_decrement($2);       }
       | expr DECREMENT';'                   {  $$ = make_decrement($1);       }
-      | PRINT expr ';'                      {  $$ = make_print($2);           }
+      | PRINT expr ';'                      {  $$ = make_print($2);           }     
 
 expr: VAL                                   {  $$ = literal($1);              }
       | FALSE                               {  $$ = bool_lit(0);              }
@@ -117,7 +118,10 @@ expr: VAL                                   {  $$ = literal($1);              }
       | expr OR expr                        {  $$ = binop($1, OR , $3);       }
       | expr XOR expr                       {  $$ = binop($1, XOR , $3);      }
       | expr REMAINDER expr                 {  $$ = binop($1, REMAINDER, $3); }
+      | expr LEFTSHIFT expr                 {  $$ = binop($1, LEFTSHIFT, $3); }
+      | expr RIGHTSHIFT expr                {  $$ = binop($1, RIGHTSHIFT, $3);}
       | expr QUESTION_MARK expr COLON expr  {  $$ = ternary($1,$3,$5);        }
+
       ;
 
 %%

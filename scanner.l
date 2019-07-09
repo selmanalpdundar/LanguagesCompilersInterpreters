@@ -32,6 +32,8 @@ false              { return FALSE;                                              
 \<=                { return LE;                                                        }
 ==                 { return EQ;                                                        }
 !=                 { return NE;                                                        }
+\>\>               { return RIGHTSHIFT;                                                }
+\<\<               { return LEFTSHIFT;                                                 }
 \&&                { return AND;                                                       }
 \|\|               { return OR;                                                        }
 \^                 { return XOR;                                                       }

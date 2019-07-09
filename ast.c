@@ -134,7 +134,9 @@ void print_expr(struct expr *expr) {
         case AND: printf(" && "); break;
         case OR: printf(" || "); break;
         case XOR: printf(" ^ "); break;
-        case REMAINDER: break;
+        case REMAINDER: printf(" %% "); break;
+        case RIGHTSHIFT: printf(" >> "); break;
+        case LEFTSHIFT: printf(" << "); break;
         default: printf(" %c ", expr->binop.op); break;
       }
       print_expr(expr->binop.rhs);
@@ -270,6 +272,8 @@ void emit_stack_machine(struct expr *expr) {
         case OR:  printf("or\n");  break;
         case XOR:  printf("xor\n");  break;
         case REMAINDER: printf("remainder\n"); break;
+        case RIGHTSHIFT: printf("rightshift\n");
+        case LEFTSHIFT: printf("leftshift\n");
       }
       break;
     case TERNARY_OP:{
@@ -328,7 +332,12 @@ int emit_reg_machine(struct expr *expr) {
         case LE: printf("r%d = le r%d, r%d\n", result_reg, lhs, rhs); break;
         case '>': printf("r%d = gt r%d, r%d\n", result_reg, lhs, rhs); break;
         case '<': printf("r%d = lt r%d, r%d\n", result_reg, lhs, rhs); break;
-        
+        case AND: printf("r%d = and r%d, r%d\n", result_reg, lhs, rhs); break;
+        case OR: printf("r%d = or r%d, r%d\n", result_reg, lhs, rhs); break;
+        case XOR: printf("r%d = xor r%d, r%d\n", result_reg, lhs, rhs); break;
+        case REMAINDER: printf("r%d = remainder r%d, r%d\n", result_reg, lhs, rhs); break;
+        case LEFTSHIFT: printf("r%d = leftshift r%d, r%d\n", result_reg, lhs, rhs); break;
+        case RIGHTSHIFT: printf("r%d = rightshift r%d, r%d\n", result_reg, lhs, rhs); break;
       }
       break;
     }
@@ -445,9 +454,24 @@ enum value_type check_types(struct expr *expr) {
             return INTEGER;
           else
              return ERROR;
+         case RIGHTSHIFT:
+          if (lhs == BOOLEAN && rhs == BOOLEAN)
+            return BOOLEAN;
+          else if (lhs == INTEGER && rhs == INTEGER)
+            return INTEGER;
+          else
+             return ERROR;
+         case LEFTSHIFT:
+          if (lhs == BOOLEAN && rhs == BOOLEAN)
+            return BOOLEAN;
+          else if (lhs == INTEGER && rhs == INTEGER)
+            return INTEGER;
+          else
+             return ERROR;
+          default: return ERROR;
       }
     }
-  case TERNARY_OP:{
+    case TERNARY_OP:{
 
     enum value_type lhs = check_types(expr->ternary.lhs->binop.lhs);
     enum value_type rhs = check_types( expr->ternary.lhs->binop.rhs);
@@ -583,7 +607,6 @@ struct stmt* make_if(struct expr *e, struct stmt *body) {
 }
 
 
-
 /**
  * @brief 
  * It takes an expression to create a statement.
@@ -660,6 +683,8 @@ void free_stmt(struct stmt *stmt) {
     case STMT_DECREMENT:
       free_expr(stmt->decrement.expr);
       break;
+    default:
+      break;
   }
 
   free(stmt);
@@ -698,7 +723,8 @@ int valid_stmt(struct stmt *stmt) {
          
     case STMT_DECREMENT:
          return check_types(stmt->decrement.expr) != ERROR;
- 
+    default:
+        return ERROR;
   }
 }
 
@@ -730,7 +756,7 @@ LLVMValueRef codegen_expr(struct expr *expr, LLVMModuleRef module, LLVMBuilderRe
         case '-': return LLVMBuildSub(builder, lhs, rhs, "subtmp");
         case '*': return LLVMBuildMul(builder, lhs, rhs, "multmp");
         case '/': return LLVMBuildSDiv(builder, lhs, rhs, "divtmp");
-
+                          
         case EQ:  return LLVMBuildICmp(builder, LLVMIntEQ, lhs, rhs, "eqtmp");
         case NE:  return LLVMBuildICmp(builder, LLVMIntNE, lhs, rhs, "netmp");
         case GE:  return LLVMBuildICmp(builder, LLVMIntSGE, lhs, rhs, "getmp");
@@ -742,6 +768,10 @@ LLVMValueRef codegen_expr(struct expr *expr, LLVMModuleRef module, LLVMBuilderRe
         case OR:  return LLVMBuildOr(builder,lhs,rhs,"ortmp");
         case XOR: return LLVMBuildXor(builder,lhs,rhs,"xortmp");
         case REMAINDER: return LLVMBuildSRem(builder,lhs,rhs,"modtmp");
+
+        case LEFTSHIFT: return LLVMBuildShl(builder,lhs,rhs,"shifltmp");
+
+        case RIGHTSHIFT: return LLVMBuildLShr(builder, lhs,rhs,"shiftrtmp");
       }
 
     }
@@ -830,7 +860,7 @@ void codegen_stmt(struct stmt *stmt, LLVMModuleRef module, LLVMBuilderRef builde
     }
 
     case STMT_INCREMENT:{
-        switch (stmt->increment.expr->type)        {
+        switch (stmt->increment.expr->type){
         case LITERAL:
             // TODO
             /* Problem
@@ -847,33 +877,10 @@ void codegen_stmt(struct stmt *stmt, LLVMModuleRef module, LLVMBuilderRef builde
         default:
           break;
         }  
-        
       break;
     }
 
-    case STMT_DECREMENT:{
-      switch (stmt->decrement.expr->type)        {
-              case LITERAL:
-                  // TODO
-                  /* Problem
-                    Print function take  an expression when I try to print decrementation of some constant e.g. print(++10)
-                    It gives error. 
-                    10 is iteal so we cannot store value of ++10 any where when I call ++10 it create statement.
-                  */
-                 //LLVMBuildStore(builder,  LLVMBuildAdd(builder,LLVMConstInt(LLVMInt32Type(), stmt->increment.expr->value, 0), LLVMConstInt(LLVMInt32Type(), 1, 0), "addtmp"), vector_get(&global_types, stmt->increment.expr->id));
-
-                break;
-              case VARIABLE:
-                  LLVMBuildStore(builder, LLVMBuildSub(builder,LLVMBuildLoad(builder, vector_get(&global_types, stmt->decrement.expr->id), "loadtmp"), LLVMConstInt(LLVMInt32Type(), 1, 0), "addtmp"), vector_get(&global_types, stmt->decrement.expr->id));
-
-                break;
-              default:
-                break;
-              }  
-              
-            break;
-      break;
+    default: break;
     }
-
   }
-}
+

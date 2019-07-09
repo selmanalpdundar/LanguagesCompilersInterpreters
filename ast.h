@@ -82,6 +82,8 @@ enum stmt_type {
   STMT_PRINT,
   STMT_INCREMENT,
   STMT_DECREMENT,
+  STMT_RIGHT_SHIFT,
+  STMT_LEFT_SHIFT,
 };
 
 /**
@@ -117,7 +119,10 @@ struct stmt {
     struct{
       struct expr *expr;
     } decrement; // for type == DECREMENT
-
+    struct{
+      struct expr *left;
+      struct expr *right;
+    } shift;
   };
 };
 

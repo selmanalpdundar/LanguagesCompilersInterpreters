@@ -87,7 +87,7 @@ void vector_fini(struct vector *v) {
  */
 void *vector_get(struct vector *v, size_t idx) {
   vector_grow(v, idx + 1); // it is uncesseray because we do not put new element just get it from vector.
-  return v->data[idx];
+  return v->data[idx]; 
 }
 
 /**
@@ -98,7 +98,7 @@ void *vector_get(struct vector *v, size_t idx) {
  * @param x is a data or given index.
  */
 void vector_set(struct vector *v, size_t idx, void *x) {
-  vector_grow(v, idx + 1);
+  vector_grow(v, idx + 1); // This is correct because instead of increas id in vector_get we should do it when put new one. 
   v->data[idx] = x;
 }
 

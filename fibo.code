@@ -2,11 +2,15 @@ int curr;
 int prev;
 int tmp;
 int idx;
+int shiftr;
+int shiftl;
 
 {
   prev = 0;
   curr = 1;
   idx = 0;
+  shiftl = 8;
+  shiftr = 8;
 
   while (idx < 10) {
     tmp = prev + curr;
@@ -51,6 +55,13 @@ int idx;
   print(prev);
   print( curr % 2 );
 
+  curr = 5 ;
+
+  print(curr);
+
+  print( shiftl << 3 );
+
+  print( shiftr >> 3 );
 
   
 
