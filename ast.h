@@ -54,7 +54,6 @@ struct expr {
   
 };
 
-
 // Return expression take value
 struct expr* bool_lit(int v);
 struct expr* literal(int v);
@@ -80,6 +79,7 @@ enum stmt_type {
   STMT_IF,
   STMT_WHILE,
   STMT_PRINT,
+  STMT_PRINT_STMT,
   STMT_INCREMENT,
   STMT_DECREMENT,
 };
@@ -121,8 +121,12 @@ struct stmt {
       struct expr *left;
       struct expr *right;
     } shift;
+    struct{
+      struct stmt *stmt;
+    } print_stmt;
   };
 };
+
 
 struct stmt* make_seq(struct stmt *fst, struct stmt *snd);
 struct stmt* make_assign(size_t id, struct expr *e);
@@ -132,6 +136,7 @@ struct stmt* make_if(struct expr *e, struct stmt *body);
 struct stmt* make_print(struct expr *e);
 struct stmt* make_increment(struct expr *e);
 struct stmt* make_decrement(struct expr *e);
+struct stmt* make_print_stmt(struct stmt *stmt);
 
 void free_stmt(struct stmt *stmt);
 void print_stmt(struct stmt *stmt, int indent);

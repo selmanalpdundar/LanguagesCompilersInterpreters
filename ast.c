@@ -56,7 +56,6 @@ struct expr* literal(int v) {
   return r;
 }
 
-
 /**
  * @brief 
  * It takes an identifier to create new variable with it.
@@ -252,7 +251,6 @@ void emit_stack_machine(struct expr *expr) {
     case VARIABLE:
       printf("load_mem %zu # %s\n", expr->id, string_int_rev(&global_ids, expr->id));
       break;
-
     case BIN_OP:
       emit_stack_machine(expr->binop.lhs);
       emit_stack_machine(expr->binop.rhs);
@@ -341,6 +339,7 @@ int emit_reg_machine(struct expr *expr) {
       }
       break;
     }
+  
     case TERNARY_OP:{
 
       break;
@@ -376,77 +375,30 @@ enum value_type check_types(struct expr *expr) {
       
       switch (expr->binop.op) {
         case '+':
-          if (lhs == INTEGER && rhs == INTEGER)
-            return INTEGER;
-          else
-            return ERROR;
         case '-':
-          if (lhs == INTEGER && rhs == INTEGER)
-            return INTEGER;
-          else
-            return ERROR;
         case '*':
-          if (lhs == INTEGER && rhs == INTEGER)
-            return INTEGER;
-          else
-            return ERROR;
         case '/':
           if (lhs == INTEGER && rhs == INTEGER)
             return INTEGER;
           else
             return ERROR;
-
         case EQ:
-          if (lhs == rhs && lhs != ERROR)
-            return BOOLEAN;
-          else
-            return ERROR;
         case NE:
           if (lhs == rhs && lhs != ERROR)
             return BOOLEAN;
           else
             return ERROR;
         case GE:
-            if (lhs == INTEGER && rhs == INTEGER)
-            return BOOLEAN;
-          else
-            return ERROR;
         case LE:
-          if (lhs == INTEGER && rhs == INTEGER)
-            return BOOLEAN;
-          else
-            return ERROR;
         case '>':
-            if (lhs == INTEGER && rhs == INTEGER)
-            return BOOLEAN;
-          else
-            return ERROR;
         case '<':
           if (lhs == INTEGER && rhs == INTEGER)
             return BOOLEAN;
           else
             return ERROR;
         case AND:
-          if (lhs == BOOLEAN && rhs == BOOLEAN)
-            return BOOLEAN;
-          else if (lhs == INTEGER && rhs == INTEGER)
-            return INTEGER;
-          else
-            return ERROR;
         case OR:
-          if (lhs == BOOLEAN && rhs == BOOLEAN)
-            return BOOLEAN;
-          else if (lhs == INTEGER && rhs == INTEGER)
-            return INTEGER;
-          else
-             return ERROR;
         case XOR:
-          if (lhs == BOOLEAN && rhs == BOOLEAN)
-            return BOOLEAN;
-          else if (lhs == INTEGER && rhs == INTEGER)
-            return INTEGER;
-          else
-             return ERROR;
         case REMAINDER:
           if (lhs == BOOLEAN && rhs == BOOLEAN)
             return BOOLEAN;
@@ -455,12 +407,6 @@ enum value_type check_types(struct expr *expr) {
           else
              return ERROR;
          case RIGHTSHIFT:
-          if (lhs == BOOLEAN && rhs == BOOLEAN)
-            return BOOLEAN;
-          else if (lhs == INTEGER && rhs == INTEGER)
-            return INTEGER;
-          else
-             return ERROR;
          case LEFTSHIFT:
           if (lhs == BOOLEAN && rhs == BOOLEAN)
             return BOOLEAN;
@@ -522,6 +468,7 @@ void free_expr(struct expr *expr) {
       free_expr(expr->binop.rhs);
       free(expr);
       break;
+
     case TERNARY_OP:
       free_expr(expr->ternary.lhs->binop.lhs);
       free_expr(expr->ternary.lhs->binop.rhs);
@@ -547,6 +494,13 @@ struct stmt* make_seq(struct stmt *fst, struct stmt *snd) {
   return r;
 }
 
+
+struct stmt* make_print_stmt(struct stmt *stmt){
+  struct stmt* r = malloc(sizeof(struct stmt));
+  r->type = STMT_PRINT_STMT;
+  r->print_stmt.stmt = stmt;
+  return r;
+}
 
 /**
  * @brief 
@@ -723,6 +677,10 @@ int valid_stmt(struct stmt *stmt) {
          
     case STMT_DECREMENT:
          return check_types(stmt->decrement.expr) != ERROR;
+
+    case STMT_PRINT_STMT:
+         return valid_stmt(stmt->print_stmt.stmt);
+
     default:
         return ERROR;
   }
@@ -867,7 +825,7 @@ void codegen_stmt(struct stmt *stmt, LLVMModuleRef module, LLVMBuilderRef builde
                Print function take  an expression when I try to print incrementation of some constant e.g. print(++10)
                It gives error. 
              */
-            //LLVMBuildStore(builder,  LLVMBuildAdd(builder,LLVMConstInt(LLVMInt32Type(), stmt->increment.expr->value, 0), LLVMConstInt(LLVMInt32Type(), 1, 0), "addtmp"), vector_get(&global_types, stmt->increment.expr->id));
+          LLVMBuildStore(builder,  LLVMBuildAdd(builder,LLVMConstInt(LLVMInt32Type(), stmt->increment.expr->value, 0), LLVMConstInt(LLVMInt32Type(), 1, 0), "addtmp"), vector_get(&global_types, stmt->increment.expr->id));
 
           break;
         case VARIABLE:
@@ -878,6 +836,19 @@ void codegen_stmt(struct stmt *stmt, LLVMModuleRef module, LLVMBuilderRef builde
           break;
         }  
       break;
+    }
+
+    case STMT_PRINT_STMT:{
+        switch(stmt->print_stmt.stmt->type){
+          case STMT_INCREMENT:{
+            codegen_stmt(stmt->print_stmt.stmt,module,builder);
+        
+            enum value_type arg_type = check_types(stmt->print_stmt.stmt->increment.expr);
+            LLVMValueRef print_fn = LLVMGetNamedFunction(module, arg_type == BOOLEAN ? "print_i1" : "print_i32");
+            LLVMValueRef args[] = { codegen_expr(stmt->print_stmt.stmt->increment.expr, module, builder) };
+            LLVMBuildCall(builder, print_fn, args, 1, "");  // It calles function by LLVMValueref with parameter
+          }
+        }
     }
 
     default: break;

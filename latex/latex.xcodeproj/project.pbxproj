@@ -1,0 +1,168 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXFileReference section */
+		A224C2B622D6310A00413175 /* structvector.tex */ = {isa = PBXFileReference; lastKnownFileType = text; path = structvector.tex; sourceTree = "<group>"; };
+		A224C2B722D6310A00413175 /* refman.tex */ = {isa = PBXFileReference; lastKnownFileType = text; path = refman.tex; sourceTree = "<group>"; };
+		A224C2B822D6310A00413175 /* union_y_y_s_t_y_p_e.tex */ = {isa = PBXFileReference; lastKnownFileType = text; path = union_y_y_s_t_y_p_e.tex; sourceTree = "<group>"; };
+		A224C2B922D6310A00413175 /* utils_8c.tex */ = {isa = PBXFileReference; lastKnownFileType = text; path = utils_8c.tex; sourceTree = "<group>"; };
+		A224C2BA22D6310A00413175 /* ast_8h.tex */ = {isa = PBXFileReference; lastKnownFileType = text; path = ast_8h.tex; sourceTree = "<group>"; };
+		A224C2BB22D6310A00413175 /* files.tex */ = {isa = PBXFileReference; lastKnownFileType = text; path = files.tex; sourceTree = "<group>"; };
+		A224C2BC22D6310A00413175 /* structstmt.tex */ = {isa = PBXFileReference; lastKnownFileType = text; path = structstmt.tex; sourceTree = "<group>"; };
+		A224C2BD22D6310A00413175 /* runtime_8c.tex */ = {isa = PBXFileReference; lastKnownFileType = text; path = runtime_8c.tex; sourceTree = "<group>"; };
+		A224C2BE22D6310A00413175 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		A224C2BF22D6310A00413175 /* structexpr.tex */ = {isa = PBXFileReference; lastKnownFileType = text; path = structexpr.tex; sourceTree = "<group>"; };
+		A224C2C022D6310A00413175 /* doxygen.sty */ = {isa = PBXFileReference; lastKnownFileType = text; path = doxygen.sty; sourceTree = "<group>"; };
+		A224C2C122D6310A00413175 /* structstring__int.tex */ = {isa = PBXFileReference; lastKnownFileType = text; path = structstring__int.tex; sourceTree = "<group>"; };
+		A224C2C222D6310A00413175 /* unionyyalloc.tex */ = {isa = PBXFileReference; lastKnownFileType = text; path = unionyyalloc.tex; sourceTree = "<group>"; };
+		A224C2C322D6310A00413175 /* structstring__int_1_1kv.tex */ = {isa = PBXFileReference; lastKnownFileType = text; path = structstring__int_1_1kv.tex; sourceTree = "<group>"; };
+		A224C2C422D6310A00413175 /* annotated.tex */ = {isa = PBXFileReference; lastKnownFileType = text; path = annotated.tex; sourceTree = "<group>"; };
+		A224C2C522D6310A00413175 /* ast_8c.tex */ = {isa = PBXFileReference; lastKnownFileType = text; path = ast_8c.tex; sourceTree = "<group>"; };
+		A224C2C622D6310A00413175 /* utils_8h.tex */ = {isa = PBXFileReference; lastKnownFileType = text; path = utils_8h.tex; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		A224C2B022D6310A00413175 = {
+			isa = PBXGroup;
+			children = (
+				A224C2B622D6310A00413175 /* structvector.tex */,
+				A224C2B722D6310A00413175 /* refman.tex */,
+				A224C2B822D6310A00413175 /* union_y_y_s_t_y_p_e.tex */,
+				A224C2B922D6310A00413175 /* utils_8c.tex */,
+				A224C2BA22D6310A00413175 /* ast_8h.tex */,
+				A224C2BB22D6310A00413175 /* files.tex */,
+				A224C2BC22D6310A00413175 /* structstmt.tex */,
+				A224C2BD22D6310A00413175 /* runtime_8c.tex */,
+				A224C2BE22D6310A00413175 /* Makefile */,
+				A224C2BF22D6310A00413175 /* structexpr.tex */,
+				A224C2C022D6310A00413175 /* doxygen.sty */,
+				A224C2C122D6310A00413175 /* structstring__int.tex */,
+				A224C2C222D6310A00413175 /* unionyyalloc.tex */,
+				A224C2C322D6310A00413175 /* structstring__int_1_1kv.tex */,
+				A224C2C422D6310A00413175 /* annotated.tex */,
+				A224C2C522D6310A00413175 /* ast_8c.tex */,
+				A224C2C622D6310A00413175 /* utils_8h.tex */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		A224C2B522D6310A00413175 /* latex */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = A224C2C722D6310A00413175 /* Build configuration list for PBXLegacyTarget "latex" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "/Users/selman/University/School/Master/First Year/First semester/Languages, compilers and interpreters/Github/LanguagesCompilersInterpreters/latex";
+			dependencies = (
+			);
+			name = latex;
+			passBuildSettingsInEnvironment = 1;
+			productName = latex;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		A224C2B122D6310A00413175 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+			};
+			buildConfigurationList = A224C2B422D6310A00413175 /* Build configuration list for PBXProject "latex" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A224C2B022D6310A00413175;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A224C2B522D6310A00413175 /* latex */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		A224C2B222D6310A00413175 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		A224C2B322D6310A00413175 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+		A224C2C822D6310A00413175 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = latex;
+			};
+			name = Debug;
+		};
+		A224C2C922D6310A00413175 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = latex;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A224C2B422D6310A00413175 /* Build configuration list for PBXProject "latex" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A224C2B222D6310A00413175 /* Debug */,
+				A224C2B322D6310A00413175 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A224C2C722D6310A00413175 /* Build configuration list for PBXLegacyTarget "latex" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A224C2C822D6310A00413175 /* Debug */,
+				A224C2C922D6310A00413175 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A224C2B122D6310A00413175 /* Project object */;
+}

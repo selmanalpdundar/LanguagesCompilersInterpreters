@@ -21,6 +21,7 @@
 %union {
   int value;
   size_t id;
+  size_t op;
   struct expr *expr;
   enum value_type {
     ERROR = -1,
@@ -35,6 +36,7 @@
 %token FALSE TRUE
 %token INCREMENT
 %token DECREMENT
+%token EXCLAMATION
 %token IF ELSE WHILE PRINT 
 %token BOOL_TYPE INT_TYPE 
 %token AND OR XOR REMAINDER
@@ -42,6 +44,7 @@
 %token LEFTSHIFT RIGHTSHIFT
 %token QUESTION_MARK COLON
 %token <value> VAL
+%type  <op>    op
 %type  <expr>  expr
 %type  <stmt>  stmt
 %type  <stmt>  stmts
@@ -89,6 +92,9 @@ stmts: stmts stmt                           {  $$ = make_seq($1, $2);         }
       | stmt                                {  $$ = $1;                       };
 
 stmt: '{' stmts '}'                         {  $$ = $2;                       }
+      | '(' stmt ')'                        {  $$ = $2;                       }
+      | PRINT stmt ';'                      {  $$ = make_print_stmt($2);      }
+      | PRINT expr ';'                      {  $$ = make_print($2);           }    
       | ID '=' expr ';'                     {  $$ = make_assign($1, $3);      }
       | IF '(' expr ')' stmt %prec IF_ALONE {  $$ = make_if($3, $5);          }
       | IF '(' expr ')' stmt ELSE stmt      {  $$ = make_ifelse($3, $5, $7);  }
@@ -97,33 +103,36 @@ stmt: '{' stmts '}'                         {  $$ = $2;                       }
       | expr INCREMENT ';'                  {  $$ = make_increment($1);       }
       | DECREMENT expr ';'                  {  $$ = make_decrement($2);       }
       | expr DECREMENT';'                   {  $$ = make_decrement($1);       }
-      | PRINT expr ';'                      {  $$ = make_print($2);           }     
+      
 
 expr: VAL                                   {  $$ = literal($1);              }
       | FALSE                               {  $$ = bool_lit(0);              }
       | TRUE                                {  $$ = bool_lit(1);              }
       | ID                                  {  $$ = variable($1);             }
       | '(' expr ')'                        {  $$ = $2;                       }
-      | expr '+' expr                       {  $$ = binop($1, '+', $3);       }
-      | expr '-' expr                       {  $$ = binop($1, '-', $3);       }
-      | expr '*' expr                       {  $$ = binop($1, '*', $3);       }
-      | expr '/' expr                       {  $$ = binop($1, '/', $3);       }
-      | expr EQ  expr                       {  $$ = binop($1, EQ, $3);        }
-      | expr NE  expr                       {  $$ = binop($1, NE, $3);        }
-      | expr GE  expr                       {  $$ = binop($1, GE, $3);        }
-      | expr LE  expr                       {  $$ = binop($1, LE, $3);        }
-      | expr '>' expr                       {  $$ = binop($1, '>', $3);       }
-      | expr '<' expr                       {  $$ = binop($1, '<', $3);       }
-      | expr AND expr                       {  $$ = binop($1, AND , $3);      }
-      | expr OR expr                        {  $$ = binop($1, OR , $3);       }
-      | expr XOR expr                       {  $$ = binop($1, XOR , $3);      }
-      | expr REMAINDER expr                 {  $$ = binop($1, REMAINDER, $3); }
-      | expr LEFTSHIFT expr                 {  $$ = binop($1, LEFTSHIFT, $3); }
-      | expr RIGHTSHIFT expr                {  $$ = binop($1, RIGHTSHIFT, $3);}
+      | expr op expr                        {  $$ = binop($1, $2, $3);        }
       | expr QUESTION_MARK expr COLON expr  {  $$ = ternary($1,$3,$5);        }
+      
 
-      ;
+op: REMAINDER                               {  $$ = REMAINDER;                }
+    | '+'                                   {  $$ = '+';                      }
+    | '-'                                   {  $$ = '-';                      }
+    | '*'                                   {  $$ = '*';                      }
+    | '/'                                   {  $$ = '/';                      }
+    | NE                                    {  $$ = NE;                       }
+    | EQ                                    {  $$ = EQ;                       }
+    | GE                                    {  $$ = GE;                       }
+    | LE                                    {  $$ = LE;                       }
+    | '>'                                   {  $$ = '>';                      }
+    | '<'                                   {  $$ = '<';                      }
+    | AND                                   {  $$ = AND;                      }
+    | OR                                    {  $$ = OR;                       }
+    | XOR                                   {  $$ = XOR;                      }
+    | LEFTSHIFT                             {  $$ = LEFTSHIFT;                }
+    | RIGHTSHIFT                            {  $$ = RIGHTSHIFT;               }
 
+
+  ; 
 %%
 
 void yyerror(LLVMModuleRef module, LLVMBuilderRef builder, const char* s) {
