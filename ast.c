@@ -1,9 +1,9 @@
 /**
- * @file ast.c is a Abstract Syntax Tree
- * @author Selman ALPÜNDAR(selman.alp@hotmail.com.tr)
+ * @file ast.c 
+ * @author Selman ALPÜNDAR(s.alpdundar@studenti.unipi.it)
  * @brief 
  * @version 0.1
- * @date 2019-06-27
+ * @date 2019-04-27
  * 
  * @copyright Copyright (c) 2019
  * 

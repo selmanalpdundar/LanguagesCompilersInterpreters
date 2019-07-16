@@ -47,13 +47,13 @@ struct \mbox{\hyperlink{structvector}{vector}} {\bfseries global\+\_\+types}
 
 \doxysubsection{Detailed Description}
 \begin{DoxyAuthor}{Author}
-your name (\href{mailto:you@domain.com}{\texttt{ you@domain.\+com}}) 
+Selman A\+L\+P\+DÜ\+N\+D\+AR (\href{mailto:s.alpdundar@studenti.unipi.it}{\texttt{ s.\+alpdundar@studenti.\+unipi.\+it}}) 
 \end{DoxyAuthor}
 \begin{DoxyVersion}{Version}
 0.\+1 
 \end{DoxyVersion}
 \begin{DoxyDate}{Date}
-2019-\/06-\/27
+2019-\/05-\/27
 \end{DoxyDate}
 \begin{DoxyCopyright}{Copyright}
 Copyright (c) 2019 
@@ -74,18 +74,18 @@ Copyright (c) 2019
 \end{DoxyParams}
 
 
-Definition at line 139 of file utils.\+c.
+Definition at line 138 of file utils.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{139                                            \{}
-\DoxyCodeLine{140   \mbox{\hyperlink{utils_8c_a0dde40846b83c6b8955a5454460a52f7}{vector\_fini}}(\&v-\/>rev);}
-\DoxyCodeLine{141   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < v-\/>capacity; i++) \{}
-\DoxyCodeLine{142     free(v-\/>data[i].key);}
-\DoxyCodeLine{143   \}}
-\DoxyCodeLine{144 }
-\DoxyCodeLine{145   free(v-\/>data);}
-\DoxyCodeLine{146 \}}
+\DoxyCodeLine{138                                            \{}
+\DoxyCodeLine{139   \mbox{\hyperlink{utils_8c_a0dde40846b83c6b8955a5454460a52f7}{vector\_fini}}(\&v-\/>rev);}
+\DoxyCodeLine{140   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < v-\/>capacity; i++) \{}
+\DoxyCodeLine{141     free(v-\/>data[i].key);}
+\DoxyCodeLine{142   \}}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144   free(v-\/>data);}
+\DoxyCodeLine{145 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{utils_8c_a3f8b0b7dc6c112751af580c15232df4d}\label{utils_8c_a3f8b0b7dc6c112751af580c15232df4d}} 
@@ -106,32 +106,32 @@ size\+\_\+t
 \end{DoxyReturn}
 
 
-Definition at line 180 of file utils.\+c.
+Definition at line 179 of file utils.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{180                                                              \{}
-\DoxyCodeLine{181   \textcolor{keywordtype}{size\_t} idx;}
-\DoxyCodeLine{182 }
-\DoxyCodeLine{183   \textcolor{keywordflow}{if} (2 * v-\/>count >= v-\/>capacity) \{}
-\DoxyCodeLine{184     \mbox{\hyperlink{utils_8c_a854a518c098298cd1385fb959cd70fac}{string\_int\_resize}}(v, 2 * v-\/>count);}
-\DoxyCodeLine{185   \}}
-\DoxyCodeLine{186 }
-\DoxyCodeLine{187   \textcolor{keywordflow}{for} (idx = hash(key) \% v-\/>capacity; v-\/>data[idx].key; idx = (idx + 1) \% v-\/>capacity) \{}
-\DoxyCodeLine{188     \textcolor{keywordflow}{if} (!strcmp(v-\/>data[idx].key, key)) \{}
-\DoxyCodeLine{189       \textcolor{keywordflow}{return} v-\/>data[idx].id;}
-\DoxyCodeLine{190     \}}
-\DoxyCodeLine{191   \}}
-\DoxyCodeLine{192 }
-\DoxyCodeLine{193   \textcolor{keywordtype}{size\_t} \textcolor{keywordtype}{id} = v-\/>count++;}
-\DoxyCodeLine{194   \textcolor{keywordtype}{char} *k = strdup(key);}
-\DoxyCodeLine{195 }
-\DoxyCodeLine{196   v-\/>data[idx].id = id;}
-\DoxyCodeLine{197   v-\/>data[idx].key = k;}
-\DoxyCodeLine{198   \mbox{\hyperlink{utils_8c_a21731b554eed6a9c107847697f5547f5}{vector\_set}}(\&v-\/>rev, \textcolor{keywordtype}{id}, k);}
-\DoxyCodeLine{199 }
-\DoxyCodeLine{200   \textcolor{keywordflow}{return} id;}
-\DoxyCodeLine{201 \}}
+\DoxyCodeLine{179                                                              \{}
+\DoxyCodeLine{180   \textcolor{keywordtype}{size\_t} idx;}
+\DoxyCodeLine{181 }
+\DoxyCodeLine{182   \textcolor{keywordflow}{if} (2 * v-\/>count >= v-\/>capacity) \{}
+\DoxyCodeLine{183     \mbox{\hyperlink{utils_8c_a854a518c098298cd1385fb959cd70fac}{string\_int\_resize}}(v, 2 * v-\/>count);}
+\DoxyCodeLine{184   \}}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{186   \textcolor{keywordflow}{for} (idx = hash(key) \% v-\/>capacity; v-\/>data[idx].key; idx = (idx + 1) \% v-\/>capacity) \{}
+\DoxyCodeLine{187     \textcolor{keywordflow}{if} (!strcmp(v-\/>data[idx].key, key)) \{}
+\DoxyCodeLine{188       \textcolor{keywordflow}{return} v-\/>data[idx].id;}
+\DoxyCodeLine{189     \}}
+\DoxyCodeLine{190   \}}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192   \textcolor{keywordtype}{size\_t} \textcolor{keywordtype}{id} = v-\/>count++;}
+\DoxyCodeLine{193   \textcolor{keywordtype}{char} *k = strdup(key);}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195   v-\/>data[idx].id = id;}
+\DoxyCodeLine{196   v-\/>data[idx].key = k;}
+\DoxyCodeLine{197   \mbox{\hyperlink{utils_8c_a21731b554eed6a9c107847697f5547f5}{vector\_set}}(\&v-\/>rev, \textcolor{keywordtype}{id}, k);}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{199   \textcolor{keywordflow}{return} id;}
+\DoxyCodeLine{200 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{utils_8c_a6c22214a79a5b0c6a8422a54dce634ed}\label{utils_8c_a6c22214a79a5b0c6a8422a54dce634ed}} 
@@ -147,16 +147,16 @@ Definition at line 180 of file utils.\+c.
 \end{DoxyParams}
 
 
-Definition at line 127 of file utils.\+c.
+Definition at line 126 of file utils.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{127                                            \{}
-\DoxyCodeLine{128   \mbox{\hyperlink{utils_8c_a0fd7ad7c312d910340db7d1f0acb9cb5}{vector\_init}}(\&v-\/>rev);}
-\DoxyCodeLine{129   v-\/>count = 0;}
-\DoxyCodeLine{130   v-\/>capacity = 16;}
-\DoxyCodeLine{131   v-\/>data = calloc(v-\/>capacity, \textcolor{keyword}{sizeof}(v-\/>data[0]));}
-\DoxyCodeLine{132 \}}
+\DoxyCodeLine{126                                            \{}
+\DoxyCodeLine{127   \mbox{\hyperlink{utils_8c_a0fd7ad7c312d910340db7d1f0acb9cb5}{vector\_init}}(\&v-\/>rev);}
+\DoxyCodeLine{128   v-\/>count = 0;}
+\DoxyCodeLine{129   v-\/>capacity = 16;}
+\DoxyCodeLine{130   v-\/>data = calloc(v-\/>capacity, \textcolor{keyword}{sizeof}(v-\/>data[0]));}
+\DoxyCodeLine{131 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{utils_8c_a854a518c098298cd1385fb959cd70fac}\label{utils_8c_a854a518c098298cd1385fb959cd70fac}} 
@@ -174,28 +174,28 @@ Definition at line 127 of file utils.\+c.
 \end{DoxyParams}
 
 
-Definition at line 154 of file utils.\+c.
+Definition at line 153 of file utils.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{154                                                        \{}
-\DoxyCodeLine{155   \textcolor{keyword}{struct }kv *newdata = calloc(n, \textcolor{keyword}{sizeof}(v-\/>data[0]));}
-\DoxyCodeLine{156 }
-\DoxyCodeLine{157   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < v-\/>capacity; i++) \{}
-\DoxyCodeLine{158     \textcolor{keywordtype}{char} *key = v-\/>data[i].key;}
-\DoxyCodeLine{159     \textcolor{keywordflow}{if} (key) \{}
-\DoxyCodeLine{160       \textcolor{keywordtype}{size\_t} idx = hash(key);}
-\DoxyCodeLine{161       \textcolor{keywordflow}{while} (newdata[idx \% n].key) \{}
-\DoxyCodeLine{162         idx++;}
-\DoxyCodeLine{163       \}}
-\DoxyCodeLine{164       newdata[idx \% n].key = v-\/>data[i].key;}
-\DoxyCodeLine{165       newdata[idx \% n].id = v-\/>data[i].id;}
-\DoxyCodeLine{166     \}}
-\DoxyCodeLine{167   \}}
-\DoxyCodeLine{168   free(v-\/>data);}
-\DoxyCodeLine{169   v-\/>data = newdata;}
-\DoxyCodeLine{170   v-\/>capacity = n;}
-\DoxyCodeLine{171 \}}
+\DoxyCodeLine{153                                                        \{}
+\DoxyCodeLine{154   \textcolor{keyword}{struct }kv *newdata = calloc(n, \textcolor{keyword}{sizeof}(v-\/>data[0]));}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < v-\/>capacity; i++) \{}
+\DoxyCodeLine{157     \textcolor{keywordtype}{char} *key = v-\/>data[i].key;}
+\DoxyCodeLine{158     \textcolor{keywordflow}{if} (key) \{}
+\DoxyCodeLine{159       \textcolor{keywordtype}{size\_t} idx = hash(key);}
+\DoxyCodeLine{160       \textcolor{keywordflow}{while} (newdata[idx \% n].key) \{}
+\DoxyCodeLine{161         idx++;}
+\DoxyCodeLine{162       \}}
+\DoxyCodeLine{163       newdata[idx \% n].key = v-\/>data[i].key;}
+\DoxyCodeLine{164       newdata[idx \% n].id = v-\/>data[i].id;}
+\DoxyCodeLine{165     \}}
+\DoxyCodeLine{166   \}}
+\DoxyCodeLine{167   free(v-\/>data);}
+\DoxyCodeLine{168   v-\/>data = newdata;}
+\DoxyCodeLine{169   v-\/>capacity = n;}
+\DoxyCodeLine{170 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{utils_8c_ada4d84103e5ee6f8b43976ad2cd96c3c}\label{utils_8c_ada4d84103e5ee6f8b43976ad2cd96c3c}} 
@@ -216,13 +216,13 @@ const char$\ast$
 \end{DoxyReturn}
 
 
-Definition at line 210 of file utils.\+c.
+Definition at line 209 of file utils.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{210                                                             \{}
-\DoxyCodeLine{211   \textcolor{keywordflow}{return} \mbox{\hyperlink{utils_8c_a2d13c3f92e1648cca63a514e6a3dda8d}{vector\_get}}(\&v-\/>rev, \textcolor{keywordtype}{id});}
-\DoxyCodeLine{212 \}}
+\DoxyCodeLine{209                                                             \{}
+\DoxyCodeLine{210   \textcolor{keywordflow}{return} \mbox{\hyperlink{utils_8c_a2d13c3f92e1648cca63a514e6a3dda8d}{vector\_get}}(\&v-\/>rev, \textcolor{keywordtype}{id});}
+\DoxyCodeLine{211 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{utils_8c_a0dde40846b83c6b8955a5454460a52f7}\label{utils_8c_a0dde40846b83c6b8955a5454460a52f7}} 
@@ -242,13 +242,13 @@ It takes a vector and free it from memory.
 \end{DoxyParams}
 
 
-Definition at line 76 of file utils.\+c.
+Definition at line 75 of file utils.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{76                                    \{}
-\DoxyCodeLine{77   free(v-\/>data);}
-\DoxyCodeLine{78 \}}
+\DoxyCodeLine{75                                    \{}
+\DoxyCodeLine{76   free(v-\/>data);}
+\DoxyCodeLine{77 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{utils_8c_a2d13c3f92e1648cca63a514e6a3dda8d}\label{utils_8c_a2d13c3f92e1648cca63a514e6a3dda8d}} 
@@ -273,14 +273,14 @@ void$\ast$
 \end{DoxyReturn}
 
 
-Definition at line 88 of file utils.\+c.
+Definition at line 87 of file utils.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{88                                                \{}
-\DoxyCodeLine{89   \mbox{\hyperlink{utils_8c_acfccdd7a4c32494430ce28fe2bd51d53}{vector\_grow}}(v, idx + 1); \textcolor{comment}{// it is uncesseray because we do not put new element just get it from vector.}}
-\DoxyCodeLine{90   \textcolor{keywordflow}{return} v-\/>data[idx]; }
-\DoxyCodeLine{91 \}}
+\DoxyCodeLine{87                                                \{}
+\DoxyCodeLine{88   \mbox{\hyperlink{utils_8c_acfccdd7a4c32494430ce28fe2bd51d53}{vector\_grow}}(v, idx + 1); \textcolor{comment}{// it is uncesseray because we do not put new element just get it from vector.}}
+\DoxyCodeLine{89   \textcolor{keywordflow}{return} v-\/>data[idx]; }
+\DoxyCodeLine{90 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{utils_8c_acfccdd7a4c32494430ce28fe2bd51d53}\label{utils_8c_acfccdd7a4c32494430ce28fe2bd51d53}} 
@@ -366,13 +366,13 @@ It takes a data to put it given index.
 \end{DoxyParams}
 
 
-Definition at line 100 of file utils.\+c.
+Definition at line 99 of file utils.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{100                                                        \{}
-\DoxyCodeLine{101   \mbox{\hyperlink{utils_8c_acfccdd7a4c32494430ce28fe2bd51d53}{vector\_grow}}(v, idx + 1); \textcolor{comment}{// This is correct because instead of increas id in vector\_get we should do it when put new one. }}
-\DoxyCodeLine{102   v-\/>data[idx] = x;}
-\DoxyCodeLine{103 \}}
+\DoxyCodeLine{99                                                        \{}
+\DoxyCodeLine{100   \mbox{\hyperlink{utils_8c_acfccdd7a4c32494430ce28fe2bd51d53}{vector\_grow}}(v, idx + 1); \textcolor{comment}{// This is correct because instead of increas id in vector\_get we should do it when put new one. }}
+\DoxyCodeLine{101   v-\/>data[idx] = x;}
+\DoxyCodeLine{102 \}}
 
 \end{DoxyCode}

@@ -1,9 +1,9 @@
 /**
  * @file ast.h
- * @author selman alpdündar(selman.alp@hotmail.com.tr)
+ * @author Selman ALPDUNDAR(s.alpdundar@studenti.unipi.it)
  * @brief 
  * @version 0.1
- * @date 2019-06-27
+ * @date 2019-04-27
  * 
  * @copyright Copyright (c) 2019
  * 

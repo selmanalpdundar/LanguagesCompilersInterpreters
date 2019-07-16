@@ -1,3 +1,7 @@
+/**
+ * @file
+ */
+
 struct vector;
 void vector_init(struct vector *v);
 void vector_grow(struct vector *v, size_t n);

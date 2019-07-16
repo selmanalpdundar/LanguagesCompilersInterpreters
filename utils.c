@@ -1,9 +1,9 @@
 /**
  * @file utils.c
- * @author your name (you@domain.com)
+ * @author Selman ALPDÜNDAR (s.alpdundar@studenti.unipi.it)
  * @brief 
  * @version 0.1
- * @date 2019-06-27
+ * @date 2019-05-27
  * 
  * @copyright Copyright (c) 2019
  * 
@@ -72,7 +72,6 @@ void vector_grow(struct vector *v, size_t n) {
  * It takes a vector and free it from memory.
  * @param v is a vector.
  */
-
 void vector_fini(struct vector *v) {
   free(v->data);
 }

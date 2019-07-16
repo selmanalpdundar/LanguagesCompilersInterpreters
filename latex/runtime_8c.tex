@@ -6,20 +6,20 @@
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{runtime_8c_a765e015a9ec4bc9dea4a4091a358de18}{print\+\_\+i32}} (int32\+\_\+t x)
-\item 
+\begin{DoxyCompactList}\small\item\em It called by llvm to print a literal. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{runtime_8c_a6fce0fec941f1fe6b837460340571587}{print\+\_\+i1}} (int x)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em It called by llvm to print a boolean literal. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \begin{DoxyAuthor}{Author}
-your name (\href{mailto:you@domain.com}{\texttt{ you@domain.\+com}}) 
+Selman A\+L\+P\+DÜ\+N\+D\+AR (\href{mailto:s.alpdundar@studenti.unipi.it}{\texttt{ s.\+alpdundar@studenti.\+unipi.\+it}}) 
 \end{DoxyAuthor}
 \begin{DoxyVersion}{Version}
 0.\+1 
 \end{DoxyVersion}
 \begin{DoxyDate}{Date}
-2019-\/06-\/27
+2019-\/05-\/16
 \end{DoxyDate}
 \begin{DoxyCopyright}{Copyright}
 Copyright (c) 2019 
@@ -34,23 +34,27 @@ Copyright (c) 2019
 {\footnotesize\ttfamily void print\+\_\+i1 (\begin{DoxyParamCaption}\item[{int}]{x }\end{DoxyParamCaption})}
 
 
+
+It called by llvm to print a boolean literal. 
+
+
 \begin{DoxyParams}{Parameters}
-{\em x} & \\
+{\em x} & is a bool literal \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 29 of file runtime.\+c.
+Definition at line 31 of file runtime.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{29                      \{}
-\DoxyCodeLine{30   \textcolor{keywordflow}{if} (x) \{}
-\DoxyCodeLine{31     printf(\textcolor{stringliteral}{"true\(\backslash\)n"});}
-\DoxyCodeLine{32   \} \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{33     printf(\textcolor{stringliteral}{"false\(\backslash\)n"});}
-\DoxyCodeLine{34   \}}
-\DoxyCodeLine{35 \}}
+\DoxyCodeLine{31                      \{}
+\DoxyCodeLine{32   \textcolor{keywordflow}{if} (x) \{}
+\DoxyCodeLine{33     printf(\textcolor{stringliteral}{"true\(\backslash\)n"});}
+\DoxyCodeLine{34   \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{35     printf(\textcolor{stringliteral}{"false\(\backslash\)n"});}
+\DoxyCodeLine{36   \}}
+\DoxyCodeLine{37 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{runtime_8c_a765e015a9ec4bc9dea4a4091a358de18}\label{runtime_8c_a765e015a9ec4bc9dea4a4091a358de18}} 
@@ -60,8 +64,12 @@ Definition at line 29 of file runtime.\+c.
 {\footnotesize\ttfamily void print\+\_\+i32 (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{x }\end{DoxyParamCaption})}
 
 
+
+It called by llvm to print a literal. 
+
+
 \begin{DoxyParams}{Parameters}
-{\em x} & \\
+{\em x} & is a literal \\
 \hline
 \end{DoxyParams}
 
