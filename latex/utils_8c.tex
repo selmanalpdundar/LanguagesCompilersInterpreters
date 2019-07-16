@@ -6,42 +6,33 @@
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structvector}{vector}}
-\item 
+\begin{DoxyCompactList}\small\item\em It is vector that can take any kind of data. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structstring__int}{string\+\_\+int}}
-\item 
+\begin{DoxyCompactList}\small\item\em String initilization. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structstring__int_1_1kv}{string\+\_\+int\+::kv}}
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{utils_8c_a0fd7ad7c312d910340db7d1f0acb9cb5}{vector\+\_\+init}} (struct \mbox{\hyperlink{structvector}{vector}} $\ast$v)
-\begin{DoxyCompactList}\small\item\em Test. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{utils_8c_acfccdd7a4c32494430ce28fe2bd51d53}\label{utils_8c_acfccdd7a4c32494430ce28fe2bd51d53}} 
-void {\bfseries vector\+\_\+grow} (struct \mbox{\hyperlink{structvector}{vector}} $\ast$v, size\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em Test It initiates a vector with capacity 16. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8c_acfccdd7a4c32494430ce28fe2bd51d53}{vector\+\_\+grow}} (struct \mbox{\hyperlink{structvector}{vector}} $\ast$v, size\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em It takes a vector and try to grow it. If the capatity of vector bigger then asked one, it does not do anything. It grows capacity of vector and assaign all them null and update capacity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8c_a0dde40846b83c6b8955a5454460a52f7}{vector\+\_\+fini}} (struct \mbox{\hyperlink{structvector}{vector}} $\ast$v)
+\begin{DoxyCompactList}\small\item\em It takes a vector and free it from memory. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{utils_8c_a2d13c3f92e1648cca63a514e6a3dda8d}{vector\+\_\+get}} (struct \mbox{\hyperlink{structvector}{vector}} $\ast$v, size\+\_\+t idx)
+\begin{DoxyCompactList}\small\item\em It return an element of vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8c_a21731b554eed6a9c107847697f5547f5}{vector\+\_\+set}} (struct \mbox{\hyperlink{structvector}{vector}} $\ast$v, size\+\_\+t idx, void $\ast$x)
+\begin{DoxyCompactList}\small\item\em It takes a data to put it given index. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8c_a6c22214a79a5b0c6a8422a54dce634ed}{string\+\_\+int\+\_\+init}} (struct \mbox{\hyperlink{structstring__int}{string\+\_\+int}} $\ast$v)
 \item 
-\mbox{\Hypertarget{utils_8c_a0dde40846b83c6b8955a5454460a52f7}\label{utils_8c_a0dde40846b83c6b8955a5454460a52f7}} 
-void {\bfseries vector\+\_\+fini} (struct \mbox{\hyperlink{structvector}{vector}} $\ast$v)
+void \mbox{\hyperlink{utils_8c_a3103aa586c879449d2e14d342bf38c79}{string\+\_\+int\+\_\+fini}} (struct \mbox{\hyperlink{structstring__int}{string\+\_\+int}} $\ast$v)
 \item 
-\mbox{\Hypertarget{utils_8c_a2d13c3f92e1648cca63a514e6a3dda8d}\label{utils_8c_a2d13c3f92e1648cca63a514e6a3dda8d}} 
-void $\ast$ {\bfseries vector\+\_\+get} (struct \mbox{\hyperlink{structvector}{vector}} $\ast$v, size\+\_\+t idx)
+void \mbox{\hyperlink{utils_8c_a854a518c098298cd1385fb959cd70fac}{string\+\_\+int\+\_\+resize}} (struct \mbox{\hyperlink{structstring__int}{string\+\_\+int}} $\ast$v, size\+\_\+t n)
 \item 
-\mbox{\Hypertarget{utils_8c_a21731b554eed6a9c107847697f5547f5}\label{utils_8c_a21731b554eed6a9c107847697f5547f5}} 
-void {\bfseries vector\+\_\+set} (struct \mbox{\hyperlink{structvector}{vector}} $\ast$v, size\+\_\+t idx, void $\ast$x)
+size\+\_\+t \mbox{\hyperlink{utils_8c_a3f8b0b7dc6c112751af580c15232df4d}{string\+\_\+int\+\_\+get}} (struct \mbox{\hyperlink{structstring__int}{string\+\_\+int}} $\ast$v, const char $\ast$key)
 \item 
-\mbox{\Hypertarget{utils_8c_a6c22214a79a5b0c6a8422a54dce634ed}\label{utils_8c_a6c22214a79a5b0c6a8422a54dce634ed}} 
-void {\bfseries string\+\_\+int\+\_\+init} (struct \mbox{\hyperlink{structstring__int}{string\+\_\+int}} $\ast$v)
-\item 
-\mbox{\Hypertarget{utils_8c_a3103aa586c879449d2e14d342bf38c79}\label{utils_8c_a3103aa586c879449d2e14d342bf38c79}} 
-void {\bfseries string\+\_\+int\+\_\+fini} (struct \mbox{\hyperlink{structstring__int}{string\+\_\+int}} $\ast$v)
-\item 
-\mbox{\Hypertarget{utils_8c_a854a518c098298cd1385fb959cd70fac}\label{utils_8c_a854a518c098298cd1385fb959cd70fac}} 
-void {\bfseries string\+\_\+int\+\_\+resize} (struct \mbox{\hyperlink{structstring__int}{string\+\_\+int}} $\ast$v, size\+\_\+t n)
-\item 
-\mbox{\Hypertarget{utils_8c_a3f8b0b7dc6c112751af580c15232df4d}\label{utils_8c_a3f8b0b7dc6c112751af580c15232df4d}} 
-size\+\_\+t {\bfseries string\+\_\+int\+\_\+get} (struct \mbox{\hyperlink{structstring__int}{string\+\_\+int}} $\ast$v, const char $\ast$key)
-\item 
-\mbox{\Hypertarget{utils_8c_ada4d84103e5ee6f8b43976ad2cd96c3c}\label{utils_8c_ada4d84103e5ee6f8b43976ad2cd96c3c}} 
-const char $\ast$ {\bfseries string\+\_\+int\+\_\+rev} (struct \mbox{\hyperlink{structstring__int}{string\+\_\+int}} $\ast$v, size\+\_\+t id)
+const char $\ast$ \mbox{\hyperlink{utils_8c_ada4d84103e5ee6f8b43976ad2cd96c3c}{string\+\_\+int\+\_\+rev}} (struct \mbox{\hyperlink{structstring__int}{string\+\_\+int}} $\ast$v, size\+\_\+t id)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -70,15 +61,11 @@ Copyright (c) 2019
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{utils_8c_a0fd7ad7c312d910340db7d1f0acb9cb5}\label{utils_8c_a0fd7ad7c312d910340db7d1f0acb9cb5}} 
-\index{utils.c@{utils.c}!vector\_init@{vector\_init}}
-\index{vector\_init@{vector\_init}!utils.c@{utils.c}}
-\doxysubsubsection{\texorpdfstring{vector\_init()}{vector\_init()}}
-{\footnotesize\ttfamily void vector\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structvector}{vector}} $\ast$}]{v }\end{DoxyParamCaption})}
-
-
-
-Test. 
+\mbox{\Hypertarget{utils_8c_a3103aa586c879449d2e14d342bf38c79}\label{utils_8c_a3103aa586c879449d2e14d342bf38c79}} 
+\index{utils.c@{utils.c}!string\_int\_fini@{string\_int\_fini}}
+\index{string\_int\_fini@{string\_int\_fini}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{string\_int\_fini()}{string\_int\_fini()}}
+{\footnotesize\ttfamily void string\+\_\+int\+\_\+fini (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structstring__int}{string\+\_\+int}} $\ast$}]{v }\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}{Parameters}
@@ -87,13 +74,305 @@ Test.
 \end{DoxyParams}
 
 
-Definition at line 38 of file utils.\+c.
+Definition at line 139 of file utils.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{38                                    \{}
-\DoxyCodeLine{39   v-\/>capacity = 16;}
-\DoxyCodeLine{40   v-\/>data = calloc(v-\/>capacity, \textcolor{keyword}{sizeof}(v-\/>data[0]));}
-\DoxyCodeLine{41 \}}
+\DoxyCodeLine{139                                            \{}
+\DoxyCodeLine{140   \mbox{\hyperlink{utils_8c_a0dde40846b83c6b8955a5454460a52f7}{vector\_fini}}(\&v-\/>rev);}
+\DoxyCodeLine{141   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < v-\/>capacity; i++) \{}
+\DoxyCodeLine{142     free(v-\/>data[i].key);}
+\DoxyCodeLine{143   \}}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145   free(v-\/>data);}
+\DoxyCodeLine{146 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{utils_8c_a3f8b0b7dc6c112751af580c15232df4d}\label{utils_8c_a3f8b0b7dc6c112751af580c15232df4d}} 
+\index{utils.c@{utils.c}!string\_int\_get@{string\_int\_get}}
+\index{string\_int\_get@{string\_int\_get}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{string\_int\_get()}{string\_int\_get()}}
+{\footnotesize\ttfamily size\+\_\+t string\+\_\+int\+\_\+get (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structstring__int}{string\+\_\+int}} $\ast$}]{v,  }\item[{const char $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & \\
+\hline
+{\em key} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size\+\_\+t 
+\end{DoxyReturn}
+
+
+Definition at line 180 of file utils.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{180                                                              \{}
+\DoxyCodeLine{181   \textcolor{keywordtype}{size\_t} idx;}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183   \textcolor{keywordflow}{if} (2 * v-\/>count >= v-\/>capacity) \{}
+\DoxyCodeLine{184     \mbox{\hyperlink{utils_8c_a854a518c098298cd1385fb959cd70fac}{string\_int\_resize}}(v, 2 * v-\/>count);}
+\DoxyCodeLine{185   \}}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{187   \textcolor{keywordflow}{for} (idx = hash(key) \% v-\/>capacity; v-\/>data[idx].key; idx = (idx + 1) \% v-\/>capacity) \{}
+\DoxyCodeLine{188     \textcolor{keywordflow}{if} (!strcmp(v-\/>data[idx].key, key)) \{}
+\DoxyCodeLine{189       \textcolor{keywordflow}{return} v-\/>data[idx].id;}
+\DoxyCodeLine{190     \}}
+\DoxyCodeLine{191   \}}
+\DoxyCodeLine{192 }
+\DoxyCodeLine{193   \textcolor{keywordtype}{size\_t} \textcolor{keywordtype}{id} = v-\/>count++;}
+\DoxyCodeLine{194   \textcolor{keywordtype}{char} *k = strdup(key);}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{196   v-\/>data[idx].id = id;}
+\DoxyCodeLine{197   v-\/>data[idx].key = k;}
+\DoxyCodeLine{198   \mbox{\hyperlink{utils_8c_a21731b554eed6a9c107847697f5547f5}{vector\_set}}(\&v-\/>rev, \textcolor{keywordtype}{id}, k);}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200   \textcolor{keywordflow}{return} id;}
+\DoxyCodeLine{201 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{utils_8c_a6c22214a79a5b0c6a8422a54dce634ed}\label{utils_8c_a6c22214a79a5b0c6a8422a54dce634ed}} 
+\index{utils.c@{utils.c}!string\_int\_init@{string\_int\_init}}
+\index{string\_int\_init@{string\_int\_init}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{string\_int\_init()}{string\_int\_init()}}
+{\footnotesize\ttfamily void string\+\_\+int\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structstring__int}{string\+\_\+int}} $\ast$}]{v }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 127 of file utils.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{127                                            \{}
+\DoxyCodeLine{128   \mbox{\hyperlink{utils_8c_a0fd7ad7c312d910340db7d1f0acb9cb5}{vector\_init}}(\&v-\/>rev);}
+\DoxyCodeLine{129   v-\/>count = 0;}
+\DoxyCodeLine{130   v-\/>capacity = 16;}
+\DoxyCodeLine{131   v-\/>data = calloc(v-\/>capacity, \textcolor{keyword}{sizeof}(v-\/>data[0]));}
+\DoxyCodeLine{132 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{utils_8c_a854a518c098298cd1385fb959cd70fac}\label{utils_8c_a854a518c098298cd1385fb959cd70fac}} 
+\index{utils.c@{utils.c}!string\_int\_resize@{string\_int\_resize}}
+\index{string\_int\_resize@{string\_int\_resize}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{string\_int\_resize()}{string\_int\_resize()}}
+{\footnotesize\ttfamily void string\+\_\+int\+\_\+resize (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structstring__int}{string\+\_\+int}} $\ast$}]{v,  }\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & \\
+\hline
+{\em n} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 154 of file utils.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{154                                                        \{}
+\DoxyCodeLine{155   \textcolor{keyword}{struct }kv *newdata = calloc(n, \textcolor{keyword}{sizeof}(v-\/>data[0]));}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < v-\/>capacity; i++) \{}
+\DoxyCodeLine{158     \textcolor{keywordtype}{char} *key = v-\/>data[i].key;}
+\DoxyCodeLine{159     \textcolor{keywordflow}{if} (key) \{}
+\DoxyCodeLine{160       \textcolor{keywordtype}{size\_t} idx = hash(key);}
+\DoxyCodeLine{161       \textcolor{keywordflow}{while} (newdata[idx \% n].key) \{}
+\DoxyCodeLine{162         idx++;}
+\DoxyCodeLine{163       \}}
+\DoxyCodeLine{164       newdata[idx \% n].key = v-\/>data[i].key;}
+\DoxyCodeLine{165       newdata[idx \% n].id = v-\/>data[i].id;}
+\DoxyCodeLine{166     \}}
+\DoxyCodeLine{167   \}}
+\DoxyCodeLine{168   free(v-\/>data);}
+\DoxyCodeLine{169   v-\/>data = newdata;}
+\DoxyCodeLine{170   v-\/>capacity = n;}
+\DoxyCodeLine{171 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{utils_8c_ada4d84103e5ee6f8b43976ad2cd96c3c}\label{utils_8c_ada4d84103e5ee6f8b43976ad2cd96c3c}} 
+\index{utils.c@{utils.c}!string\_int\_rev@{string\_int\_rev}}
+\index{string\_int\_rev@{string\_int\_rev}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{string\_int\_rev()}{string\_int\_rev()}}
+{\footnotesize\ttfamily const char$\ast$ string\+\_\+int\+\_\+rev (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structstring__int}{string\+\_\+int}} $\ast$}]{v,  }\item[{size\+\_\+t}]{id }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & \\
+\hline
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const char$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 210 of file utils.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{210                                                             \{}
+\DoxyCodeLine{211   \textcolor{keywordflow}{return} \mbox{\hyperlink{utils_8c_a2d13c3f92e1648cca63a514e6a3dda8d}{vector\_get}}(\&v-\/>rev, \textcolor{keywordtype}{id});}
+\DoxyCodeLine{212 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{utils_8c_a0dde40846b83c6b8955a5454460a52f7}\label{utils_8c_a0dde40846b83c6b8955a5454460a52f7}} 
+\index{utils.c@{utils.c}!vector\_fini@{vector\_fini}}
+\index{vector\_fini@{vector\_fini}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{vector\_fini()}{vector\_fini()}}
+{\footnotesize\ttfamily void vector\+\_\+fini (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structvector}{vector}} $\ast$}]{v }\end{DoxyParamCaption})}
+
+
+
+It takes a vector and free it from memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & is a vector. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 76 of file utils.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{76                                    \{}
+\DoxyCodeLine{77   free(v-\/>data);}
+\DoxyCodeLine{78 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{utils_8c_a2d13c3f92e1648cca63a514e6a3dda8d}\label{utils_8c_a2d13c3f92e1648cca63a514e6a3dda8d}} 
+\index{utils.c@{utils.c}!vector\_get@{vector\_get}}
+\index{vector\_get@{vector\_get}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{vector\_get()}{vector\_get()}}
+{\footnotesize\ttfamily void$\ast$ vector\+\_\+get (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structvector}{vector}} $\ast$}]{v,  }\item[{size\+\_\+t}]{idx }\end{DoxyParamCaption})}
+
+
+
+It return an element of vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & is an vector. \\
+\hline
+{\em idx} & is an id of the asked element. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 88 of file utils.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{88                                                \{}
+\DoxyCodeLine{89   \mbox{\hyperlink{utils_8c_acfccdd7a4c32494430ce28fe2bd51d53}{vector\_grow}}(v, idx + 1); \textcolor{comment}{// it is uncesseray because we do not put new element just get it from vector.}}
+\DoxyCodeLine{90   \textcolor{keywordflow}{return} v-\/>data[idx]; }
+\DoxyCodeLine{91 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{utils_8c_acfccdd7a4c32494430ce28fe2bd51d53}\label{utils_8c_acfccdd7a4c32494430ce28fe2bd51d53}} 
+\index{utils.c@{utils.c}!vector\_grow@{vector\_grow}}
+\index{vector\_grow@{vector\_grow}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{vector\_grow()}{vector\_grow()}}
+{\footnotesize\ttfamily void vector\+\_\+grow (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structvector}{vector}} $\ast$}]{v,  }\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+
+
+It takes a vector and try to grow it. If the capatity of vector bigger then asked one, it does not do anything. It grows capacity of vector and assaign all them null and update capacity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & is a vector \\
+\hline
+{\em n} & is a size that we want to resize vector. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 59 of file utils.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{59                                              \{}
+\DoxyCodeLine{60   \textcolor{keywordflow}{if} (n < v-\/>capacity) \{}
+\DoxyCodeLine{61     \textcolor{keywordflow}{return};}
+\DoxyCodeLine{62   \}}
+\DoxyCodeLine{63   v-\/>data = realloc(v-\/>data, n * \textcolor{keyword}{sizeof}(v-\/>data[0]));}
+\DoxyCodeLine{64   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = v-\/>capacity; i < n; i++) \{}
+\DoxyCodeLine{65     v-\/>data[0] = NULL;}
+\DoxyCodeLine{66   \}}
+\DoxyCodeLine{67   v-\/>capacity = n;}
+\DoxyCodeLine{68 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{utils_8c_a0fd7ad7c312d910340db7d1f0acb9cb5}\label{utils_8c_a0fd7ad7c312d910340db7d1f0acb9cb5}} 
+\index{utils.c@{utils.c}!vector\_init@{vector\_init}}
+\index{vector\_init@{vector\_init}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{vector\_init()}{vector\_init()}}
+{\footnotesize\ttfamily void vector\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structvector}{vector}} $\ast$}]{v }\end{DoxyParamCaption})}
+
+
+
+Test It initiates a vector with capacity 16. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 47 of file utils.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{47                                    \{}
+\DoxyCodeLine{48   v-\/>capacity = 16;}
+\DoxyCodeLine{49   v-\/>data = calloc(v-\/>capacity, \textcolor{keyword}{sizeof}(v-\/>data[0]));}
+\DoxyCodeLine{50 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{utils_8c_a21731b554eed6a9c107847697f5547f5}\label{utils_8c_a21731b554eed6a9c107847697f5547f5}} 
+\index{utils.c@{utils.c}!vector\_set@{vector\_set}}
+\index{vector\_set@{vector\_set}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{vector\_set()}{vector\_set()}}
+{\footnotesize\ttfamily void vector\+\_\+set (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structvector}{vector}} $\ast$}]{v,  }\item[{size\+\_\+t}]{idx,  }\item[{void $\ast$}]{x }\end{DoxyParamCaption})}
+
+
+
+It takes a data to put it given index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & is a vector. \\
+\hline
+{\em idx} & is an index of element. \\
+\hline
+{\em x} & is a data or given index. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 100 of file utils.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{100                                                        \{}
+\DoxyCodeLine{101   \mbox{\hyperlink{utils_8c_acfccdd7a4c32494430ce28fe2bd51d53}{vector\_grow}}(v, idx + 1); \textcolor{comment}{// This is correct because instead of increas id in vector\_get we should do it when put new one. }}
+\DoxyCodeLine{102   v-\/>data[idx] = x;}
+\DoxyCodeLine{103 \}}
 
 \end{DoxyCode}

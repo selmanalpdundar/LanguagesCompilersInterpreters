@@ -38,8 +38,8 @@ false              { return FALSE;                                              
 \|\|               { return OR;                                                        }
 \^                 { return XOR;                                                       }
 %                  { return REMAINDER;                                                 }
-\++                { return INCREMENT;                                                 }
-\-\-               { return DECREMENT;                                                 }
+\++                { return PLUSPLUS;                                                  }
+\-\-               { return MINUSMINUS;                                                }
 .                  { yyerror(NULL, NULL, "Unexpected character");                      } 
 
 %%

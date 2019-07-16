@@ -26,6 +26,12 @@ union \{\\
 \>\>struct \mbox{\hyperlink{structexpr}{expr}} $\ast$ {\bfseries rhs}\\
 \>\>int {\bfseries op}\\
 \>\} {\bfseries binop}\\
+\>struct \{\\
+\>\>struct \mbox{\hyperlink{structexpr}{expr}} $\ast$ {\bfseries lhs}\\
+\>\>struct \mbox{\hyperlink{structexpr}{expr}} $\ast$ {\bfseries mhs}\\
+\>\>struct \mbox{\hyperlink{structexpr}{expr}} $\ast$ {\bfseries rhs}\\
+\>\} {\bfseries ternary}\\
+\>struct \mbox{\hyperlink{structexpr}{expr}} $\ast$ {\bfseries expr}\\
 \}; \\
 
 \end{tabbing}\end{DoxyCompactItemize}
@@ -34,7 +40,7 @@ union \{\\
 \doxysubsection{Detailed Description}
 Structure of expression for different type. It uses uninon to keep different expression type. 
 
-Definition at line 34 of file ast.\+h.
+Definition at line 40 of file ast.\+h.
 
 
 

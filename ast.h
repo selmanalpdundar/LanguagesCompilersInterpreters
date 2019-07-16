@@ -27,6 +27,10 @@ enum expr_type {
   VARIABLE,
   BIN_OP,
   TERNARY_OP,
+  PRE_INCREMENT_OP,
+  POST_INCREMENT_OP,
+  PRE_DECREMENT_OP,
+  POST_DECREMENT_OP,
 };
 
 /**
@@ -50,6 +54,7 @@ struct expr {
       struct expr *mhs; // midle expression  
       struct expr *rhs; // right hand-sie;
     } ternary; // for type = TERNARY_OP
+    struct expr *expr;
   };
   
 };
@@ -60,6 +65,10 @@ struct expr* literal(int v);
 struct expr* variable(size_t id);
 struct expr* binop(struct expr *lhs, int op, struct expr *rhs);
 struct expr* ternary(struct expr *lhs, struct expr *mhs, struct expr *rhs );
+struct expr* pre_increment(struct expr *e);
+struct expr* post_increment(struct expr *e);
+struct expr* pre_decrement(struct expr *e);
+struct expr* post_decrement(struct expr *e);
 
 void print_expr(struct expr *expr);
 void emit_stack_machine(struct expr *expr);
@@ -79,9 +88,6 @@ enum stmt_type {
   STMT_IF,
   STMT_WHILE,
   STMT_PRINT,
-  STMT_PRINT_STMT,
-  STMT_INCREMENT,
-  STMT_DECREMENT,
 };
 
 /**
@@ -112,18 +118,9 @@ struct stmt {
       struct expr *expr;
     } print; // for type == STMT_PRINT
     struct{
-      struct expr *expr;
-    } increment; // for type == INCREMENT
-    struct{
-      struct expr *expr;
-    } decrement; // for type == DECREMENT
-    struct{
       struct expr *left;
       struct expr *right;
     } shift;
-    struct{
-      struct stmt *stmt;
-    } print_stmt;
   };
 };
 
@@ -134,9 +131,7 @@ struct stmt* make_while(struct expr *e, struct stmt *body);
 struct stmt* make_ifelse(struct expr *e, struct stmt *if_body, struct stmt *else_body);
 struct stmt* make_if(struct expr *e, struct stmt *body);
 struct stmt* make_print(struct expr *e);
-struct stmt* make_increment(struct expr *e);
-struct stmt* make_decrement(struct expr *e);
-struct stmt* make_print_stmt(struct stmt *stmt);
+
 
 void free_stmt(struct stmt *stmt);
 void print_stmt(struct stmt *stmt, int indent);

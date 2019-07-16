@@ -11,13 +11,24 @@
 const char $\ast$ \mbox{\hyperlink{ast_8c_a6573d3d78519a27124a0f3fe25ebdc6b}{type\+\_\+name}} (enum value\+\_\+type t)
 \begin{DoxyCompactList}\small\item\em It gives the type name of the value type. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structexpr}{expr}} $\ast$ \mbox{\hyperlink{ast_8c_ab361efcdec92e8ffd35cec3ea541f149}{bool\+\_\+lit}} (int v)
-\begin{DoxyCompactList}\small\item\em allocate a bool litee \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Allocate a boolean literal. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structexpr}{expr}} $\ast$ \mbox{\hyperlink{ast_8c_a2e6fe25957a73a9f3609839e7a3c5bc9}{literal}} (int v)
 \begin{DoxyCompactList}\small\item\em It takes a value to create a new integer literal. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structexpr}{expr}} $\ast$ \mbox{\hyperlink{ast_8c_a82dd6f0c1eebf8240397160328b8a520}{variable}} (size\+\_\+t id)
 \begin{DoxyCompactList}\small\item\em It takes an identifier to create new variable with it. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structexpr}{expr}} $\ast$ \mbox{\hyperlink{ast_8c_afb7fe570d97b31fb218db1f08235ae83}{binop}} (struct \mbox{\hyperlink{structexpr}{expr}} $\ast$lhs, int op, struct \mbox{\hyperlink{structexpr}{expr}} $\ast$rhs)
 \begin{DoxyCompactList}\small\item\em It takes left-\/hand side, right hand side expression and operatin identifier to create new expression. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ast_8c_abc2b4dfda1db655d424fc4a8ae6b53a8}\label{ast_8c_abc2b4dfda1db655d424fc4a8ae6b53a8}} 
+struct \mbox{\hyperlink{structexpr}{expr}} $\ast$ {\bfseries ternary} (struct \mbox{\hyperlink{structexpr}{expr}} $\ast$lhs, struct \mbox{\hyperlink{structexpr}{expr}} $\ast$mhs, struct \mbox{\hyperlink{structexpr}{expr}} $\ast$rhs)
+\item 
+struct \mbox{\hyperlink{structexpr}{expr}} $\ast$ \mbox{\hyperlink{ast_8c_ac7615e169173167b4eddcd68049b08dc}{pre\+\_\+increment}} (struct \mbox{\hyperlink{structexpr}{expr}} $\ast$e)
+\begin{DoxyCompactList}\small\item\em Takes an expression to create a new expression as type pre increment. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structexpr}{expr}} $\ast$ \mbox{\hyperlink{ast_8c_ada4f44d3fe689c6937cc24ea495c51aa}{post\+\_\+increment}} (struct \mbox{\hyperlink{structexpr}{expr}} $\ast$e)
+\begin{DoxyCompactList}\small\item\em Takes an expression to create a new expression as type post increment. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structexpr}{expr}} $\ast$ \mbox{\hyperlink{ast_8c_a2184a99260df50c76ffa87b57dd98dc3}{pre\+\_\+decrement}} (struct \mbox{\hyperlink{structexpr}{expr}} $\ast$e)
+\begin{DoxyCompactList}\small\item\em Takes an expression to create a new expression as type pre decrement. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structexpr}{expr}} $\ast$ \mbox{\hyperlink{ast_8c_a6f1fd140fbbb98e131230b81d2478352}{post\+\_\+decrement}} (struct \mbox{\hyperlink{structexpr}{expr}} $\ast$e)
+\begin{DoxyCompactList}\small\item\em Takes an expression to create a new expression as type post decrement. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{ast_8c_ac5af536007be5e0ab2a92d2c2c9789de}{print\+\_\+expr}} (struct \mbox{\hyperlink{structexpr}{expr}} $\ast$\mbox{\hyperlink{structexpr}{expr}})
 \begin{DoxyCompactList}\small\item\em IT takes an expression to print. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{ast_8c_a03b40de7e4b12b525ddda77559e928bc}{print\+\_\+stmt}} (struct \mbox{\hyperlink{structstmt}{stmt}} $\ast$\mbox{\hyperlink{structstmt}{stmt}}, int indent)
@@ -42,10 +53,6 @@ struct \mbox{\hyperlink{structstmt}{stmt}} $\ast$ \mbox{\hyperlink{ast_8c_a31bd4
 \begin{DoxyCompactList}\small\item\em It takes an expression as a condition part of the if. It also takes a statement to construct body of if condition. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structstmt}{stmt}} $\ast$ \mbox{\hyperlink{ast_8c_a8a92fd654116ca3f23e56e15ddde6c3c}{make\+\_\+print}} (struct \mbox{\hyperlink{structexpr}{expr}} $\ast$e)
 \begin{DoxyCompactList}\small\item\em It takes an expression to create a statement. \end{DoxyCompactList}\item 
-struct \mbox{\hyperlink{structstmt}{stmt}} $\ast$ \mbox{\hyperlink{ast_8c_acc3abaee1040325a42d2d8efd6014d3c}{make\+\_\+increment}} (struct \mbox{\hyperlink{structexpr}{expr}} $\ast$e)
-\begin{DoxyCompactList}\small\item\em It takes an expression to create a statement. \end{DoxyCompactList}\item 
-struct \mbox{\hyperlink{structstmt}{stmt}} $\ast$ \mbox{\hyperlink{ast_8c_af0b418cb007ba9a9a04d476ba4f7b1d8}{make\+\_\+decrement}} (struct \mbox{\hyperlink{structexpr}{expr}} $\ast$e)
-\begin{DoxyCompactList}\small\item\em It takes a expression to create a statement. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{ast_8c_ae5c373c5b4507dfb1379f1a3b0951fff}{free\+\_\+stmt}} (struct \mbox{\hyperlink{structstmt}{stmt}} $\ast$\mbox{\hyperlink{structstmt}{stmt}})
 \begin{DoxyCompactList}\small\item\em It takes a statement to clear it from memeory. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{ast_8c_ade3d40836e1da03efffe8b9fc38ed5b2}{valid\+\_\+stmt}} (struct \mbox{\hyperlink{structstmt}{stmt}} $\ast$\mbox{\hyperlink{structstmt}{stmt}})
@@ -96,18 +103,18 @@ struct expr$\ast$ is an expression.
 \end{DoxyReturn}
 
 
-Definition at line 81 of file ast.\+c.
+Definition at line 80 of file ast.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{81                                                                \{}
-\DoxyCodeLine{82   \textcolor{keyword}{struct }\mbox{\hyperlink{structexpr}{expr}}* r = malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structexpr}{expr}}));}
-\DoxyCodeLine{83   r-\/>type = BIN\_OP;}
-\DoxyCodeLine{84   r-\/>binop.lhs = lhs;}
-\DoxyCodeLine{85   r-\/>binop.op = op;}
-\DoxyCodeLine{86   r-\/>binop.rhs = rhs;}
-\DoxyCodeLine{87   \textcolor{keywordflow}{return} r;}
-\DoxyCodeLine{88 \}}
+\DoxyCodeLine{80                                                                \{}
+\DoxyCodeLine{81   \textcolor{keyword}{struct }\mbox{\hyperlink{structexpr}{expr}}* r = malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structexpr}{expr}}));}
+\DoxyCodeLine{82   r-\/>type = BIN\_OP;}
+\DoxyCodeLine{83   r-\/>binop.lhs = lhs;}
+\DoxyCodeLine{84   r-\/>binop.op = op;}
+\DoxyCodeLine{85   r-\/>binop.rhs = rhs;}
+\DoxyCodeLine{86   \textcolor{keywordflow}{return} r;}
+\DoxyCodeLine{87 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{ast_8c_ab361efcdec92e8ffd35cec3ea541f149}\label{ast_8c_ab361efcdec92e8ffd35cec3ea541f149}} 
@@ -118,11 +125,11 @@ Definition at line 81 of file ast.\+c.
 
 
 
-allocate a bool litee 
+Allocate a boolean literal. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em v} & \\
+{\em v} & is an integer value. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -154,7 +161,7 @@ It takes an expression and return the value type of the expression.
 
 
 \begin{DoxyParams}{Parameters}
-{\em expr} & is an expression \\
+{\em expr} & is an expression. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -163,73 +170,105 @@ enum value\+\_\+type ~\newline
 \end{DoxyReturn}
 
 
-Definition at line 311 of file ast.\+c.
+Definition at line 410 of file ast.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{311                                                \{}
-\DoxyCodeLine{312   \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structexpr}{expr}}-\/>type) \{}
-\DoxyCodeLine{313     \textcolor{keywordflow}{case} BOOL\_LIT:}
-\DoxyCodeLine{314       \textcolor{keywordflow}{return} BOOLEAN;}
-\DoxyCodeLine{315 }
-\DoxyCodeLine{316     \textcolor{keywordflow}{case} LITERAL:}
-\DoxyCodeLine{317       \textcolor{keywordflow}{return} INTEGER;}
-\DoxyCodeLine{318 }
-\DoxyCodeLine{319     \textcolor{keywordflow}{case} VARIABLE: \{}
-\DoxyCodeLine{320       LLVMValueRef ptr = vector\_get(\&global\_types, \mbox{\hyperlink{structexpr}{expr}}-\/>id);}
-\DoxyCodeLine{321       LLVMTypeRef t = LLVMGetElementType(LLVMTypeOf(ptr));}
-\DoxyCodeLine{322       \textcolor{keywordflow}{return} LLVMGetIntTypeWidth(t) == 1 ? BOOLEAN : INTEGER;}
-\DoxyCodeLine{323     \}}
-\DoxyCodeLine{324 }
-\DoxyCodeLine{325     \textcolor{keywordflow}{case} BIN\_OP: \{}
-\DoxyCodeLine{326       \textcolor{keyword}{enum} value\_type lhs = \mbox{\hyperlink{ast_8c_abee0bed1ef33696cdd56c143f70082f4}{check\_types}}(\mbox{\hyperlink{structexpr}{expr}}-\/>binop.lhs);}
-\DoxyCodeLine{327       \textcolor{keyword}{enum} value\_type rhs = \mbox{\hyperlink{ast_8c_abee0bed1ef33696cdd56c143f70082f4}{check\_types}}(\mbox{\hyperlink{structexpr}{expr}}-\/>binop.rhs);}
-\DoxyCodeLine{328       \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structexpr}{expr}}-\/>binop.op) \{}
-\DoxyCodeLine{329         \textcolor{keywordflow}{case} \textcolor{charliteral}{'+'}:}
-\DoxyCodeLine{330         \textcolor{keywordflow}{case} \textcolor{charliteral}{'-\/'}:}
-\DoxyCodeLine{331         \textcolor{keywordflow}{case} \textcolor{charliteral}{'*'}:}
-\DoxyCodeLine{332         \textcolor{keywordflow}{case} \textcolor{charliteral}{'/'}:}
-\DoxyCodeLine{333           \textcolor{keywordflow}{if} (lhs == INTEGER \&\& rhs == INTEGER)}
-\DoxyCodeLine{334             \textcolor{keywordflow}{return} INTEGER;}
-\DoxyCodeLine{335           \textcolor{keywordflow}{else}}
-\DoxyCodeLine{336             \textcolor{keywordflow}{return} ERROR;}
-\DoxyCodeLine{337 }
-\DoxyCodeLine{338         \textcolor{keywordflow}{case} EQ:}
-\DoxyCodeLine{339         \textcolor{keywordflow}{case} NE:}
-\DoxyCodeLine{340           \textcolor{keywordflow}{if} (lhs == rhs \&\& lhs != ERROR)}
-\DoxyCodeLine{341             \textcolor{keywordflow}{return} BOOLEAN;}
-\DoxyCodeLine{342           \textcolor{keywordflow}{else}}
-\DoxyCodeLine{343             \textcolor{keywordflow}{return} ERROR;}
-\DoxyCodeLine{344 }
-\DoxyCodeLine{345         \textcolor{keywordflow}{case} GE:}
-\DoxyCodeLine{346         \textcolor{keywordflow}{case} LE:}
-\DoxyCodeLine{347         \textcolor{keywordflow}{case} \textcolor{charliteral}{'>'}:}
-\DoxyCodeLine{348         \textcolor{keywordflow}{case} \textcolor{charliteral}{'<'}:}
-\DoxyCodeLine{349           \textcolor{keywordflow}{if} (lhs == INTEGER \&\& rhs == INTEGER)}
-\DoxyCodeLine{350             \textcolor{keywordflow}{return} BOOLEAN;}
-\DoxyCodeLine{351           \textcolor{keywordflow}{else}}
-\DoxyCodeLine{352             \textcolor{keywordflow}{return} ERROR;}
-\DoxyCodeLine{353         \textcolor{keywordflow}{case} AND:}
-\DoxyCodeLine{354           \textcolor{keywordflow}{if} (lhs == BOOLEAN \&\& rhs == BOOLEAN)}
-\DoxyCodeLine{355             \textcolor{keywordflow}{return} BOOLEAN;}
-\DoxyCodeLine{356           \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (lhs == INTEGER \&\& rhs == INTEGER)}
-\DoxyCodeLine{357             \textcolor{keywordflow}{return} INTEGER;}
-\DoxyCodeLine{358           \textcolor{keywordflow}{else}}
-\DoxyCodeLine{359             \textcolor{keywordflow}{return} ERROR;}
-\DoxyCodeLine{360         \textcolor{keywordflow}{case} OR:}
-\DoxyCodeLine{361           \textcolor{keywordflow}{if} (lhs == BOOLEAN || rhs == BOOLEAN)}
-\DoxyCodeLine{362             \textcolor{keywordflow}{return} BOOLEAN;}
-\DoxyCodeLine{363           \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (lhs == INTEGER || rhs == INTEGER)}
-\DoxyCodeLine{364             \textcolor{keywordflow}{return} INTEGER;}
-\DoxyCodeLine{365           \textcolor{keywordflow}{else}}
-\DoxyCodeLine{366             \textcolor{keywordflow}{return} ERROR;}
-\DoxyCodeLine{367       \}}
-\DoxyCodeLine{368 }
-\DoxyCodeLine{369       \textcolor{keywordflow}{default}:}
-\DoxyCodeLine{370         \textcolor{keywordflow}{return} ERROR;}
-\DoxyCodeLine{371     \}}
-\DoxyCodeLine{372   \}}
-\DoxyCodeLine{373 \}}
+\DoxyCodeLine{410                                                \{}
+\DoxyCodeLine{411   \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structexpr}{expr}}-\/>type) \{}
+\DoxyCodeLine{412     \textcolor{keywordflow}{case} BOOL\_LIT:}
+\DoxyCodeLine{413       \textcolor{keywordflow}{return} BOOLEAN;}
+\DoxyCodeLine{414 }
+\DoxyCodeLine{415     \textcolor{keywordflow}{case} LITERAL:}
+\DoxyCodeLine{416       \textcolor{keywordflow}{return} INTEGER;}
+\DoxyCodeLine{417     \textcolor{keywordflow}{case} PRE\_INCREMENT\_OP: }
+\DoxyCodeLine{418     \textcolor{keywordflow}{case} POST\_INCREMENT\_OP:}
+\DoxyCodeLine{419     \textcolor{keywordflow}{case} PRE\_DECREMENT\_OP:}
+\DoxyCodeLine{420     \textcolor{keywordflow}{case} POST\_DECREMENT\_OP: }
+\DoxyCodeLine{421       \textcolor{keywordflow}{return} \mbox{\hyperlink{ast_8c_abee0bed1ef33696cdd56c143f70082f4}{check\_types}}(\mbox{\hyperlink{structexpr}{expr}}-\/>expr);}
+\DoxyCodeLine{422     \textcolor{keywordflow}{case} VARIABLE:\{}
+\DoxyCodeLine{423       LLVMValueRef ptr = \mbox{\hyperlink{utils_8c_a2d13c3f92e1648cca63a514e6a3dda8d}{vector\_get}}(\&global\_types, \mbox{\hyperlink{structexpr}{expr}}-\/>id);}
+\DoxyCodeLine{424       LLVMTypeRef t = LLVMGetElementType(LLVMTypeOf(ptr));}
+\DoxyCodeLine{425       \textcolor{keywordflow}{return} LLVMGetIntTypeWidth(t) == 1 ? BOOLEAN : INTEGER;}
+\DoxyCodeLine{426     \}}
+\DoxyCodeLine{427 }
+\DoxyCodeLine{428     \textcolor{keywordflow}{case} BIN\_OP: \{}
+\DoxyCodeLine{429       }
+\DoxyCodeLine{430       \textcolor{keyword}{enum} value\_type lhs = \mbox{\hyperlink{ast_8c_abee0bed1ef33696cdd56c143f70082f4}{check\_types}}(\mbox{\hyperlink{structexpr}{expr}}-\/>binop.lhs);}
+\DoxyCodeLine{431       \textcolor{keyword}{enum} value\_type rhs = \mbox{\hyperlink{ast_8c_abee0bed1ef33696cdd56c143f70082f4}{check\_types}}(\mbox{\hyperlink{structexpr}{expr}}-\/>binop.rhs);}
+\DoxyCodeLine{432       }
+\DoxyCodeLine{433       \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structexpr}{expr}}-\/>binop.op) \{}
+\DoxyCodeLine{434         \textcolor{keywordflow}{case} \textcolor{charliteral}{'+'}:}
+\DoxyCodeLine{435         \textcolor{keywordflow}{case} \textcolor{charliteral}{'-\/'}:}
+\DoxyCodeLine{436         \textcolor{keywordflow}{case} \textcolor{charliteral}{'*'}:}
+\DoxyCodeLine{437         \textcolor{keywordflow}{case} \textcolor{charliteral}{'/'}:}
+\DoxyCodeLine{438           \textcolor{keywordflow}{if} (lhs == INTEGER \&\& rhs == INTEGER)}
+\DoxyCodeLine{439             \textcolor{keywordflow}{return} INTEGER;}
+\DoxyCodeLine{440           \textcolor{keywordflow}{else}}
+\DoxyCodeLine{441             \textcolor{keywordflow}{return} ERROR;}
+\DoxyCodeLine{442         \textcolor{keywordflow}{case} EQ:}
+\DoxyCodeLine{443         \textcolor{keywordflow}{case} NE:}
+\DoxyCodeLine{444           \textcolor{keywordflow}{if} (lhs == rhs \&\& lhs != ERROR)}
+\DoxyCodeLine{445             \textcolor{keywordflow}{return} BOOLEAN;}
+\DoxyCodeLine{446           \textcolor{keywordflow}{else}}
+\DoxyCodeLine{447             \textcolor{keywordflow}{return} ERROR;}
+\DoxyCodeLine{448         \textcolor{keywordflow}{case} GE:}
+\DoxyCodeLine{449         \textcolor{keywordflow}{case} LE:}
+\DoxyCodeLine{450         \textcolor{keywordflow}{case} \textcolor{charliteral}{'>'}:}
+\DoxyCodeLine{451         \textcolor{keywordflow}{case} \textcolor{charliteral}{'<'}:}
+\DoxyCodeLine{452           \textcolor{keywordflow}{if} (lhs == INTEGER \&\& rhs == INTEGER)}
+\DoxyCodeLine{453             \textcolor{keywordflow}{return} BOOLEAN;}
+\DoxyCodeLine{454           \textcolor{keywordflow}{else}}
+\DoxyCodeLine{455             \textcolor{keywordflow}{return} ERROR;}
+\DoxyCodeLine{456         \textcolor{keywordflow}{case} AND:}
+\DoxyCodeLine{457         \textcolor{keywordflow}{case} OR:}
+\DoxyCodeLine{458         \textcolor{keywordflow}{case} XOR:}
+\DoxyCodeLine{459         \textcolor{keywordflow}{case} REMAINDER:}
+\DoxyCodeLine{460           \textcolor{keywordflow}{if} (lhs == BOOLEAN \&\& rhs == BOOLEAN)}
+\DoxyCodeLine{461             \textcolor{keywordflow}{return} BOOLEAN;}
+\DoxyCodeLine{462           \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (lhs == INTEGER \&\& rhs == INTEGER)}
+\DoxyCodeLine{463             \textcolor{keywordflow}{return} INTEGER;}
+\DoxyCodeLine{464           \textcolor{keywordflow}{else}}
+\DoxyCodeLine{465              \textcolor{keywordflow}{return} ERROR;}
+\DoxyCodeLine{466          \textcolor{keywordflow}{case} RIGHTSHIFT:}
+\DoxyCodeLine{467          \textcolor{keywordflow}{case} LEFTSHIFT:}
+\DoxyCodeLine{468           \textcolor{keywordflow}{if} (lhs == BOOLEAN \&\& rhs == BOOLEAN)}
+\DoxyCodeLine{469             \textcolor{keywordflow}{return} BOOLEAN;}
+\DoxyCodeLine{470           \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (lhs == INTEGER \&\& rhs == INTEGER)}
+\DoxyCodeLine{471             \textcolor{keywordflow}{return} INTEGER;}
+\DoxyCodeLine{472           \textcolor{keywordflow}{else}}
+\DoxyCodeLine{473              \textcolor{keywordflow}{return} ERROR;}
+\DoxyCodeLine{474           \textcolor{keywordflow}{default}: \textcolor{keywordflow}{return} ERROR;}
+\DoxyCodeLine{475       \}}
+\DoxyCodeLine{476     \}}
+\DoxyCodeLine{477     \textcolor{keywordflow}{case} TERNARY\_OP:\{}
+\DoxyCodeLine{478 }
+\DoxyCodeLine{479     \textcolor{keyword}{enum} value\_type lhs = \mbox{\hyperlink{ast_8c_abee0bed1ef33696cdd56c143f70082f4}{check\_types}}(\mbox{\hyperlink{structexpr}{expr}}-\/>ternary.lhs-\/>binop.lhs);}
+\DoxyCodeLine{480     \textcolor{keyword}{enum} value\_type rhs = \mbox{\hyperlink{ast_8c_abee0bed1ef33696cdd56c143f70082f4}{check\_types}}( \mbox{\hyperlink{structexpr}{expr}}-\/>ternary.lhs-\/>binop.rhs);}
+\DoxyCodeLine{481 }
+\DoxyCodeLine{482     \textcolor{keywordflow}{if}(lhs == BOOLEAN \&\& rhs == BOOLEAN)\{}
+\DoxyCodeLine{483 }
+\DoxyCodeLine{484       \textcolor{keyword}{enum} value\_type mhs = \mbox{\hyperlink{ast_8c_abee0bed1ef33696cdd56c143f70082f4}{check\_types}}(\mbox{\hyperlink{structexpr}{expr}}-\/>ternary.mhs);}
+\DoxyCodeLine{485       \textcolor{keyword}{enum} value\_type righs = \mbox{\hyperlink{ast_8c_abee0bed1ef33696cdd56c143f70082f4}{check\_types}}(\mbox{\hyperlink{structexpr}{expr}}-\/>ternary.rhs);}
+\DoxyCodeLine{486 }
+\DoxyCodeLine{487       \textcolor{keywordflow}{if}( mhs == BOOLEAN \&\& righs == BOOLEAN )\{ \textcolor{keywordflow}{return} BOOLEAN; \} }
+\DoxyCodeLine{488       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( mhs == INTEGER \&\& righs == INTEGER)\{ \textcolor{keywordflow}{return} INTEGER; \}}
+\DoxyCodeLine{489 }
+\DoxyCodeLine{490     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(lhs == INTEGER \&\& rhs == INTEGER)\{}
+\DoxyCodeLine{491 }
+\DoxyCodeLine{492       \textcolor{keyword}{enum} value\_type mhs = \mbox{\hyperlink{ast_8c_abee0bed1ef33696cdd56c143f70082f4}{check\_types}}(\mbox{\hyperlink{structexpr}{expr}}-\/>ternary.mhs);}
+\DoxyCodeLine{493       \textcolor{keyword}{enum} value\_type righs = \mbox{\hyperlink{ast_8c_abee0bed1ef33696cdd56c143f70082f4}{check\_types}}(\mbox{\hyperlink{structexpr}{expr}}-\/>ternary.rhs);}
+\DoxyCodeLine{494 }
+\DoxyCodeLine{495       \textcolor{keywordflow}{if}( mhs == BOOLEAN \&\& righs == BOOLEAN )\{ \textcolor{keywordflow}{return} BOOLEAN; \} }
+\DoxyCodeLine{496       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( mhs == INTEGER \&\& righs == INTEGER)\{ \textcolor{keywordflow}{return} INTEGER; \}}
+\DoxyCodeLine{497 }
+\DoxyCodeLine{498     \}\textcolor{keywordflow}{else} \{  \textcolor{keywordflow}{return} ERROR; \}}
+\DoxyCodeLine{499 }
+\DoxyCodeLine{500   \}    }
+\DoxyCodeLine{501   \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{502     \textcolor{keywordflow}{return} ERROR;}
+\DoxyCodeLine{503   \}}
+\DoxyCodeLine{504 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{ast_8c_a5ae4f14e1ba1e6de9dfadff2a5ea5a32}\label{ast_8c_a5ae4f14e1ba1e6de9dfadff2a5ea5a32}} 
@@ -256,44 +295,129 @@ L\+L\+V\+M\+Value\+Ref
 \end{DoxyReturn}
 
 
-Definition at line 596 of file ast.\+c.
+Definition at line 708 of file ast.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{596                                                                                            \{}
-\DoxyCodeLine{597   \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structexpr}{expr}}-\/>type) \{}
-\DoxyCodeLine{598     \textcolor{keywordflow}{case} BOOL\_LIT:}
-\DoxyCodeLine{599       \textcolor{keywordflow}{return} LLVMConstInt(LLVMInt1Type(), \mbox{\hyperlink{structexpr}{expr}}-\/>value, 0);}
-\DoxyCodeLine{600 }
-\DoxyCodeLine{601     \textcolor{keywordflow}{case} LITERAL:}
-\DoxyCodeLine{602       \textcolor{keywordflow}{return} LLVMConstInt(LLVMInt32Type(), \mbox{\hyperlink{structexpr}{expr}}-\/>value, 0);}
-\DoxyCodeLine{603 }
-\DoxyCodeLine{604     \textcolor{keywordflow}{case} VARIABLE:}
-\DoxyCodeLine{605       \textcolor{keywordflow}{return} LLVMBuildLoad(builder, vector\_get(\&global\_types, \mbox{\hyperlink{structexpr}{expr}}-\/>id), \textcolor{stringliteral}{"loadtmp"});}
-\DoxyCodeLine{606 }
-\DoxyCodeLine{607     \textcolor{keywordflow}{case} BIN\_OP: \{}
-\DoxyCodeLine{608       LLVMValueRef lhs = \mbox{\hyperlink{ast_8c_a5ae4f14e1ba1e6de9dfadff2a5ea5a32}{codegen\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>binop.lhs, module, builder);}
-\DoxyCodeLine{609       LLVMValueRef rhs = \mbox{\hyperlink{ast_8c_a5ae4f14e1ba1e6de9dfadff2a5ea5a32}{codegen\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>binop.rhs, module, builder);}
-\DoxyCodeLine{610       \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structexpr}{expr}}-\/>binop.op) \{}
-\DoxyCodeLine{611         \textcolor{keywordflow}{case} \textcolor{charliteral}{'+'}: \textcolor{keywordflow}{return} LLVMBuildAdd(builder, lhs, rhs, \textcolor{stringliteral}{"addtmp"});}
-\DoxyCodeLine{612         \textcolor{keywordflow}{case} \textcolor{charliteral}{'-\/'}: \textcolor{keywordflow}{return} LLVMBuildSub(builder, lhs, rhs, \textcolor{stringliteral}{"subtmp"});}
-\DoxyCodeLine{613         \textcolor{keywordflow}{case} \textcolor{charliteral}{'*'}: \textcolor{keywordflow}{return} LLVMBuildMul(builder, lhs, rhs, \textcolor{stringliteral}{"multmp"});}
-\DoxyCodeLine{614         \textcolor{keywordflow}{case} \textcolor{charliteral}{'/'}: \textcolor{keywordflow}{return} LLVMBuildSDiv(builder, lhs, rhs, \textcolor{stringliteral}{"divtmp"});}
-\DoxyCodeLine{615 }
-\DoxyCodeLine{616         \textcolor{keywordflow}{case} EQ: \textcolor{keywordflow}{return} LLVMBuildICmp(builder, LLVMIntEQ, lhs, rhs, \textcolor{stringliteral}{"eqtmp"});}
-\DoxyCodeLine{617         \textcolor{keywordflow}{case} NE: \textcolor{keywordflow}{return} LLVMBuildICmp(builder, LLVMIntNE, lhs, rhs, \textcolor{stringliteral}{"netmp"});}
-\DoxyCodeLine{618 }
-\DoxyCodeLine{619         \textcolor{keywordflow}{case} GE: \textcolor{keywordflow}{return} LLVMBuildICmp(builder, LLVMIntSGE, lhs, rhs, \textcolor{stringliteral}{"getmp"});}
-\DoxyCodeLine{620         \textcolor{keywordflow}{case} LE: \textcolor{keywordflow}{return} LLVMBuildICmp(builder, LLVMIntSLE, lhs, rhs, \textcolor{stringliteral}{"letmp"});}
-\DoxyCodeLine{621         \textcolor{keywordflow}{case} \textcolor{charliteral}{'>'}: \textcolor{keywordflow}{return} LLVMBuildICmp(builder, LLVMIntSGT, lhs, rhs, \textcolor{stringliteral}{"gttmp"});}
-\DoxyCodeLine{622         \textcolor{keywordflow}{case} \textcolor{charliteral}{'<'}: \textcolor{keywordflow}{return} LLVMBuildICmp(builder, LLVMIntSLT, lhs, rhs, \textcolor{stringliteral}{"lttmp"});}
-\DoxyCodeLine{623         \textcolor{keywordflow}{case} AND: \textcolor{keywordflow}{return} LLVMBuildAnd(builder,lhs,rhs,\textcolor{stringliteral}{"andtmp"});}
-\DoxyCodeLine{624         \textcolor{keywordflow}{case} OR: \textcolor{keywordflow}{return} LLVMBuildOr(builder,lhs,rhs,\textcolor{stringliteral}{"ortmp"});}
-\DoxyCodeLine{625       \}}
-\DoxyCodeLine{626     \}}
-\DoxyCodeLine{627   \}}
-\DoxyCodeLine{628   \textcolor{keywordflow}{return} NULL;}
-\DoxyCodeLine{629 \}}
+\DoxyCodeLine{708                                                                                            \{}
+\DoxyCodeLine{709   \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structexpr}{expr}}-\/>type) \{}
+\DoxyCodeLine{710     \textcolor{keywordflow}{case} BOOL\_LIT:}
+\DoxyCodeLine{711       \textcolor{keywordflow}{return} LLVMConstInt(LLVMInt1Type(), \mbox{\hyperlink{structexpr}{expr}}-\/>value, 0);}
+\DoxyCodeLine{712 }
+\DoxyCodeLine{713     \textcolor{keywordflow}{case} LITERAL:}
+\DoxyCodeLine{714       \textcolor{keywordflow}{return} LLVMConstInt(LLVMInt32Type(), \mbox{\hyperlink{structexpr}{expr}}-\/>value, 0);}
+\DoxyCodeLine{715 }
+\DoxyCodeLine{716     \textcolor{keywordflow}{case} VARIABLE:}
+\DoxyCodeLine{717       \textcolor{keywordflow}{return} LLVMBuildLoad(builder, \mbox{\hyperlink{utils_8c_a2d13c3f92e1648cca63a514e6a3dda8d}{vector\_get}}(\&global\_types, \mbox{\hyperlink{structexpr}{expr}}-\/>id), \textcolor{stringliteral}{"loadtmp"});}
+\DoxyCodeLine{718 }
+\DoxyCodeLine{719     \textcolor{keywordflow}{case} PRE\_INCREMENT\_OP:\{}
+\DoxyCodeLine{720           \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structexpr}{expr}}-\/>expr-\/>type)}
+\DoxyCodeLine{721           \{}
+\DoxyCodeLine{722           \textcolor{keywordflow}{case} VARIABLE: \{           }
+\DoxyCodeLine{723              LLVMValueRef exp = \mbox{\hyperlink{ast_8c_a5ae4f14e1ba1e6de9dfadff2a5ea5a32}{codegen\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>expr,module,builder);}
+\DoxyCodeLine{724              LLVMValueRef result =  LLVMBuildAdd(builder,exp,LLVMConstInt(LLVMInt32Type(), 1, 0), \textcolor{stringliteral}{"addtmp"}); }
+\DoxyCodeLine{725              LLVMBuildStore(builder, result, \mbox{\hyperlink{utils_8c_a2d13c3f92e1648cca63a514e6a3dda8d}{vector\_get}}(\&global\_types,\mbox{\hyperlink{structexpr}{expr}}-\/>expr-\/>id));}
+\DoxyCodeLine{726             \textcolor{keywordflow}{return} result;}
+\DoxyCodeLine{727           \}}
+\DoxyCodeLine{728           \textcolor{keywordflow}{case} LITERAL:\{}
+\DoxyCodeLine{729             LLVMValueRef exp = \mbox{\hyperlink{ast_8c_a5ae4f14e1ba1e6de9dfadff2a5ea5a32}{codegen\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>expr,module,builder);}
+\DoxyCodeLine{730             \textcolor{keywordflow}{return} LLVMBuildAdd(builder,exp,LLVMConstInt(LLVMInt32Type(), 1, 0), \textcolor{stringliteral}{"addtmp"});}
+\DoxyCodeLine{731           \}}
+\DoxyCodeLine{732           \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{733             \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{734           \}}
+\DoxyCodeLine{735     \} }
+\DoxyCodeLine{736      \textcolor{keywordflow}{case} POST\_INCREMENT\_OP:\{}
+\DoxyCodeLine{737           \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structexpr}{expr}}-\/>expr-\/>type)}
+\DoxyCodeLine{738           \{}
+\DoxyCodeLine{739           \textcolor{keywordflow}{case} VARIABLE: \{           }
+\DoxyCodeLine{740              LLVMValueRef exp = \mbox{\hyperlink{ast_8c_a5ae4f14e1ba1e6de9dfadff2a5ea5a32}{codegen\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>expr,module,builder);}
+\DoxyCodeLine{741              LLVMValueRef result =  LLVMBuildAdd(builder,exp,LLVMConstInt(LLVMInt32Type(), 1, 0), \textcolor{stringliteral}{"addtmp"}); }
+\DoxyCodeLine{742              LLVMBuildStore(builder, result, \mbox{\hyperlink{utils_8c_a2d13c3f92e1648cca63a514e6a3dda8d}{vector\_get}}(\&global\_types,\mbox{\hyperlink{structexpr}{expr}}-\/>expr-\/>id));}
+\DoxyCodeLine{743             \textcolor{keywordflow}{return} exp;}
+\DoxyCodeLine{744           \}}
+\DoxyCodeLine{745           \textcolor{keywordflow}{case} LITERAL:\{}
+\DoxyCodeLine{746             LLVMValueRef exp = \mbox{\hyperlink{ast_8c_a5ae4f14e1ba1e6de9dfadff2a5ea5a32}{codegen\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>expr,module,builder);}
+\DoxyCodeLine{747             \textcolor{keywordflow}{return} exp;}
+\DoxyCodeLine{748           \}}
+\DoxyCodeLine{749           \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{750             \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{751           \}}
+\DoxyCodeLine{752     \} }
+\DoxyCodeLine{753    \textcolor{keywordflow}{case} PRE\_DECREMENT\_OP:\{}
+\DoxyCodeLine{754          \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structexpr}{expr}}-\/>expr-\/>type)}
+\DoxyCodeLine{755           \{}
+\DoxyCodeLine{756           \textcolor{keywordflow}{case} VARIABLE:\{}
+\DoxyCodeLine{757              LLVMValueRef exp = \mbox{\hyperlink{ast_8c_a5ae4f14e1ba1e6de9dfadff2a5ea5a32}{codegen\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>expr,module,builder);}
+\DoxyCodeLine{758              LLVMValueRef result =  LLVMBuildSub(builder,exp,LLVMConstInt(LLVMInt32Type(), 1, 0), \textcolor{stringliteral}{"subtmp"}); }
+\DoxyCodeLine{759              LLVMBuildStore(builder, result, \mbox{\hyperlink{utils_8c_a2d13c3f92e1648cca63a514e6a3dda8d}{vector\_get}}(\&global\_types,\mbox{\hyperlink{structexpr}{expr}}-\/>expr-\/>id));}
+\DoxyCodeLine{760              \textcolor{keywordflow}{return} result;}
+\DoxyCodeLine{761           \}}
+\DoxyCodeLine{762           \textcolor{keywordflow}{case} LITERAL:\{}
+\DoxyCodeLine{763             LLVMValueRef exp = \mbox{\hyperlink{ast_8c_a5ae4f14e1ba1e6de9dfadff2a5ea5a32}{codegen\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>expr,module,builder);}
+\DoxyCodeLine{764             \textcolor{keywordflow}{return} LLVMBuildSub(builder,exp,LLVMConstInt(LLVMInt32Type(), 1, 0), \textcolor{stringliteral}{"subtmp"});}
+\DoxyCodeLine{765 }
+\DoxyCodeLine{766           \}}
+\DoxyCodeLine{767           \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{768             \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{769           \}}
+\DoxyCodeLine{770     \}}
+\DoxyCodeLine{771       \textcolor{keywordflow}{case} POST\_DECREMENT\_OP:\{}
+\DoxyCodeLine{772          \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structexpr}{expr}}-\/>expr-\/>type)}
+\DoxyCodeLine{773           \{}
+\DoxyCodeLine{774           \textcolor{keywordflow}{case} VARIABLE:\{}
+\DoxyCodeLine{775              LLVMValueRef exp = \mbox{\hyperlink{ast_8c_a5ae4f14e1ba1e6de9dfadff2a5ea5a32}{codegen\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>expr,module,builder);}
+\DoxyCodeLine{776              LLVMValueRef result =  LLVMBuildSub(builder,exp,LLVMConstInt(LLVMInt32Type(), 1, 0), \textcolor{stringliteral}{"subtmp"}); }
+\DoxyCodeLine{777              LLVMBuildStore(builder, result, \mbox{\hyperlink{utils_8c_a2d13c3f92e1648cca63a514e6a3dda8d}{vector\_get}}(\&global\_types,\mbox{\hyperlink{structexpr}{expr}}-\/>expr-\/>id));}
+\DoxyCodeLine{778              \textcolor{keywordflow}{return} \mbox{\hyperlink{structexpr}{expr}};}
+\DoxyCodeLine{779           \}}
+\DoxyCodeLine{780           \textcolor{keywordflow}{case} LITERAL:\{}
+\DoxyCodeLine{781             LLVMValueRef exp = \mbox{\hyperlink{ast_8c_a5ae4f14e1ba1e6de9dfadff2a5ea5a32}{codegen\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>expr,module,builder);}
+\DoxyCodeLine{782             \textcolor{keywordflow}{return} exp;}
+\DoxyCodeLine{783 }
+\DoxyCodeLine{784           \}}
+\DoxyCodeLine{785           \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{786             \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{787           \}}
+\DoxyCodeLine{788     \}}
+\DoxyCodeLine{789     \textcolor{keywordflow}{case} BIN\_OP: \{}
+\DoxyCodeLine{790       LLVMValueRef lhs = \mbox{\hyperlink{ast_8c_a5ae4f14e1ba1e6de9dfadff2a5ea5a32}{codegen\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>binop.lhs, module, builder);}
+\DoxyCodeLine{791       LLVMValueRef rhs = \mbox{\hyperlink{ast_8c_a5ae4f14e1ba1e6de9dfadff2a5ea5a32}{codegen\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>binop.rhs, module, builder);}
+\DoxyCodeLine{792       \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structexpr}{expr}}-\/>binop.op) \{}
+\DoxyCodeLine{793         }
+\DoxyCodeLine{794         \textcolor{keywordflow}{case} \textcolor{charliteral}{'+'}: \textcolor{keywordflow}{return} LLVMBuildAdd(builder, lhs, rhs, \textcolor{stringliteral}{"addtmp"});}
+\DoxyCodeLine{795         \textcolor{keywordflow}{case} \textcolor{charliteral}{'-\/'}: \textcolor{keywordflow}{return} LLVMBuildSub(builder, lhs, rhs, \textcolor{stringliteral}{"subtmp"});}
+\DoxyCodeLine{796         \textcolor{keywordflow}{case} \textcolor{charliteral}{'*'}: \textcolor{keywordflow}{return} LLVMBuildMul(builder, lhs, rhs, \textcolor{stringliteral}{"multmp"});}
+\DoxyCodeLine{797         \textcolor{keywordflow}{case} \textcolor{charliteral}{'/'}: \textcolor{keywordflow}{return} LLVMBuildSDiv(builder, lhs, rhs, \textcolor{stringliteral}{"divtmp"});}
+\DoxyCodeLine{798                           }
+\DoxyCodeLine{799         \textcolor{keywordflow}{case} EQ:  \textcolor{keywordflow}{return} LLVMBuildICmp(builder, LLVMIntEQ, lhs, rhs, \textcolor{stringliteral}{"eqtmp"});}
+\DoxyCodeLine{800         \textcolor{keywordflow}{case} NE:  \textcolor{keywordflow}{return} LLVMBuildICmp(builder, LLVMIntNE, lhs, rhs, \textcolor{stringliteral}{"netmp"});}
+\DoxyCodeLine{801         \textcolor{keywordflow}{case} GE:  \textcolor{keywordflow}{return} LLVMBuildICmp(builder, LLVMIntSGE, lhs, rhs, \textcolor{stringliteral}{"getmp"});}
+\DoxyCodeLine{802         \textcolor{keywordflow}{case} LE:  \textcolor{keywordflow}{return} LLVMBuildICmp(builder, LLVMIntSLE, lhs, rhs, \textcolor{stringliteral}{"letmp"});}
+\DoxyCodeLine{803         \textcolor{keywordflow}{case} \textcolor{charliteral}{'>'}: \textcolor{keywordflow}{return} LLVMBuildICmp(builder, LLVMIntSGT, lhs, rhs, \textcolor{stringliteral}{"gttmp"});}
+\DoxyCodeLine{804         \textcolor{keywordflow}{case} \textcolor{charliteral}{'<'}: \textcolor{keywordflow}{return} LLVMBuildICmp(builder, LLVMIntSLT, lhs, rhs, \textcolor{stringliteral}{"lttmp"});}
+\DoxyCodeLine{805 }
+\DoxyCodeLine{806         \textcolor{keywordflow}{case} AND: \textcolor{keywordflow}{return} LLVMBuildAnd(builder,lhs,rhs,\textcolor{stringliteral}{"andtmp"});}
+\DoxyCodeLine{807         \textcolor{keywordflow}{case} OR:  \textcolor{keywordflow}{return} LLVMBuildOr(builder,lhs,rhs,\textcolor{stringliteral}{"ortmp"});}
+\DoxyCodeLine{808         \textcolor{keywordflow}{case} XOR: \textcolor{keywordflow}{return} LLVMBuildXor(builder,lhs,rhs,\textcolor{stringliteral}{"xortmp"});}
+\DoxyCodeLine{809         \textcolor{keywordflow}{case} REMAINDER: \textcolor{keywordflow}{return} LLVMBuildSRem(builder,lhs,rhs,\textcolor{stringliteral}{"modtmp"});}
+\DoxyCodeLine{810 }
+\DoxyCodeLine{811         \textcolor{keywordflow}{case} LEFTSHIFT: \textcolor{keywordflow}{return} LLVMBuildShl(builder,lhs,rhs,\textcolor{stringliteral}{"shifltmp"});}
+\DoxyCodeLine{812         \textcolor{keywordflow}{case} RIGHTSHIFT: \textcolor{keywordflow}{return} LLVMBuildLShr(builder, lhs,rhs,\textcolor{stringliteral}{"shiftrtmp"});}
+\DoxyCodeLine{813       \}}
+\DoxyCodeLine{814 }
+\DoxyCodeLine{815     \}}
+\DoxyCodeLine{816 }
+\DoxyCodeLine{817     \textcolor{keywordflow}{case} TERNARY\_OP:\{}
+\DoxyCodeLine{818       LLVMValueRef truth = \mbox{\hyperlink{ast_8c_a5ae4f14e1ba1e6de9dfadff2a5ea5a32}{codegen\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>ternary.lhs,module,builder);}
+\DoxyCodeLine{819       LLVMValueRef mhs = \mbox{\hyperlink{ast_8c_a5ae4f14e1ba1e6de9dfadff2a5ea5a32}{codegen\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>ternary.mhs, module, builder);}
+\DoxyCodeLine{820       LLVMValueRef rhs = \mbox{\hyperlink{ast_8c_a5ae4f14e1ba1e6de9dfadff2a5ea5a32}{codegen\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>ternary.rhs, module, builder);}
+\DoxyCodeLine{821       \textcolor{keywordflow}{return} LLVMBuildSelect(builder,truth,mhs,rhs,\textcolor{stringliteral}{""});}
+\DoxyCodeLine{822     \}}
+\DoxyCodeLine{823 }
+\DoxyCodeLine{824   \}}
+\DoxyCodeLine{825   \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{826 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{ast_8c_a11f9994d97b301e6f7791582c6f8a3cc}\label{ast_8c_a11f9994d97b301e6f7791582c6f8a3cc}} 
@@ -317,87 +441,78 @@ It takes a statement to generate code for it.
 \end{DoxyParams}
 
 
-Definition at line 639 of file ast.\+c.
+Definition at line 836 of file ast.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{639                                                                                    \{}
-\DoxyCodeLine{640   \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structstmt}{stmt}}-\/>type) \{}
-\DoxyCodeLine{641     \textcolor{keywordflow}{case} STMT\_SEQ: \{}
-\DoxyCodeLine{642       \mbox{\hyperlink{ast_8c_a11f9994d97b301e6f7791582c6f8a3cc}{codegen\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>seq.fst, module, builder);}
-\DoxyCodeLine{643       \mbox{\hyperlink{ast_8c_a11f9994d97b301e6f7791582c6f8a3cc}{codegen\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>seq.snd, module, builder);}
-\DoxyCodeLine{644       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{645     \}}
-\DoxyCodeLine{646 }
-\DoxyCodeLine{647     \textcolor{keywordflow}{case} STMT\_ASSIGN: \{}
-\DoxyCodeLine{648       LLVMValueRef \mbox{\hyperlink{structexpr}{expr}} = \mbox{\hyperlink{ast_8c_a5ae4f14e1ba1e6de9dfadff2a5ea5a32}{codegen\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>assign.expr, module, builder);}
-\DoxyCodeLine{649       LLVMBuildStore(builder, \mbox{\hyperlink{structexpr}{expr}}, vector\_get(\&global\_types, \mbox{\hyperlink{structstmt}{stmt}}-\/>assign.id));}
-\DoxyCodeLine{650       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{651     \}}
-\DoxyCodeLine{652 }
-\DoxyCodeLine{653     \textcolor{keywordflow}{case} STMT\_PRINT: \{}
-\DoxyCodeLine{654       \textcolor{keyword}{enum} value\_type arg\_type = \mbox{\hyperlink{ast_8c_abee0bed1ef33696cdd56c143f70082f4}{check\_types}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>print.expr);}
-\DoxyCodeLine{655       LLVMValueRef print\_fn = LLVMGetNamedFunction(module, arg\_type == BOOLEAN ? \textcolor{stringliteral}{"print\_i1"} : \textcolor{stringliteral}{"print\_i32"});}
-\DoxyCodeLine{656       LLVMValueRef args[] = \{ \mbox{\hyperlink{ast_8c_a5ae4f14e1ba1e6de9dfadff2a5ea5a32}{codegen\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>print.expr, module, builder) \};}
-\DoxyCodeLine{657       LLVMBuildCall(builder, print\_fn, args, 1, \textcolor{stringliteral}{""});  \textcolor{comment}{// It calles function by LLVMValueref with parameter}}
-\DoxyCodeLine{658       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{659     \}}
-\DoxyCodeLine{660 }
-\DoxyCodeLine{661     \textcolor{keywordflow}{case} STMT\_WHILE: \{}
-\DoxyCodeLine{662       LLVMValueRef func = LLVMGetBasicBlockParent(LLVMGetInsertBlock(builder));}
-\DoxyCodeLine{663       LLVMBasicBlockRef cond\_bb = LLVMAppendBasicBlock(func, \textcolor{stringliteral}{"cond"});}
-\DoxyCodeLine{664       LLVMBasicBlockRef body\_bb = LLVMAppendBasicBlock(func, \textcolor{stringliteral}{"body"});}
-\DoxyCodeLine{665       LLVMBasicBlockRef cont\_bb = LLVMAppendBasicBlock(func, \textcolor{stringliteral}{"cont"});}
-\DoxyCodeLine{666 }
-\DoxyCodeLine{667       LLVMBuildBr(builder, cond\_bb);}
-\DoxyCodeLine{668 }
-\DoxyCodeLine{669       LLVMPositionBuilderAtEnd(builder, cond\_bb);}
-\DoxyCodeLine{670       LLVMValueRef cond = \mbox{\hyperlink{ast_8c_a5ae4f14e1ba1e6de9dfadff2a5ea5a32}{codegen\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>while\_.cond, module, builder);}
-\DoxyCodeLine{671       LLVMBuildCondBr(builder, cond, body\_bb, cont\_bb);}
-\DoxyCodeLine{672 }
-\DoxyCodeLine{673       LLVMPositionBuilderAtEnd(builder, body\_bb);}
-\DoxyCodeLine{674       \mbox{\hyperlink{ast_8c_a11f9994d97b301e6f7791582c6f8a3cc}{codegen\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>while\_.body, module, builder);}
-\DoxyCodeLine{675       LLVMBuildBr(builder, cond\_bb);}
-\DoxyCodeLine{676 }
-\DoxyCodeLine{677       LLVMPositionBuilderAtEnd(builder, cont\_bb);}
-\DoxyCodeLine{678       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{679     \}}
-\DoxyCodeLine{680 }
-\DoxyCodeLine{681     \textcolor{keywordflow}{case} STMT\_IF: \{}
-\DoxyCodeLine{682       LLVMValueRef func = LLVMGetBasicBlockParent(LLVMGetInsertBlock(builder));}
-\DoxyCodeLine{683       LLVMBasicBlockRef body\_bb = LLVMAppendBasicBlock(func, \textcolor{stringliteral}{"body"});}
-\DoxyCodeLine{684       LLVMBasicBlockRef else\_bb = LLVMAppendBasicBlock(func, \textcolor{stringliteral}{"else"});}
-\DoxyCodeLine{685       LLVMBasicBlockRef cont\_bb = LLVMAppendBasicBlock(func, \textcolor{stringliteral}{"cont"});}
-\DoxyCodeLine{686 }
-\DoxyCodeLine{687       LLVMValueRef cond = \mbox{\hyperlink{ast_8c_a5ae4f14e1ba1e6de9dfadff2a5ea5a32}{codegen\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.cond, module, builder);}
-\DoxyCodeLine{688       LLVMBuildCondBr(builder, cond, body\_bb, else\_bb);}
-\DoxyCodeLine{689 }
-\DoxyCodeLine{690       LLVMPositionBuilderAtEnd(builder, body\_bb);}
-\DoxyCodeLine{691       \mbox{\hyperlink{ast_8c_a11f9994d97b301e6f7791582c6f8a3cc}{codegen\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.if\_body, module, builder);}
-\DoxyCodeLine{692       LLVMBuildBr(builder, cont\_bb);}
-\DoxyCodeLine{693 }
-\DoxyCodeLine{694       LLVMPositionBuilderAtEnd(builder, else\_bb);}
-\DoxyCodeLine{695       \textcolor{keywordflow}{if} (\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.else\_body) \{}
-\DoxyCodeLine{696         \mbox{\hyperlink{ast_8c_a11f9994d97b301e6f7791582c6f8a3cc}{codegen\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.else\_body, module, builder);}
-\DoxyCodeLine{697       \}}
-\DoxyCodeLine{698       LLVMBuildBr(builder, cont\_bb);}
-\DoxyCodeLine{699 }
-\DoxyCodeLine{700       LLVMPositionBuilderAtEnd(builder, cont\_bb);}
-\DoxyCodeLine{701       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{702     \}}
-\DoxyCodeLine{703 }
-\DoxyCodeLine{704     \textcolor{keywordflow}{case} STMT\_INCREMENT:}
-\DoxyCodeLine{705       LLVMValueRef \mbox{\hyperlink{structexpr}{expr}} = \mbox{\hyperlink{ast_8c_a5ae4f14e1ba1e6de9dfadff2a5ea5a32}{codegen\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>increment.expr,module,builder);}
-\DoxyCodeLine{706 }
-\DoxyCodeLine{707       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{708 }
-\DoxyCodeLine{709     \textcolor{keywordflow}{case} STMT\_DECREMENT:}
-\DoxyCodeLine{710       LLVMValueRef \mbox{\hyperlink{structexpr}{expr}} = \mbox{\hyperlink{ast_8c_a5ae4f14e1ba1e6de9dfadff2a5ea5a32}{codegen\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>decrement.expr,module,builder);}
-\DoxyCodeLine{711  }
-\DoxyCodeLine{712       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{713 }
-\DoxyCodeLine{714   \}}
-\DoxyCodeLine{715 \}}
+\DoxyCodeLine{836                                                                                    \{}
+\DoxyCodeLine{837   \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structstmt}{stmt}}-\/>type) \{}
+\DoxyCodeLine{838     \textcolor{keywordflow}{case} STMT\_SEQ: \{}
+\DoxyCodeLine{839       \mbox{\hyperlink{ast_8c_a11f9994d97b301e6f7791582c6f8a3cc}{codegen\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>seq.fst, module, builder);}
+\DoxyCodeLine{840       \mbox{\hyperlink{ast_8c_a11f9994d97b301e6f7791582c6f8a3cc}{codegen\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>seq.snd, module, builder);}
+\DoxyCodeLine{841       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{842     \}}
+\DoxyCodeLine{843 }
+\DoxyCodeLine{844     \textcolor{keywordflow}{case} STMT\_ASSIGN: \{}
+\DoxyCodeLine{845       LLVMValueRef \mbox{\hyperlink{structexpr}{expr}} = \mbox{\hyperlink{ast_8c_a5ae4f14e1ba1e6de9dfadff2a5ea5a32}{codegen\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>assign.expr, module, builder);}
+\DoxyCodeLine{846       LLVMBuildStore(builder, \mbox{\hyperlink{structexpr}{expr}}, \mbox{\hyperlink{utils_8c_a2d13c3f92e1648cca63a514e6a3dda8d}{vector\_get}}(\&global\_types, \mbox{\hyperlink{structstmt}{stmt}}-\/>assign.id));}
+\DoxyCodeLine{847       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{848     \}}
+\DoxyCodeLine{849 }
+\DoxyCodeLine{850     \textcolor{keywordflow}{case} STMT\_PRINT: \{}
+\DoxyCodeLine{851       \textcolor{keyword}{enum} value\_type arg\_type = \mbox{\hyperlink{ast_8c_abee0bed1ef33696cdd56c143f70082f4}{check\_types}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>print.expr);}
+\DoxyCodeLine{852       LLVMValueRef print\_fn = LLVMGetNamedFunction(module, arg\_type == BOOLEAN ? \textcolor{stringliteral}{"print\_i1"} : \textcolor{stringliteral}{"print\_i32"});}
+\DoxyCodeLine{853       LLVMValueRef args[] = \{ \mbox{\hyperlink{ast_8c_a5ae4f14e1ba1e6de9dfadff2a5ea5a32}{codegen\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>print.expr, module, builder) \};}
+\DoxyCodeLine{854       LLVMBuildCall(builder, print\_fn, args, 1, \textcolor{stringliteral}{""});  \textcolor{comment}{// It calles function by LLVMValueref with parameter}}
+\DoxyCodeLine{855       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{856     \}}
+\DoxyCodeLine{857 }
+\DoxyCodeLine{858     \textcolor{keywordflow}{case} STMT\_WHILE: \{}
+\DoxyCodeLine{859       LLVMValueRef func = LLVMGetBasicBlockParent(LLVMGetInsertBlock(builder));}
+\DoxyCodeLine{860       LLVMBasicBlockRef cond\_bb = LLVMAppendBasicBlock(func, \textcolor{stringliteral}{"cond"});}
+\DoxyCodeLine{861       LLVMBasicBlockRef body\_bb = LLVMAppendBasicBlock(func, \textcolor{stringliteral}{"body"});}
+\DoxyCodeLine{862       LLVMBasicBlockRef cont\_bb = LLVMAppendBasicBlock(func, \textcolor{stringliteral}{"cont"});}
+\DoxyCodeLine{863 }
+\DoxyCodeLine{864       LLVMBuildBr(builder, cond\_bb);}
+\DoxyCodeLine{865 }
+\DoxyCodeLine{866       LLVMPositionBuilderAtEnd(builder, cond\_bb);}
+\DoxyCodeLine{867       LLVMValueRef cond = \mbox{\hyperlink{ast_8c_a5ae4f14e1ba1e6de9dfadff2a5ea5a32}{codegen\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>while\_.cond, module, builder);}
+\DoxyCodeLine{868       LLVMBuildCondBr(builder, cond, body\_bb, cont\_bb);}
+\DoxyCodeLine{869 }
+\DoxyCodeLine{870       LLVMPositionBuilderAtEnd(builder, body\_bb);}
+\DoxyCodeLine{871       \mbox{\hyperlink{ast_8c_a11f9994d97b301e6f7791582c6f8a3cc}{codegen\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>while\_.body, module, builder);}
+\DoxyCodeLine{872       LLVMBuildBr(builder, cond\_bb);}
+\DoxyCodeLine{873 }
+\DoxyCodeLine{874       LLVMPositionBuilderAtEnd(builder, cont\_bb);}
+\DoxyCodeLine{875       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{876     \}}
+\DoxyCodeLine{877 }
+\DoxyCodeLine{878     \textcolor{keywordflow}{case} STMT\_IF: \{}
+\DoxyCodeLine{879       LLVMValueRef func = LLVMGetBasicBlockParent(LLVMGetInsertBlock(builder));}
+\DoxyCodeLine{880       LLVMBasicBlockRef body\_bb = LLVMAppendBasicBlock(func, \textcolor{stringliteral}{"body"});}
+\DoxyCodeLine{881       LLVMBasicBlockRef else\_bb = LLVMAppendBasicBlock(func, \textcolor{stringliteral}{"else"});}
+\DoxyCodeLine{882       LLVMBasicBlockRef cont\_bb = LLVMAppendBasicBlock(func, \textcolor{stringliteral}{"cont"});}
+\DoxyCodeLine{883 }
+\DoxyCodeLine{884       LLVMValueRef cond = \mbox{\hyperlink{ast_8c_a5ae4f14e1ba1e6de9dfadff2a5ea5a32}{codegen\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.cond, module, builder);}
+\DoxyCodeLine{885       LLVMBuildCondBr(builder, cond, body\_bb, else\_bb);}
+\DoxyCodeLine{886 }
+\DoxyCodeLine{887       LLVMPositionBuilderAtEnd(builder, body\_bb);}
+\DoxyCodeLine{888       \mbox{\hyperlink{ast_8c_a11f9994d97b301e6f7791582c6f8a3cc}{codegen\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.if\_body, module, builder);}
+\DoxyCodeLine{889       LLVMBuildBr(builder, cont\_bb);}
+\DoxyCodeLine{890 }
+\DoxyCodeLine{891       LLVMPositionBuilderAtEnd(builder, else\_bb);}
+\DoxyCodeLine{892       \textcolor{keywordflow}{if} (\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.else\_body) \{}
+\DoxyCodeLine{893         \mbox{\hyperlink{ast_8c_a11f9994d97b301e6f7791582c6f8a3cc}{codegen\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.else\_body, module, builder);}
+\DoxyCodeLine{894       \}}
+\DoxyCodeLine{895       LLVMBuildBr(builder, cont\_bb);}
+\DoxyCodeLine{896 }
+\DoxyCodeLine{897       LLVMPositionBuilderAtEnd(builder, cont\_bb);}
+\DoxyCodeLine{898       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{899     \}}
+\DoxyCodeLine{900 }
+\DoxyCodeLine{901     \textcolor{keywordflow}{default}: \textcolor{keywordflow}{break};}
+\DoxyCodeLine{902     \}}
+\DoxyCodeLine{903   \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{ast_8c_afc58b18d03dc3173908d8a44514f1ab3}\label{ast_8c_afc58b18d03dc3173908d8a44514f1ab3}} 
@@ -420,47 +535,58 @@ int is a register.
 \end{DoxyReturn}
 
 
-Definition at line 267 of file ast.\+c.
+Definition at line 355 of file ast.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{267                                         \{}
-\DoxyCodeLine{268   \textcolor{keywordtype}{int} result\_reg = gen\_reg();}
-\DoxyCodeLine{269   \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structexpr}{expr}}-\/>type) \{}
-\DoxyCodeLine{270     \textcolor{keywordflow}{case} BOOL\_LIT:}
-\DoxyCodeLine{271       printf(\textcolor{stringliteral}{"r\%d = \%d\(\backslash\)n"}, result\_reg, \mbox{\hyperlink{structexpr}{expr}}-\/>value);}
-\DoxyCodeLine{272       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{273 }
-\DoxyCodeLine{274     \textcolor{keywordflow}{case} LITERAL:}
-\DoxyCodeLine{275       printf(\textcolor{stringliteral}{"r\%d = \%d\(\backslash\)n"}, result\_reg, \mbox{\hyperlink{structexpr}{expr}}-\/>value);}
-\DoxyCodeLine{276       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{277 }
-\DoxyCodeLine{278     \textcolor{keywordflow}{case} VARIABLE:}
-\DoxyCodeLine{279       printf(\textcolor{stringliteral}{"r\%d = load \%zu \# \%s\(\backslash\)n"}, result\_reg, \mbox{\hyperlink{structexpr}{expr}}-\/>id, string\_int\_rev(\&global\_ids, \mbox{\hyperlink{structexpr}{expr}}-\/>id));}
-\DoxyCodeLine{280       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{281 }
-\DoxyCodeLine{282     \textcolor{keywordflow}{case} BIN\_OP: \{}
-\DoxyCodeLine{283       \textcolor{keywordtype}{int} lhs = \mbox{\hyperlink{ast_8c_afc58b18d03dc3173908d8a44514f1ab3}{emit\_reg\_machine}}(\mbox{\hyperlink{structexpr}{expr}}-\/>binop.lhs);}
-\DoxyCodeLine{284       \textcolor{keywordtype}{int} rhs = \mbox{\hyperlink{ast_8c_afc58b18d03dc3173908d8a44514f1ab3}{emit\_reg\_machine}}(\mbox{\hyperlink{structexpr}{expr}}-\/>binop.rhs);}
-\DoxyCodeLine{285       \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structexpr}{expr}}-\/>binop.op) \{}
-\DoxyCodeLine{286         \textcolor{keywordflow}{case} \textcolor{charliteral}{'+'}: printf(\textcolor{stringliteral}{"r\%d = add r\%d, r\%d\(\backslash\)n"}, result\_reg, lhs, rhs); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{287         \textcolor{keywordflow}{case} \textcolor{charliteral}{'-\/'}: printf(\textcolor{stringliteral}{"r\%d = sub r\%d, r\%d\(\backslash\)n"}, result\_reg, lhs, rhs); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{288         \textcolor{keywordflow}{case} \textcolor{charliteral}{'*'}: printf(\textcolor{stringliteral}{"r\%d = mul r\%d, r\%d\(\backslash\)n"}, result\_reg, lhs, rhs); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{289         \textcolor{keywordflow}{case} \textcolor{charliteral}{'/'}: printf(\textcolor{stringliteral}{"r\%d = div r\%d, r\%d\(\backslash\)n"}, result\_reg, lhs, rhs); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{290 }
-\DoxyCodeLine{291         \textcolor{keywordflow}{case} EQ: printf(\textcolor{stringliteral}{"r\%d = eq r\%d, r\%d\(\backslash\)n"}, result\_reg, lhs, rhs); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{292         \textcolor{keywordflow}{case} NE: printf(\textcolor{stringliteral}{"r\%d = ne r\%d, r\%d\(\backslash\)n"}, result\_reg, lhs, rhs); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{293 }
-\DoxyCodeLine{294         \textcolor{keywordflow}{case} GE: printf(\textcolor{stringliteral}{"r\%d = ge r\%d, r\%d\(\backslash\)n"}, result\_reg, lhs, rhs); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{295         \textcolor{keywordflow}{case} LE: printf(\textcolor{stringliteral}{"r\%d = le r\%d, r\%d\(\backslash\)n"}, result\_reg, lhs, rhs); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{296         \textcolor{keywordflow}{case} \textcolor{charliteral}{'>'}: printf(\textcolor{stringliteral}{"r\%d = gt r\%d, r\%d\(\backslash\)n"}, result\_reg, lhs, rhs); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{297         \textcolor{keywordflow}{case} \textcolor{charliteral}{'<'}: printf(\textcolor{stringliteral}{"r\%d = lt r\%d, r\%d\(\backslash\)n"}, result\_reg, lhs, rhs); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{298       \}}
-\DoxyCodeLine{299       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{300     \}}
-\DoxyCodeLine{301   \}}
-\DoxyCodeLine{302   \textcolor{keywordflow}{return} result\_reg;}
-\DoxyCodeLine{303 \}}
+\DoxyCodeLine{355                                         \{}
+\DoxyCodeLine{356   \textcolor{keywordtype}{int} result\_reg = gen\_reg();}
+\DoxyCodeLine{357   \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structexpr}{expr}}-\/>type) \{}
+\DoxyCodeLine{358     \textcolor{keywordflow}{case} BOOL\_LIT:}
+\DoxyCodeLine{359       printf(\textcolor{stringliteral}{"r\%d = \%d\(\backslash\)n"}, result\_reg, \mbox{\hyperlink{structexpr}{expr}}-\/>value);}
+\DoxyCodeLine{360       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{361 }
+\DoxyCodeLine{362     \textcolor{keywordflow}{case} LITERAL:}
+\DoxyCodeLine{363       printf(\textcolor{stringliteral}{"r\%d = \%d\(\backslash\)n"}, result\_reg, \mbox{\hyperlink{structexpr}{expr}}-\/>value);}
+\DoxyCodeLine{364       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{365 }
+\DoxyCodeLine{366     \textcolor{keywordflow}{case} VARIABLE:}
+\DoxyCodeLine{367       printf(\textcolor{stringliteral}{"r\%d = load \%zu \# \%s\(\backslash\)n"}, result\_reg, \mbox{\hyperlink{structexpr}{expr}}-\/>id, \mbox{\hyperlink{utils_8c_ada4d84103e5ee6f8b43976ad2cd96c3c}{string\_int\_rev}}(\&global\_ids, \mbox{\hyperlink{structexpr}{expr}}-\/>id));}
+\DoxyCodeLine{368       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{369     }
+\DoxyCodeLine{370     \textcolor{keywordflow}{case} BIN\_OP: \{}
+\DoxyCodeLine{371       \textcolor{keywordtype}{int} lhs = \mbox{\hyperlink{ast_8c_afc58b18d03dc3173908d8a44514f1ab3}{emit\_reg\_machine}}(\mbox{\hyperlink{structexpr}{expr}}-\/>binop.lhs);}
+\DoxyCodeLine{372       \textcolor{keywordtype}{int} rhs = \mbox{\hyperlink{ast_8c_afc58b18d03dc3173908d8a44514f1ab3}{emit\_reg\_machine}}(\mbox{\hyperlink{structexpr}{expr}}-\/>binop.rhs);}
+\DoxyCodeLine{373       \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structexpr}{expr}}-\/>binop.op) \{}
+\DoxyCodeLine{374         \textcolor{keywordflow}{case} \textcolor{charliteral}{'+'}: printf(\textcolor{stringliteral}{"r\%d = add r\%d, r\%d\(\backslash\)n"}, result\_reg, lhs, rhs); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{375         \textcolor{keywordflow}{case} \textcolor{charliteral}{'-\/'}: printf(\textcolor{stringliteral}{"r\%d = sub r\%d, r\%d\(\backslash\)n"}, result\_reg, lhs, rhs); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{376         \textcolor{keywordflow}{case} \textcolor{charliteral}{'*'}: printf(\textcolor{stringliteral}{"r\%d = mul r\%d, r\%d\(\backslash\)n"}, result\_reg, lhs, rhs); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{377         \textcolor{keywordflow}{case} \textcolor{charliteral}{'/'}: printf(\textcolor{stringliteral}{"r\%d = div r\%d, r\%d\(\backslash\)n"}, result\_reg, lhs, rhs); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{378 }
+\DoxyCodeLine{379         \textcolor{keywordflow}{case} EQ: printf(\textcolor{stringliteral}{"r\%d = eq r\%d, r\%d\(\backslash\)n"}, result\_reg, lhs, rhs); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{380         \textcolor{keywordflow}{case} NE: printf(\textcolor{stringliteral}{"r\%d = ne r\%d, r\%d\(\backslash\)n"}, result\_reg, lhs, rhs); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{381 }
+\DoxyCodeLine{382         \textcolor{keywordflow}{case} GE: printf(\textcolor{stringliteral}{"r\%d = ge r\%d, r\%d\(\backslash\)n"}, result\_reg, lhs, rhs); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{383         \textcolor{keywordflow}{case} LE: printf(\textcolor{stringliteral}{"r\%d = le r\%d, r\%d\(\backslash\)n"}, result\_reg, lhs, rhs); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{384         \textcolor{keywordflow}{case} \textcolor{charliteral}{'>'}: printf(\textcolor{stringliteral}{"r\%d = gt r\%d, r\%d\(\backslash\)n"}, result\_reg, lhs, rhs); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{385         \textcolor{keywordflow}{case} \textcolor{charliteral}{'<'}: printf(\textcolor{stringliteral}{"r\%d = lt r\%d, r\%d\(\backslash\)n"}, result\_reg, lhs, rhs); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{386         \textcolor{keywordflow}{case} AND: printf(\textcolor{stringliteral}{"r\%d = and r\%d, r\%d\(\backslash\)n"}, result\_reg, lhs, rhs); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{387         \textcolor{keywordflow}{case} OR: printf(\textcolor{stringliteral}{"r\%d = or r\%d, r\%d\(\backslash\)n"}, result\_reg, lhs, rhs); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{388         \textcolor{keywordflow}{case} XOR: printf(\textcolor{stringliteral}{"r\%d = xor r\%d, r\%d\(\backslash\)n"}, result\_reg, lhs, rhs); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{389         \textcolor{keywordflow}{case} REMAINDER: printf(\textcolor{stringliteral}{"r\%d = remainder r\%d, r\%d\(\backslash\)n"}, result\_reg, lhs, rhs); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{390         \textcolor{keywordflow}{case} LEFTSHIFT: printf(\textcolor{stringliteral}{"r\%d = leftshift r\%d, r\%d\(\backslash\)n"}, result\_reg, lhs, rhs); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{391         \textcolor{keywordflow}{case} RIGHTSHIFT: printf(\textcolor{stringliteral}{"r\%d = rightshift r\%d, r\%d\(\backslash\)n"}, result\_reg, lhs, rhs); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{392       \}}
+\DoxyCodeLine{393       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{394     \}}
+\DoxyCodeLine{395   }
+\DoxyCodeLine{396     \textcolor{keywordflow}{case} TERNARY\_OP:\{}
+\DoxyCodeLine{397 }
+\DoxyCodeLine{398       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{399     \}}
+\DoxyCodeLine{400   \}}
+\DoxyCodeLine{401   \textcolor{keywordflow}{return} result\_reg;}
+\DoxyCodeLine{402 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{ast_8c_acacf2129d7f665b13dede35ce5d59d53}\label{ast_8c_acacf2129d7f665b13dede35ce5d59d53}} 
@@ -476,45 +602,67 @@ Definition at line 267 of file ast.\+c.
 \end{DoxyParams}
 
 
-Definition at line 213 of file ast.\+c.
+Definition at line 279 of file ast.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{213                                            \{}
-\DoxyCodeLine{214   \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structexpr}{expr}}-\/>type) \{}
-\DoxyCodeLine{215     \textcolor{keywordflow}{case} BOOL\_LIT:}
-\DoxyCodeLine{216       printf(\mbox{\hyperlink{structexpr}{expr}}-\/>value ? \textcolor{stringliteral}{"load\_true\(\backslash\)n"} : \textcolor{stringliteral}{"load\_false\(\backslash\)n"});}
-\DoxyCodeLine{217       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{218 }
-\DoxyCodeLine{219     \textcolor{keywordflow}{case} LITERAL:}
-\DoxyCodeLine{220       printf(\textcolor{stringliteral}{"load\_imm \%d\(\backslash\)n"}, \mbox{\hyperlink{structexpr}{expr}}-\/>value);}
-\DoxyCodeLine{221       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{222 }
-\DoxyCodeLine{223     \textcolor{keywordflow}{case} VARIABLE:}
-\DoxyCodeLine{224       printf(\textcolor{stringliteral}{"load\_mem \%zu \# \%s\(\backslash\)n"}, \mbox{\hyperlink{structexpr}{expr}}-\/>id, string\_int\_rev(\&global\_ids, \mbox{\hyperlink{structexpr}{expr}}-\/>id));}
-\DoxyCodeLine{225       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{226 }
-\DoxyCodeLine{227     \textcolor{keywordflow}{case} BIN\_OP:}
-\DoxyCodeLine{228       \mbox{\hyperlink{ast_8c_acacf2129d7f665b13dede35ce5d59d53}{emit\_stack\_machine}}(\mbox{\hyperlink{structexpr}{expr}}-\/>binop.lhs);}
-\DoxyCodeLine{229       \mbox{\hyperlink{ast_8c_acacf2129d7f665b13dede35ce5d59d53}{emit\_stack\_machine}}(\mbox{\hyperlink{structexpr}{expr}}-\/>binop.rhs);}
-\DoxyCodeLine{230       \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structexpr}{expr}}-\/>binop.op) \{}
-\DoxyCodeLine{231         \textcolor{keywordflow}{case} \textcolor{charliteral}{'+'}: printf(\textcolor{stringliteral}{"add\(\backslash\)n"}); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{232         \textcolor{keywordflow}{case} \textcolor{charliteral}{'-\/'}: printf(\textcolor{stringliteral}{"sub\(\backslash\)n"}); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{233         \textcolor{keywordflow}{case} \textcolor{charliteral}{'*'}: printf(\textcolor{stringliteral}{"mul\(\backslash\)n"}); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{234         \textcolor{keywordflow}{case} \textcolor{charliteral}{'/'}: printf(\textcolor{stringliteral}{"div\(\backslash\)n"}); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{235 }
-\DoxyCodeLine{236         \textcolor{keywordflow}{case} EQ: printf(\textcolor{stringliteral}{"eq\(\backslash\)n"}); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{237         \textcolor{keywordflow}{case} NE: printf(\textcolor{stringliteral}{"ne\(\backslash\)n"}); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{238 }
-\DoxyCodeLine{239         \textcolor{keywordflow}{case} GE: printf(\textcolor{stringliteral}{"ge\(\backslash\)n"}); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{240         \textcolor{keywordflow}{case} LE: printf(\textcolor{stringliteral}{"le\(\backslash\)n"}); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{241         \textcolor{keywordflow}{case} \textcolor{charliteral}{'>'}: printf(\textcolor{stringliteral}{"gt\(\backslash\)n"}); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{242         \textcolor{keywordflow}{case} \textcolor{charliteral}{'<'}: printf(\textcolor{stringliteral}{"lt\(\backslash\)n"}); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{243         \textcolor{keywordflow}{case}  AND: printf(\textcolor{stringliteral}{"and\(\backslash\)n"}); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{244       \}}
-\DoxyCodeLine{245       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{246   \}}
-\DoxyCodeLine{247 \}}
+\DoxyCodeLine{279                                            \{}
+\DoxyCodeLine{280   \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structexpr}{expr}}-\/>type) \{}
+\DoxyCodeLine{281     \textcolor{keywordflow}{case} BOOL\_LIT:}
+\DoxyCodeLine{282       printf(\mbox{\hyperlink{structexpr}{expr}}-\/>value ? \textcolor{stringliteral}{"load\_true\(\backslash\)n"} : \textcolor{stringliteral}{"load\_false\(\backslash\)n"});}
+\DoxyCodeLine{283       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{284 }
+\DoxyCodeLine{285     \textcolor{keywordflow}{case} LITERAL:}
+\DoxyCodeLine{286       printf(\textcolor{stringliteral}{"load\_imm \%d\(\backslash\)n"}, \mbox{\hyperlink{structexpr}{expr}}-\/>value);}
+\DoxyCodeLine{287       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{288     \textcolor{keywordflow}{case} PRE\_INCREMENT\_OP: }
+\DoxyCodeLine{289       printf(\textcolor{stringliteral}{"++"});}
+\DoxyCodeLine{290       \mbox{\hyperlink{ast_8c_acacf2129d7f665b13dede35ce5d59d53}{emit\_stack\_machine}}(\mbox{\hyperlink{structexpr}{expr}}-\/>expr);}
+\DoxyCodeLine{291       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{292     \textcolor{keywordflow}{case} POST\_INCREMENT\_OP:}
+\DoxyCodeLine{293       \mbox{\hyperlink{ast_8c_acacf2129d7f665b13dede35ce5d59d53}{emit\_stack\_machine}}(\mbox{\hyperlink{structexpr}{expr}}-\/>expr);}
+\DoxyCodeLine{294       printf(\textcolor{stringliteral}{"++"});}
+\DoxyCodeLine{295       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{296     \textcolor{keywordflow}{case} PRE\_DECREMENT\_OP:}
+\DoxyCodeLine{297       printf(\textcolor{stringliteral}{"-\/-\/"});}
+\DoxyCodeLine{298       \mbox{\hyperlink{ast_8c_acacf2129d7f665b13dede35ce5d59d53}{emit\_stack\_machine}}(\mbox{\hyperlink{structexpr}{expr}}-\/>expr);}
+\DoxyCodeLine{299       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{300     \textcolor{keywordflow}{case} POST\_DECREMENT\_OP:}
+\DoxyCodeLine{301       \mbox{\hyperlink{ast_8c_acacf2129d7f665b13dede35ce5d59d53}{emit\_stack\_machine}}(\mbox{\hyperlink{structexpr}{expr}}-\/>expr);}
+\DoxyCodeLine{302       printf(\textcolor{stringliteral}{"-\/-\/"});}
+\DoxyCodeLine{303       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{304     \textcolor{keywordflow}{case} VARIABLE:}
+\DoxyCodeLine{305       printf(\textcolor{stringliteral}{"load\_mem \%zu \# \%s\(\backslash\)n"}, \mbox{\hyperlink{structexpr}{expr}}-\/>id, \mbox{\hyperlink{utils_8c_ada4d84103e5ee6f8b43976ad2cd96c3c}{string\_int\_rev}}(\&global\_ids, \mbox{\hyperlink{structexpr}{expr}}-\/>id));}
+\DoxyCodeLine{306       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{307     \textcolor{keywordflow}{case} BIN\_OP:}
+\DoxyCodeLine{308       \mbox{\hyperlink{ast_8c_acacf2129d7f665b13dede35ce5d59d53}{emit\_stack\_machine}}(\mbox{\hyperlink{structexpr}{expr}}-\/>binop.lhs);}
+\DoxyCodeLine{309       \mbox{\hyperlink{ast_8c_acacf2129d7f665b13dede35ce5d59d53}{emit\_stack\_machine}}(\mbox{\hyperlink{structexpr}{expr}}-\/>binop.rhs);}
+\DoxyCodeLine{310 }
+\DoxyCodeLine{311       \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structexpr}{expr}}-\/>binop.op) \{}
+\DoxyCodeLine{312         \textcolor{keywordflow}{case} \textcolor{charliteral}{'+'}: printf(\textcolor{stringliteral}{"add\(\backslash\)n"}); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{313         \textcolor{keywordflow}{case} \textcolor{charliteral}{'-\/'}: printf(\textcolor{stringliteral}{"sub\(\backslash\)n"}); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{314         \textcolor{keywordflow}{case} \textcolor{charliteral}{'*'}: printf(\textcolor{stringliteral}{"mul\(\backslash\)n"}); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{315         \textcolor{keywordflow}{case} \textcolor{charliteral}{'/'}: printf(\textcolor{stringliteral}{"div\(\backslash\)n"}); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{316         \textcolor{keywordflow}{case} EQ: printf(\textcolor{stringliteral}{"eq\(\backslash\)n"});   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{317         \textcolor{keywordflow}{case} NE: printf(\textcolor{stringliteral}{"ne\(\backslash\)n"});   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{318         \textcolor{keywordflow}{case} GE: printf(\textcolor{stringliteral}{"ge\(\backslash\)n"});   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{319         \textcolor{keywordflow}{case} LE: printf(\textcolor{stringliteral}{"le\(\backslash\)n"});   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{320         \textcolor{keywordflow}{case} \textcolor{charliteral}{'>'}: printf(\textcolor{stringliteral}{"gt\(\backslash\)n"});  \textcolor{keywordflow}{break};}
+\DoxyCodeLine{321         \textcolor{keywordflow}{case} \textcolor{charliteral}{'<'}: printf(\textcolor{stringliteral}{"lt\(\backslash\)n"});  \textcolor{keywordflow}{break};}
+\DoxyCodeLine{322         \textcolor{keywordflow}{case} AND: printf(\textcolor{stringliteral}{"and\(\backslash\)n"}); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{323         \textcolor{keywordflow}{case} OR:  printf(\textcolor{stringliteral}{"or\(\backslash\)n"});  \textcolor{keywordflow}{break};}
+\DoxyCodeLine{324         \textcolor{keywordflow}{case} XOR:  printf(\textcolor{stringliteral}{"xor\(\backslash\)n"});  \textcolor{keywordflow}{break};}
+\DoxyCodeLine{325         \textcolor{keywordflow}{case} REMAINDER: printf(\textcolor{stringliteral}{"remainder\(\backslash\)n"}); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{326         \textcolor{keywordflow}{case} RIGHTSHIFT: printf(\textcolor{stringliteral}{"rightshift\(\backslash\)n"});}
+\DoxyCodeLine{327         \textcolor{keywordflow}{case} LEFTSHIFT: printf(\textcolor{stringliteral}{"leftshift\(\backslash\)n"});}
+\DoxyCodeLine{328       \}}
+\DoxyCodeLine{329       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{330     \textcolor{keywordflow}{case} TERNARY\_OP:\{}
+\DoxyCodeLine{331       }
+\DoxyCodeLine{332       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{333     \}}
+\DoxyCodeLine{334   \}}
+\DoxyCodeLine{335 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{ast_8c_ae19dfc97dab89da91a8ac7079d105470}\label{ast_8c_ae19dfc97dab89da91a8ac7079d105470}} 
@@ -534,25 +682,42 @@ It takes an expression to free it from memory.
 \end{DoxyParams}
 
 
-Definition at line 380 of file ast.\+c.
+Definition at line 511 of file ast.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{380                                   \{}
-\DoxyCodeLine{381   \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structexpr}{expr}}-\/>type) \{}
-\DoxyCodeLine{382     \textcolor{keywordflow}{case} BOOL\_LIT:}
-\DoxyCodeLine{383     \textcolor{keywordflow}{case} LITERAL:}
-\DoxyCodeLine{384     \textcolor{keywordflow}{case} VARIABLE:}
-\DoxyCodeLine{385       free(\mbox{\hyperlink{structexpr}{expr}});}
-\DoxyCodeLine{386       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{387 }
-\DoxyCodeLine{388     \textcolor{keywordflow}{case} BIN\_OP:}
-\DoxyCodeLine{389       \mbox{\hyperlink{ast_8c_ae19dfc97dab89da91a8ac7079d105470}{free\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>binop.lhs);}
-\DoxyCodeLine{390       \mbox{\hyperlink{ast_8c_ae19dfc97dab89da91a8ac7079d105470}{free\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>binop.rhs);}
-\DoxyCodeLine{391       free(\mbox{\hyperlink{structexpr}{expr}});}
-\DoxyCodeLine{392       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{393   \}}
-\DoxyCodeLine{394 \}}
+\DoxyCodeLine{511                                   \{}
+\DoxyCodeLine{512   \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structexpr}{expr}}-\/>type) \{}
+\DoxyCodeLine{513     \textcolor{keywordflow}{case} BOOL\_LIT:}
+\DoxyCodeLine{514       free(\mbox{\hyperlink{structexpr}{expr}});}
+\DoxyCodeLine{515       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{516     \textcolor{keywordflow}{case} LITERAL:}
+\DoxyCodeLine{517       free(\mbox{\hyperlink{structexpr}{expr}});}
+\DoxyCodeLine{518       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{519     \textcolor{keywordflow}{case} VARIABLE:}
+\DoxyCodeLine{520       free(\mbox{\hyperlink{structexpr}{expr}});}
+\DoxyCodeLine{521       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{522 }
+\DoxyCodeLine{523     \textcolor{keywordflow}{case} BIN\_OP:}
+\DoxyCodeLine{524       \mbox{\hyperlink{ast_8c_ae19dfc97dab89da91a8ac7079d105470}{free\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>binop.lhs);}
+\DoxyCodeLine{525       \mbox{\hyperlink{ast_8c_ae19dfc97dab89da91a8ac7079d105470}{free\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>binop.rhs);}
+\DoxyCodeLine{526       free(\mbox{\hyperlink{structexpr}{expr}});}
+\DoxyCodeLine{527       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{528     \textcolor{keywordflow}{case} PRE\_INCREMENT\_OP:}
+\DoxyCodeLine{529     \textcolor{keywordflow}{case} POST\_INCREMENT\_OP:}
+\DoxyCodeLine{530     \textcolor{keywordflow}{case} PRE\_DECREMENT\_OP:}
+\DoxyCodeLine{531     \textcolor{keywordflow}{case} POST\_DECREMENT\_OP:}
+\DoxyCodeLine{532        \mbox{\hyperlink{ast_8c_ae19dfc97dab89da91a8ac7079d105470}{free\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>expr);}
+\DoxyCodeLine{533       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{534     \textcolor{keywordflow}{case} TERNARY\_OP:}
+\DoxyCodeLine{535       \mbox{\hyperlink{ast_8c_ae19dfc97dab89da91a8ac7079d105470}{free\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>ternary.lhs-\/>binop.lhs);}
+\DoxyCodeLine{536       \mbox{\hyperlink{ast_8c_ae19dfc97dab89da91a8ac7079d105470}{free\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>ternary.lhs-\/>binop.rhs);}
+\DoxyCodeLine{537       \mbox{\hyperlink{ast_8c_ae19dfc97dab89da91a8ac7079d105470}{free\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>ternary.lhs);}
+\DoxyCodeLine{538       \mbox{\hyperlink{ast_8c_ae19dfc97dab89da91a8ac7079d105470}{free\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>ternary.mhs);}
+\DoxyCodeLine{539       \mbox{\hyperlink{ast_8c_ae19dfc97dab89da91a8ac7079d105470}{free\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>ternary.rhs);}
+\DoxyCodeLine{540       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{541   \}}
+\DoxyCodeLine{542 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{ast_8c_ae5c373c5b4507dfb1379f1a3b0951fff}\label{ast_8c_ae5c373c5b4507dfb1379f1a3b0951fff}} 
@@ -572,46 +737,40 @@ It takes a statement to clear it from memeory.
 \end{DoxyParams}
 
 
-Definition at line 514 of file ast.\+c.
+Definition at line 637 of file ast.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{514                                   \{}
-\DoxyCodeLine{515   \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structstmt}{stmt}}-\/>type) \{}
-\DoxyCodeLine{516     \textcolor{keywordflow}{case} STMT\_SEQ:}
-\DoxyCodeLine{517       \mbox{\hyperlink{ast_8c_ae5c373c5b4507dfb1379f1a3b0951fff}{free\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>seq.fst);}
-\DoxyCodeLine{518       \mbox{\hyperlink{ast_8c_ae5c373c5b4507dfb1379f1a3b0951fff}{free\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>seq.snd);}
-\DoxyCodeLine{519       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{520 }
-\DoxyCodeLine{521     \textcolor{keywordflow}{case} STMT\_ASSIGN:}
-\DoxyCodeLine{522       \mbox{\hyperlink{ast_8c_ae19dfc97dab89da91a8ac7079d105470}{free\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>assign.expr);}
-\DoxyCodeLine{523       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{524 }
-\DoxyCodeLine{525     \textcolor{keywordflow}{case} STMT\_PRINT:}
-\DoxyCodeLine{526       \mbox{\hyperlink{ast_8c_ae19dfc97dab89da91a8ac7079d105470}{free\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>print.expr);}
-\DoxyCodeLine{527       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{528 }
-\DoxyCodeLine{529     \textcolor{keywordflow}{case} STMT\_WHILE:}
-\DoxyCodeLine{530       \mbox{\hyperlink{ast_8c_ae19dfc97dab89da91a8ac7079d105470}{free\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>while\_.cond);}
-\DoxyCodeLine{531       \mbox{\hyperlink{ast_8c_ae5c373c5b4507dfb1379f1a3b0951fff}{free\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>while\_.body);}
-\DoxyCodeLine{532       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{533 }
-\DoxyCodeLine{534     \textcolor{keywordflow}{case} STMT\_IF:}
-\DoxyCodeLine{535       \mbox{\hyperlink{ast_8c_ae19dfc97dab89da91a8ac7079d105470}{free\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.cond);}
-\DoxyCodeLine{536       \mbox{\hyperlink{ast_8c_ae5c373c5b4507dfb1379f1a3b0951fff}{free\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.if\_body);}
-\DoxyCodeLine{537       \textcolor{keywordflow}{if} (\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.else\_body)}
-\DoxyCodeLine{538         \mbox{\hyperlink{ast_8c_ae5c373c5b4507dfb1379f1a3b0951fff}{free\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.else\_body);}
-\DoxyCodeLine{539       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{540     \textcolor{keywordflow}{case} STMT\_INCREMENT:}
-\DoxyCodeLine{541       \mbox{\hyperlink{ast_8c_ae19dfc97dab89da91a8ac7079d105470}{free\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>increment.expr);}
-\DoxyCodeLine{542       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{543     \textcolor{keywordflow}{case} STMT\_DECREMENT:}
-\DoxyCodeLine{544       \mbox{\hyperlink{ast_8c_ae19dfc97dab89da91a8ac7079d105470}{free\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>decrement.expr);}
-\DoxyCodeLine{545       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{546   \}}
-\DoxyCodeLine{547 }
-\DoxyCodeLine{548   free(\mbox{\hyperlink{structstmt}{stmt}});}
-\DoxyCodeLine{549 \}}
+\DoxyCodeLine{637                                   \{}
+\DoxyCodeLine{638   \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structstmt}{stmt}}-\/>type) \{}
+\DoxyCodeLine{639     \textcolor{keywordflow}{case} STMT\_SEQ:}
+\DoxyCodeLine{640       \mbox{\hyperlink{ast_8c_ae5c373c5b4507dfb1379f1a3b0951fff}{free\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>seq.fst);}
+\DoxyCodeLine{641       \mbox{\hyperlink{ast_8c_ae5c373c5b4507dfb1379f1a3b0951fff}{free\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>seq.snd);}
+\DoxyCodeLine{642       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{643 }
+\DoxyCodeLine{644     \textcolor{keywordflow}{case} STMT\_ASSIGN:}
+\DoxyCodeLine{645       \mbox{\hyperlink{ast_8c_ae19dfc97dab89da91a8ac7079d105470}{free\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>assign.expr);}
+\DoxyCodeLine{646       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{647 }
+\DoxyCodeLine{648     \textcolor{keywordflow}{case} STMT\_PRINT:}
+\DoxyCodeLine{649       \mbox{\hyperlink{ast_8c_ae19dfc97dab89da91a8ac7079d105470}{free\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>print.expr);}
+\DoxyCodeLine{650       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{651 }
+\DoxyCodeLine{652     \textcolor{keywordflow}{case} STMT\_WHILE:}
+\DoxyCodeLine{653       \mbox{\hyperlink{ast_8c_ae19dfc97dab89da91a8ac7079d105470}{free\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>while\_.cond);}
+\DoxyCodeLine{654       \mbox{\hyperlink{ast_8c_ae5c373c5b4507dfb1379f1a3b0951fff}{free\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>while\_.body);}
+\DoxyCodeLine{655       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{656 }
+\DoxyCodeLine{657     \textcolor{keywordflow}{case} STMT\_IF:}
+\DoxyCodeLine{658       \mbox{\hyperlink{ast_8c_ae19dfc97dab89da91a8ac7079d105470}{free\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.cond);}
+\DoxyCodeLine{659       \mbox{\hyperlink{ast_8c_ae5c373c5b4507dfb1379f1a3b0951fff}{free\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.if\_body);}
+\DoxyCodeLine{660       \textcolor{keywordflow}{if} (\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.else\_body)}
+\DoxyCodeLine{661         \mbox{\hyperlink{ast_8c_ae5c373c5b4507dfb1379f1a3b0951fff}{free\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.else\_body);}
+\DoxyCodeLine{662       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{663   \}}
+\DoxyCodeLine{664 }
+\DoxyCodeLine{665   free(\mbox{\hyperlink{structstmt}{stmt}});}
+\DoxyCodeLine{666 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{ast_8c_a2e6fe25957a73a9f3609839e7a3c5bc9}\label{ast_8c_a2e6fe25957a73a9f3609839e7a3c5bc9}} 
@@ -668,48 +827,17 @@ struct stmt$\ast$
 \end{DoxyReturn}
 
 
-Definition at line 419 of file ast.\+c.
+Definition at line 566 of file ast.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{419                                                     \{}
-\DoxyCodeLine{420   \textcolor{keyword}{struct }\mbox{\hyperlink{structstmt}{stmt}}* r = malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structstmt}{stmt}}));}
-\DoxyCodeLine{421   r-\/>type = STMT\_ASSIGN;}
-\DoxyCodeLine{422   r-\/>assign.id = id;}
-\DoxyCodeLine{423   r-\/>assign.expr = e;}
-\DoxyCodeLine{424   \textcolor{keywordflow}{return} r;}
-\DoxyCodeLine{425 \}}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{ast_8c_af0b418cb007ba9a9a04d476ba4f7b1d8}\label{ast_8c_af0b418cb007ba9a9a04d476ba4f7b1d8}} 
-\index{ast.c@{ast.c}!make\_decrement@{make\_decrement}}
-\index{make\_decrement@{make\_decrement}!ast.c@{ast.c}}
-\doxysubsubsection{\texorpdfstring{make\_decrement()}{make\_decrement()}}
-{\footnotesize\ttfamily struct \mbox{\hyperlink{structstmt}{stmt}}$\ast$ make\+\_\+decrement (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structexpr}{expr}} $\ast$}]{e }\end{DoxyParamCaption})}
-
-
-
-It takes a expression to create a statement. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em e} & is an expression. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-struct stmt$\ast$ is a statement. 
-\end{DoxyReturn}
-
-
-Definition at line 503 of file ast.\+c.
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{503                                            \{}
-\DoxyCodeLine{504     \textcolor{keyword}{struct }\mbox{\hyperlink{structstmt}{stmt}}* r = malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structstmt}{stmt}}));}
-\DoxyCodeLine{505     r-\/>type = STMT\_DECREMENT;}
-\DoxyCodeLine{506     r-\/>decrement.expr = e;}
-\DoxyCodeLine{507 \}}
+\DoxyCodeLine{566                                                     \{}
+\DoxyCodeLine{567   \textcolor{keyword}{struct }\mbox{\hyperlink{structstmt}{stmt}}* r = malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structstmt}{stmt}}));}
+\DoxyCodeLine{568   r-\/>type = STMT\_ASSIGN;}
+\DoxyCodeLine{569   r-\/>assign.id = id;}
+\DoxyCodeLine{570   r-\/>assign.expr = e;}
+\DoxyCodeLine{571   \textcolor{keywordflow}{return} r;}
+\DoxyCodeLine{572 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{ast_8c_a31bd4d2bfdfb8fee6af2fc00257673ce}\label{ast_8c_a31bd4d2bfdfb8fee6af2fc00257673ce}} 
@@ -734,13 +862,13 @@ struct stmt$\ast$ is a statement
 \end{DoxyReturn}
 
 
-Definition at line 466 of file ast.\+c.
+Definition at line 613 of file ast.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{466                                                         \{}
-\DoxyCodeLine{467   \textcolor{keywordflow}{return} \mbox{\hyperlink{ast_8c_ab6764fc5adf9530d9889309aeb11fad3}{make\_ifelse}}(e, body, NULL);}
-\DoxyCodeLine{468 \}}
+\DoxyCodeLine{613                                                         \{}
+\DoxyCodeLine{614   \textcolor{keywordflow}{return} \mbox{\hyperlink{ast_8c_ab6764fc5adf9530d9889309aeb11fad3}{make\_ifelse}}(e, body, NULL);}
+\DoxyCodeLine{615 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{ast_8c_ab6764fc5adf9530d9889309aeb11fad3}\label{ast_8c_ab6764fc5adf9530d9889309aeb11fad3}} 
@@ -767,49 +895,18 @@ struct stmt$\ast$
 \end{DoxyReturn}
 
 
-Definition at line 450 of file ast.\+c.
+Definition at line 597 of file ast.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{450                                                                                        \{}
-\DoxyCodeLine{451   \textcolor{keyword}{struct }\mbox{\hyperlink{structstmt}{stmt}}* r = malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structstmt}{stmt}}));}
-\DoxyCodeLine{452   r-\/>type = STMT\_IF;}
-\DoxyCodeLine{453   r-\/>ifelse.cond = e;}
-\DoxyCodeLine{454   r-\/>ifelse.if\_body = if\_body;}
-\DoxyCodeLine{455   r-\/>ifelse.else\_body = else\_body;}
-\DoxyCodeLine{456   \textcolor{keywordflow}{return} r;}
-\DoxyCodeLine{457 \}}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{ast_8c_acc3abaee1040325a42d2d8efd6014d3c}\label{ast_8c_acc3abaee1040325a42d2d8efd6014d3c}} 
-\index{ast.c@{ast.c}!make\_increment@{make\_increment}}
-\index{make\_increment@{make\_increment}!ast.c@{ast.c}}
-\doxysubsubsection{\texorpdfstring{make\_increment()}{make\_increment()}}
-{\footnotesize\ttfamily struct \mbox{\hyperlink{structstmt}{stmt}}$\ast$ make\+\_\+increment (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structexpr}{expr}} $\ast$}]{e }\end{DoxyParamCaption})}
-
-
-
-It takes an expression to create a statement. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em e} & is an expression. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-struct stmt$\ast$ is a statement. 
-\end{DoxyReturn}
-
-
-Definition at line 491 of file ast.\+c.
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{491                                            \{}
-\DoxyCodeLine{492   \textcolor{keyword}{struct }\mbox{\hyperlink{structstmt}{stmt}}* r = malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structstmt}{stmt}}));}
-\DoxyCodeLine{493   r-\/>type = STMT\_INCREMENT;}
-\DoxyCodeLine{494   r-\/>increment.expr = e;}
-\DoxyCodeLine{495 \}}
+\DoxyCodeLine{597                                                                                        \{}
+\DoxyCodeLine{598   \textcolor{keyword}{struct }\mbox{\hyperlink{structstmt}{stmt}}* r = malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structstmt}{stmt}}));}
+\DoxyCodeLine{599   r-\/>type = STMT\_IF;}
+\DoxyCodeLine{600   r-\/>ifelse.cond = e;}
+\DoxyCodeLine{601   r-\/>ifelse.if\_body = if\_body;}
+\DoxyCodeLine{602   r-\/>ifelse.else\_body = else\_body;}
+\DoxyCodeLine{603   \textcolor{keywordflow}{return} r;}
+\DoxyCodeLine{604 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{ast_8c_a8a92fd654116ca3f23e56e15ddde6c3c}\label{ast_8c_a8a92fd654116ca3f23e56e15ddde6c3c}} 
@@ -832,16 +929,16 @@ struct stmt$\ast$ is a statement.
 \end{DoxyReturn}
 
 
-Definition at line 478 of file ast.\+c.
+Definition at line 624 of file ast.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{478                                         \{}
-\DoxyCodeLine{479   \textcolor{keyword}{struct }\mbox{\hyperlink{structstmt}{stmt}}* r = malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structstmt}{stmt}}));}
-\DoxyCodeLine{480   r-\/>type = STMT\_PRINT;}
-\DoxyCodeLine{481   r-\/>print.expr = e;}
-\DoxyCodeLine{482   \textcolor{keywordflow}{return} r;}
-\DoxyCodeLine{483 \}}
+\DoxyCodeLine{624                                         \{}
+\DoxyCodeLine{625   \textcolor{keyword}{struct }\mbox{\hyperlink{structstmt}{stmt}}* r = malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structstmt}{stmt}}));}
+\DoxyCodeLine{626   r-\/>type = STMT\_PRINT;}
+\DoxyCodeLine{627   r-\/>print.expr = e;}
+\DoxyCodeLine{628   \textcolor{keywordflow}{return} r;}
+\DoxyCodeLine{629 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{ast_8c_a8f487335d7c45bcf282ab8faf2205a52}\label{ast_8c_a8f487335d7c45bcf282ab8faf2205a52}} 
@@ -866,17 +963,17 @@ struct stmt$\ast$
 \end{DoxyReturn}
 
 
-Definition at line 403 of file ast.\+c.
+Definition at line 551 of file ast.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{403                                                           \{}
-\DoxyCodeLine{404   \textcolor{keyword}{struct }\mbox{\hyperlink{structstmt}{stmt}}* r = malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structstmt}{stmt}}));}
-\DoxyCodeLine{405   r-\/>type = STMT\_SEQ;}
-\DoxyCodeLine{406   r-\/>seq.fst = fst;}
-\DoxyCodeLine{407   r-\/>seq.snd = snd;}
-\DoxyCodeLine{408   \textcolor{keywordflow}{return} r;}
-\DoxyCodeLine{409 \}}
+\DoxyCodeLine{551                                                           \{}
+\DoxyCodeLine{552   \textcolor{keyword}{struct }\mbox{\hyperlink{structstmt}{stmt}}* r = malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structstmt}{stmt}}));}
+\DoxyCodeLine{553   r-\/>type = STMT\_SEQ;}
+\DoxyCodeLine{554   r-\/>seq.fst = fst;}
+\DoxyCodeLine{555   r-\/>seq.snd = snd;}
+\DoxyCodeLine{556   \textcolor{keywordflow}{return} r;}
+\DoxyCodeLine{557 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{ast_8c_a252ffc8d566b1611354e223286584ad7}\label{ast_8c_a252ffc8d566b1611354e223286584ad7}} 
@@ -901,17 +998,145 @@ struct stmt$\ast$
 \end{DoxyReturn}
 
 
-Definition at line 434 of file ast.\+c.
+Definition at line 581 of file ast.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{434                                                            \{}
-\DoxyCodeLine{435   \textcolor{keyword}{struct }\mbox{\hyperlink{structstmt}{stmt}}* r = malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structstmt}{stmt}}));}
-\DoxyCodeLine{436   r-\/>type = STMT\_WHILE;}
-\DoxyCodeLine{437   r-\/>while\_.cond = e;}
-\DoxyCodeLine{438   r-\/>while\_.body = body;}
-\DoxyCodeLine{439   \textcolor{keywordflow}{return} r;}
-\DoxyCodeLine{440 \}}
+\DoxyCodeLine{581                                                            \{}
+\DoxyCodeLine{582   \textcolor{keyword}{struct }\mbox{\hyperlink{structstmt}{stmt}}* r = malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structstmt}{stmt}}));}
+\DoxyCodeLine{583   r-\/>type = STMT\_WHILE;}
+\DoxyCodeLine{584   r-\/>while\_.cond = e;}
+\DoxyCodeLine{585   r-\/>while\_.body = body;}
+\DoxyCodeLine{586   \textcolor{keywordflow}{return} r;}
+\DoxyCodeLine{587 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{ast_8c_a6f1fd140fbbb98e131230b81d2478352}\label{ast_8c_a6f1fd140fbbb98e131230b81d2478352}} 
+\index{ast.c@{ast.c}!post\_decrement@{post\_decrement}}
+\index{post\_decrement@{post\_decrement}!ast.c@{ast.c}}
+\doxysubsubsection{\texorpdfstring{post\_decrement()}{post\_decrement()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structexpr}{expr}}$\ast$ post\+\_\+decrement (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structexpr}{expr}} $\ast$}]{e }\end{DoxyParamCaption})}
+
+
+
+Takes an expression to create a new expression as type post decrement. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & is an expression. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+struct expr$\ast$ is an expression. 
+\end{DoxyReturn}
+
+
+Definition at line 144 of file ast.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{144                                            \{}
+\DoxyCodeLine{145   \textcolor{keyword}{struct }\mbox{\hyperlink{structexpr}{expr}}* \mbox{\hyperlink{structexpr}{expr}} = malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structexpr}{expr}}));}
+\DoxyCodeLine{146   \mbox{\hyperlink{structexpr}{expr}}-\/>type = POST\_DECREMENT\_OP;}
+\DoxyCodeLine{147   \mbox{\hyperlink{structexpr}{expr}}-\/>expr = e;}
+\DoxyCodeLine{148   \textcolor{keywordflow}{return} \mbox{\hyperlink{structexpr}{expr}};}
+\DoxyCodeLine{149 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{ast_8c_ada4f44d3fe689c6937cc24ea495c51aa}\label{ast_8c_ada4f44d3fe689c6937cc24ea495c51aa}} 
+\index{ast.c@{ast.c}!post\_increment@{post\_increment}}
+\index{post\_increment@{post\_increment}!ast.c@{ast.c}}
+\doxysubsubsection{\texorpdfstring{post\_increment()}{post\_increment()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structexpr}{expr}}$\ast$ post\+\_\+increment (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structexpr}{expr}} $\ast$}]{e }\end{DoxyParamCaption})}
+
+
+
+Takes an expression to create a new expression as type post increment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & is an expression. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+struct expr$\ast$ is an expression. 
+\end{DoxyReturn}
+
+
+Definition at line 118 of file ast.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{118                                            \{}
+\DoxyCodeLine{119   \textcolor{keyword}{struct }\mbox{\hyperlink{structexpr}{expr}}* \mbox{\hyperlink{structexpr}{expr}} = malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structexpr}{expr}}));}
+\DoxyCodeLine{120   \mbox{\hyperlink{structexpr}{expr}}-\/>type = POST\_INCREMENT\_OP;}
+\DoxyCodeLine{121   \mbox{\hyperlink{structexpr}{expr}}-\/>expr = e;}
+\DoxyCodeLine{122   \textcolor{keywordflow}{return} \mbox{\hyperlink{structexpr}{expr}};}
+\DoxyCodeLine{123 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{ast_8c_a2184a99260df50c76ffa87b57dd98dc3}\label{ast_8c_a2184a99260df50c76ffa87b57dd98dc3}} 
+\index{ast.c@{ast.c}!pre\_decrement@{pre\_decrement}}
+\index{pre\_decrement@{pre\_decrement}!ast.c@{ast.c}}
+\doxysubsubsection{\texorpdfstring{pre\_decrement()}{pre\_decrement()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structexpr}{expr}}$\ast$ pre\+\_\+decrement (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structexpr}{expr}} $\ast$}]{e }\end{DoxyParamCaption})}
+
+
+
+Takes an expression to create a new expression as type pre decrement. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & is an expression. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+struct expr$\ast$ is an expression. 
+\end{DoxyReturn}
+
+
+Definition at line 131 of file ast.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{131                                           \{}
+\DoxyCodeLine{132   \textcolor{keyword}{struct }\mbox{\hyperlink{structexpr}{expr}}* \mbox{\hyperlink{structexpr}{expr}} = malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structexpr}{expr}}));}
+\DoxyCodeLine{133   \mbox{\hyperlink{structexpr}{expr}}-\/>type = PRE\_DECREMENT\_OP;}
+\DoxyCodeLine{134   \mbox{\hyperlink{structexpr}{expr}}-\/>expr = e;}
+\DoxyCodeLine{135   \textcolor{keywordflow}{return} \mbox{\hyperlink{structexpr}{expr}};}
+\DoxyCodeLine{136 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{ast_8c_ac7615e169173167b4eddcd68049b08dc}\label{ast_8c_ac7615e169173167b4eddcd68049b08dc}} 
+\index{ast.c@{ast.c}!pre\_increment@{pre\_increment}}
+\index{pre\_increment@{pre\_increment}!ast.c@{ast.c}}
+\doxysubsubsection{\texorpdfstring{pre\_increment()}{pre\_increment()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structexpr}{expr}}$\ast$ pre\+\_\+increment (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structexpr}{expr}} $\ast$}]{e }\end{DoxyParamCaption})}
+
+
+
+Takes an expression to create a new expression as type pre increment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & is an expression \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+struct expr$\ast$ is an expression 
+\end{DoxyReturn}
+
+
+Definition at line 105 of file ast.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{105                                           \{}
+\DoxyCodeLine{106   \textcolor{keyword}{struct }\mbox{\hyperlink{structexpr}{expr}}* \mbox{\hyperlink{structexpr}{expr}} = malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structexpr}{expr}}));}
+\DoxyCodeLine{107   \mbox{\hyperlink{structexpr}{expr}}-\/>type = PRE\_INCREMENT\_OP;}
+\DoxyCodeLine{108   \mbox{\hyperlink{structexpr}{expr}}-\/>expr = e;}
+\DoxyCodeLine{109   \textcolor{keywordflow}{return} \mbox{\hyperlink{structexpr}{expr}};}
+\DoxyCodeLine{110 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{ast_8c_ac5af536007be5e0ab2a92d2c2c9789de}\label{ast_8c_ac5af536007be5e0ab2a92d2c2c9789de}} 
@@ -931,40 +1156,57 @@ IT takes an expression to print.
 \end{DoxyParams}
 
 
-Definition at line 95 of file ast.\+c.
+Definition at line 157 of file ast.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{95                                    \{}
-\DoxyCodeLine{96   \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structexpr}{expr}}-\/>type) \{}
-\DoxyCodeLine{97     \textcolor{keywordflow}{case} BOOL\_LIT:}
-\DoxyCodeLine{98       printf(\textcolor{stringliteral}{"\%s"}, \mbox{\hyperlink{structexpr}{expr}}-\/>value ? \textcolor{stringliteral}{"true"} : \textcolor{stringliteral}{"false"});}
-\DoxyCodeLine{99       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{100 }
-\DoxyCodeLine{101     \textcolor{keywordflow}{case} LITERAL:}
-\DoxyCodeLine{102       printf(\textcolor{stringliteral}{"\%d"}, \mbox{\hyperlink{structexpr}{expr}}-\/>value);}
-\DoxyCodeLine{103       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{104 }
-\DoxyCodeLine{105     \textcolor{keywordflow}{case} VARIABLE:}
-\DoxyCodeLine{106       printf(\textcolor{stringliteral}{"\%s"}, string\_int\_rev(\&global\_ids, \mbox{\hyperlink{structexpr}{expr}}-\/>id));}
-\DoxyCodeLine{107       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{108 }
-\DoxyCodeLine{109     \textcolor{keywordflow}{case} BIN\_OP:}
-\DoxyCodeLine{110       printf(\textcolor{stringliteral}{"("});}
-\DoxyCodeLine{111       \mbox{\hyperlink{ast_8c_ac5af536007be5e0ab2a92d2c2c9789de}{print\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>binop.lhs);}
-\DoxyCodeLine{112       \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structexpr}{expr}}-\/>binop.op) \{}
-\DoxyCodeLine{113         \textcolor{keywordflow}{case} EQ: printf(\textcolor{stringliteral}{" == "}); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{114         \textcolor{keywordflow}{case} NE: printf(\textcolor{stringliteral}{" != "}); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{115         \textcolor{keywordflow}{case} GE: printf(\textcolor{stringliteral}{" >= "}); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{116         \textcolor{keywordflow}{case} LE: printf(\textcolor{stringliteral}{" <= "}); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{117         \textcolor{keywordflow}{case} AND: printf(\textcolor{stringliteral}{" \&\& "}); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{118         \textcolor{keywordflow}{default}: printf(\textcolor{stringliteral}{" \%c "}, \mbox{\hyperlink{structexpr}{expr}}-\/>binop.op); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{119       \}}
-\DoxyCodeLine{120       \mbox{\hyperlink{ast_8c_ac5af536007be5e0ab2a92d2c2c9789de}{print\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>binop.rhs);}
-\DoxyCodeLine{121       printf(\textcolor{stringliteral}{")"});}
-\DoxyCodeLine{122       \textcolor{keywordflow}{break};  }
-\DoxyCodeLine{123   \}}
-\DoxyCodeLine{124 \}}
+\DoxyCodeLine{157                                    \{}
+\DoxyCodeLine{158   \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structexpr}{expr}}-\/>type) \{}
+\DoxyCodeLine{159     \textcolor{keywordflow}{case} BOOL\_LIT:}
+\DoxyCodeLine{160       printf(\textcolor{stringliteral}{"\%s"}, \mbox{\hyperlink{structexpr}{expr}}-\/>value ? \textcolor{stringliteral}{"true"} : \textcolor{stringliteral}{"false"});}
+\DoxyCodeLine{161       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163     \textcolor{keywordflow}{case} LITERAL:}
+\DoxyCodeLine{164       printf(\textcolor{stringliteral}{"\%d"}, \mbox{\hyperlink{structexpr}{expr}}-\/>value);}
+\DoxyCodeLine{165       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167     \textcolor{keywordflow}{case} VARIABLE:}
+\DoxyCodeLine{168       printf(\textcolor{stringliteral}{"\%s"}, \mbox{\hyperlink{utils_8c_ada4d84103e5ee6f8b43976ad2cd96c3c}{string\_int\_rev}}(\&global\_ids, \mbox{\hyperlink{structexpr}{expr}}-\/>id));}
+\DoxyCodeLine{169       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{170     \textcolor{keywordflow}{case} PRE\_INCREMENT\_OP:}
+\DoxyCodeLine{171     \textcolor{keywordflow}{case} POST\_INCREMENT\_OP:}
+\DoxyCodeLine{172     \textcolor{keywordflow}{case} PRE\_DECREMENT\_OP:}
+\DoxyCodeLine{173     \textcolor{keywordflow}{case} POST\_DECREMENT\_OP:}
+\DoxyCodeLine{174       \mbox{\hyperlink{ast_8c_ac5af536007be5e0ab2a92d2c2c9789de}{print\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>expr);}
+\DoxyCodeLine{175       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{176     \textcolor{keywordflow}{case} BIN\_OP:}
+\DoxyCodeLine{177       printf(\textcolor{stringliteral}{"("});}
+\DoxyCodeLine{178       \mbox{\hyperlink{ast_8c_ac5af536007be5e0ab2a92d2c2c9789de}{print\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>binop.lhs);}
+\DoxyCodeLine{179       \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structexpr}{expr}}-\/>binop.op) \{}
+\DoxyCodeLine{180         \textcolor{keywordflow}{case} EQ: printf(\textcolor{stringliteral}{" == "}); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{181         \textcolor{keywordflow}{case} NE: printf(\textcolor{stringliteral}{" != "}); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{182         \textcolor{keywordflow}{case} GE: printf(\textcolor{stringliteral}{" >= "}); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{183         \textcolor{keywordflow}{case} LE: printf(\textcolor{stringliteral}{" <= "}); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{184         \textcolor{keywordflow}{case} AND: printf(\textcolor{stringliteral}{" \&\& "}); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{185         \textcolor{keywordflow}{case} OR: printf(\textcolor{stringliteral}{" || "}); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{186         \textcolor{keywordflow}{case} XOR: printf(\textcolor{stringliteral}{" \string^ "}); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{187         \textcolor{keywordflow}{case} REMAINDER: printf(\textcolor{stringliteral}{" \%\% "}); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{188         \textcolor{keywordflow}{case} RIGHTSHIFT: printf(\textcolor{stringliteral}{" >> "}); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{189         \textcolor{keywordflow}{case} LEFTSHIFT: printf(\textcolor{stringliteral}{" << "}); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{190         \textcolor{keywordflow}{default}: printf(\textcolor{stringliteral}{" \%c "}, \mbox{\hyperlink{structexpr}{expr}}-\/>binop.op); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{191       \}}
+\DoxyCodeLine{192       \mbox{\hyperlink{ast_8c_ac5af536007be5e0ab2a92d2c2c9789de}{print\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>binop.rhs);}
+\DoxyCodeLine{193       printf(\textcolor{stringliteral}{")"});}
+\DoxyCodeLine{194       \textcolor{keywordflow}{break};  }
+\DoxyCodeLine{195     \textcolor{keywordflow}{case} TERNARY\_OP:}
+\DoxyCodeLine{196       \mbox{\hyperlink{ast_8c_ac5af536007be5e0ab2a92d2c2c9789de}{print\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>ternary.lhs);}
+\DoxyCodeLine{197       printf(\textcolor{stringliteral}{" ? "});}
+\DoxyCodeLine{198       \mbox{\hyperlink{ast_8c_ac5af536007be5e0ab2a92d2c2c9789de}{print\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>ternary.mhs);}
+\DoxyCodeLine{199       printf(\textcolor{stringliteral}{" : "});}
+\DoxyCodeLine{200       \mbox{\hyperlink{ast_8c_ac5af536007be5e0ab2a92d2c2c9789de}{print\_expr}}(\mbox{\hyperlink{structexpr}{expr}}-\/>ternary.rhs);}
+\DoxyCodeLine{201       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{202   \}}
+\DoxyCodeLine{203 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{ast_8c_a03b40de7e4b12b525ddda77559e928bc}\label{ast_8c_a03b40de7e4b12b525ddda77559e928bc}} 
@@ -987,73 +1229,60 @@ takes an statement and print it
 \end{DoxyParams}
 
 
-Definition at line 143 of file ast.\+c.
+Definition at line 222 of file ast.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{143                                                \{}
-\DoxyCodeLine{144   \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structstmt}{stmt}}-\/>type) \{}
-\DoxyCodeLine{145     \textcolor{keywordflow}{case} STMT\_SEQ:}
-\DoxyCodeLine{146       \mbox{\hyperlink{ast_8c_a03b40de7e4b12b525ddda77559e928bc}{print\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>seq.fst, indent);}
-\DoxyCodeLine{147       \mbox{\hyperlink{ast_8c_a03b40de7e4b12b525ddda77559e928bc}{print\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>seq.snd, indent);}
-\DoxyCodeLine{148       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{149 }
-\DoxyCodeLine{150     \textcolor{keywordflow}{case} STMT\_ASSIGN:}
-\DoxyCodeLine{151       print\_indent(indent);}
-\DoxyCodeLine{152       printf(\textcolor{stringliteral}{"\%s = "}, string\_int\_rev(\&global\_ids, \mbox{\hyperlink{structstmt}{stmt}}-\/>assign.id));}
-\DoxyCodeLine{153       \mbox{\hyperlink{ast_8c_ac5af536007be5e0ab2a92d2c2c9789de}{print\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>assign.expr);}
-\DoxyCodeLine{154       printf(\textcolor{stringliteral}{";\(\backslash\)n"});}
-\DoxyCodeLine{155       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{156 }
-\DoxyCodeLine{157     \textcolor{keywordflow}{case} STMT\_PRINT:}
-\DoxyCodeLine{158       print\_indent(indent);}
-\DoxyCodeLine{159       printf(\textcolor{stringliteral}{"print "});}
-\DoxyCodeLine{160       \mbox{\hyperlink{ast_8c_ac5af536007be5e0ab2a92d2c2c9789de}{print\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>print.expr);}
-\DoxyCodeLine{161       printf(\textcolor{stringliteral}{";\(\backslash\)n"});}
-\DoxyCodeLine{162       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{163 }
-\DoxyCodeLine{164     \textcolor{keywordflow}{case} STMT\_WHILE:}
-\DoxyCodeLine{165       print\_indent(indent);}
-\DoxyCodeLine{166       printf(\textcolor{stringliteral}{"while ("});}
-\DoxyCodeLine{167       \mbox{\hyperlink{ast_8c_ac5af536007be5e0ab2a92d2c2c9789de}{print\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>while\_.cond);}
-\DoxyCodeLine{168       printf(\textcolor{stringliteral}{") \{\(\backslash\)n"});}
-\DoxyCodeLine{169       \mbox{\hyperlink{ast_8c_a03b40de7e4b12b525ddda77559e928bc}{print\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>while\_.body, indent + 1);}
-\DoxyCodeLine{170       print\_indent(indent);}
-\DoxyCodeLine{171       printf(\textcolor{stringliteral}{"\}\(\backslash\)n"});}
-\DoxyCodeLine{172       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{173 }
-\DoxyCodeLine{174     \textcolor{keywordflow}{case} STMT\_IF:}
-\DoxyCodeLine{175       print\_indent(indent);}
-\DoxyCodeLine{176       printf(\textcolor{stringliteral}{"if ("});}
-\DoxyCodeLine{177       \mbox{\hyperlink{ast_8c_ac5af536007be5e0ab2a92d2c2c9789de}{print\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.cond);}
-\DoxyCodeLine{178       printf(\textcolor{stringliteral}{") \{\(\backslash\)n"});}
-\DoxyCodeLine{179       \mbox{\hyperlink{ast_8c_a03b40de7e4b12b525ddda77559e928bc}{print\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.if\_body, indent + 1);}
-\DoxyCodeLine{180       \textcolor{keywordflow}{if} (\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.else\_body) \{}
-\DoxyCodeLine{181         print\_indent(indent);}
-\DoxyCodeLine{182         printf(\textcolor{stringliteral}{"\} else \{\(\backslash\)n"});}
-\DoxyCodeLine{183         \mbox{\hyperlink{ast_8c_a03b40de7e4b12b525ddda77559e928bc}{print\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.else\_body, indent + 1);}
-\DoxyCodeLine{184       \}}
-\DoxyCodeLine{185       print\_indent(indent);}
-\DoxyCodeLine{186       printf(\textcolor{stringliteral}{"\}\(\backslash\)n"});}
-\DoxyCodeLine{187       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{188 }
-\DoxyCodeLine{189     \textcolor{keywordflow}{case} STMT\_INCREMENT:}
-\DoxyCodeLine{190       print\_indent(indent);}
-\DoxyCodeLine{191       printf(\textcolor{stringliteral}{"++"});}
-\DoxyCodeLine{192       \mbox{\hyperlink{ast_8c_ac5af536007be5e0ab2a92d2c2c9789de}{print\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>increment.expr);}
-\DoxyCodeLine{193       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{194 }
-\DoxyCodeLine{195     \textcolor{keywordflow}{case} STMT\_DECREMENT:}
-\DoxyCodeLine{196       print\_indent(indent);}
-\DoxyCodeLine{197       printf(\textcolor{stringliteral}{"-\/-\/"});}
-\DoxyCodeLine{198       \mbox{\hyperlink{ast_8c_ac5af536007be5e0ab2a92d2c2c9789de}{print\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>decrement.expr);}
-\DoxyCodeLine{199       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{200 }
-\DoxyCodeLine{201     \textcolor{keywordflow}{default}:}
-\DoxyCodeLine{202       printf(\textcolor{stringliteral}{"Default"});}
-\DoxyCodeLine{203       }
-\DoxyCodeLine{204   \}}
-\DoxyCodeLine{205 \}}
+\DoxyCodeLine{222                                                \{}
+\DoxyCodeLine{223   \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structstmt}{stmt}}-\/>type) \{}
+\DoxyCodeLine{224     \textcolor{keywordflow}{case} STMT\_SEQ:}
+\DoxyCodeLine{225       \mbox{\hyperlink{ast_8c_a03b40de7e4b12b525ddda77559e928bc}{print\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>seq.fst, indent);}
+\DoxyCodeLine{226       \mbox{\hyperlink{ast_8c_a03b40de7e4b12b525ddda77559e928bc}{print\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>seq.snd, indent);}
+\DoxyCodeLine{227       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{228 }
+\DoxyCodeLine{229     \textcolor{keywordflow}{case} STMT\_ASSIGN:}
+\DoxyCodeLine{230       print\_indent(indent);}
+\DoxyCodeLine{231       printf(\textcolor{stringliteral}{"\%s = "}, \mbox{\hyperlink{utils_8c_ada4d84103e5ee6f8b43976ad2cd96c3c}{string\_int\_rev}}(\&global\_ids, \mbox{\hyperlink{structstmt}{stmt}}-\/>assign.id));}
+\DoxyCodeLine{232       \mbox{\hyperlink{ast_8c_ac5af536007be5e0ab2a92d2c2c9789de}{print\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>assign.expr);}
+\DoxyCodeLine{233       printf(\textcolor{stringliteral}{";\(\backslash\)n"});}
+\DoxyCodeLine{234       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{236     \textcolor{keywordflow}{case} STMT\_PRINT:}
+\DoxyCodeLine{237       print\_indent(indent);}
+\DoxyCodeLine{238       printf(\textcolor{stringliteral}{"print "});}
+\DoxyCodeLine{239       \mbox{\hyperlink{ast_8c_ac5af536007be5e0ab2a92d2c2c9789de}{print\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>print.expr);}
+\DoxyCodeLine{240       printf(\textcolor{stringliteral}{";\(\backslash\)n"});}
+\DoxyCodeLine{241       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243     \textcolor{keywordflow}{case} STMT\_WHILE:}
+\DoxyCodeLine{244       print\_indent(indent);}
+\DoxyCodeLine{245       printf(\textcolor{stringliteral}{"while ("});}
+\DoxyCodeLine{246       \mbox{\hyperlink{ast_8c_ac5af536007be5e0ab2a92d2c2c9789de}{print\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>while\_.cond);}
+\DoxyCodeLine{247       printf(\textcolor{stringliteral}{") \{\(\backslash\)n"});}
+\DoxyCodeLine{248       \mbox{\hyperlink{ast_8c_a03b40de7e4b12b525ddda77559e928bc}{print\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>while\_.body, indent + 1);}
+\DoxyCodeLine{249       print\_indent(indent);}
+\DoxyCodeLine{250       printf(\textcolor{stringliteral}{"\}\(\backslash\)n"});}
+\DoxyCodeLine{251       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{252 }
+\DoxyCodeLine{253     \textcolor{keywordflow}{case} STMT\_IF:}
+\DoxyCodeLine{254       print\_indent(indent);}
+\DoxyCodeLine{255       printf(\textcolor{stringliteral}{"if ("});}
+\DoxyCodeLine{256       \mbox{\hyperlink{ast_8c_ac5af536007be5e0ab2a92d2c2c9789de}{print\_expr}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.cond);}
+\DoxyCodeLine{257       printf(\textcolor{stringliteral}{") \{\(\backslash\)n"});}
+\DoxyCodeLine{258       \mbox{\hyperlink{ast_8c_a03b40de7e4b12b525ddda77559e928bc}{print\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.if\_body, indent + 1);}
+\DoxyCodeLine{259       \textcolor{keywordflow}{if} (\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.else\_body) \{}
+\DoxyCodeLine{260         print\_indent(indent);}
+\DoxyCodeLine{261         printf(\textcolor{stringliteral}{"\} else \{\(\backslash\)n"});}
+\DoxyCodeLine{262         \mbox{\hyperlink{ast_8c_a03b40de7e4b12b525ddda77559e928bc}{print\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.else\_body, indent + 1);}
+\DoxyCodeLine{263       \}}
+\DoxyCodeLine{264       print\_indent(indent);}
+\DoxyCodeLine{265       printf(\textcolor{stringliteral}{"\}\(\backslash\)n"});}
+\DoxyCodeLine{266       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{267     \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{268       printf(\textcolor{stringliteral}{"Default"});}
+\DoxyCodeLine{269       }
+\DoxyCodeLine{270   \}}
+\DoxyCodeLine{271 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{ast_8c_a6573d3d78519a27124a0f3fe25ebdc6b}\label{ast_8c_a6573d3d78519a27124a0f3fe25ebdc6b}} 
@@ -1110,40 +1339,35 @@ int is used as a bool value zero or one.
 \end{DoxyReturn}
 
 
-Definition at line 557 of file ast.\+c.
+Definition at line 674 of file ast.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{557                                   \{}
-\DoxyCodeLine{558   \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structstmt}{stmt}}-\/>type) \{}
-\DoxyCodeLine{559     \textcolor{keywordflow}{case} STMT\_SEQ:}
-\DoxyCodeLine{560       \textcolor{keywordflow}{return} \mbox{\hyperlink{ast_8c_ade3d40836e1da03efffe8b9fc38ed5b2}{valid\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>seq.fst) \&\& \mbox{\hyperlink{ast_8c_ade3d40836e1da03efffe8b9fc38ed5b2}{valid\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>seq.snd);}
-\DoxyCodeLine{561 }
-\DoxyCodeLine{562     \textcolor{keywordflow}{case} STMT\_ASSIGN:}
-\DoxyCodeLine{563       \textcolor{comment}{// should the language/compiler forbid accessing uninitialized variables?}}
-\DoxyCodeLine{564       \textcolor{comment}{// maybe also warn about dead assignments?}}
-\DoxyCodeLine{565       \textcolor{keywordflow}{return} \mbox{\hyperlink{ast_8c_abee0bed1ef33696cdd56c143f70082f4}{check\_types}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>assign.expr) != ERROR;}
-\DoxyCodeLine{566 }
-\DoxyCodeLine{567     \textcolor{keywordflow}{case} STMT\_PRINT:}
-\DoxyCodeLine{568       \textcolor{keywordflow}{return} \mbox{\hyperlink{ast_8c_abee0bed1ef33696cdd56c143f70082f4}{check\_types}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>print.expr) != ERROR;}
-\DoxyCodeLine{569 }
-\DoxyCodeLine{570     \textcolor{keywordflow}{case} STMT\_WHILE:}
-\DoxyCodeLine{571       \textcolor{keywordflow}{return} \mbox{\hyperlink{ast_8c_abee0bed1ef33696cdd56c143f70082f4}{check\_types}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>while\_.cond) == BOOLEAN \&\& \mbox{\hyperlink{ast_8c_ade3d40836e1da03efffe8b9fc38ed5b2}{valid\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>while\_.body);}
-\DoxyCodeLine{572 }
-\DoxyCodeLine{573     \textcolor{keywordflow}{case} STMT\_IF:}
-\DoxyCodeLine{574       \textcolor{keywordflow}{return}}
-\DoxyCodeLine{575         \mbox{\hyperlink{ast_8c_abee0bed1ef33696cdd56c143f70082f4}{check\_types}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.cond) == BOOLEAN \&\&}
-\DoxyCodeLine{576         \mbox{\hyperlink{ast_8c_ade3d40836e1da03efffe8b9fc38ed5b2}{valid\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.if\_body) \&\&}
-\DoxyCodeLine{577         (\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.else\_body == NULL || \mbox{\hyperlink{ast_8c_ade3d40836e1da03efffe8b9fc38ed5b2}{valid\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.else\_body));}
-\DoxyCodeLine{578 }
-\DoxyCodeLine{579     \textcolor{keywordflow}{case} STMT\_INCREMENT:}
-\DoxyCodeLine{580          \textcolor{keywordflow}{return} \mbox{\hyperlink{ast_8c_abee0bed1ef33696cdd56c143f70082f4}{check\_types}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>increment.expr) != ERROR;}
-\DoxyCodeLine{581          }
-\DoxyCodeLine{582     \textcolor{keywordflow}{case} STMT\_DECREMENT:}
-\DoxyCodeLine{583          \textcolor{keywordflow}{return} \mbox{\hyperlink{ast_8c_abee0bed1ef33696cdd56c143f70082f4}{check\_types}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>decrement.expr) != ERROR;}
-\DoxyCodeLine{584  }
-\DoxyCodeLine{585   \}}
-\DoxyCodeLine{586 \}}
+\DoxyCodeLine{674                                   \{}
+\DoxyCodeLine{675   \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structstmt}{stmt}}-\/>type) \{}
+\DoxyCodeLine{676     \textcolor{keywordflow}{case} STMT\_SEQ:}
+\DoxyCodeLine{677       \textcolor{keywordflow}{return} \mbox{\hyperlink{ast_8c_ade3d40836e1da03efffe8b9fc38ed5b2}{valid\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>seq.fst) \&\& \mbox{\hyperlink{ast_8c_ade3d40836e1da03efffe8b9fc38ed5b2}{valid\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>seq.snd);}
+\DoxyCodeLine{678 }
+\DoxyCodeLine{679     \textcolor{keywordflow}{case} STMT\_ASSIGN:}
+\DoxyCodeLine{680       \textcolor{comment}{// should the language/compiler forbid accessing uninitialized variables?}}
+\DoxyCodeLine{681       \textcolor{comment}{// maybe also warn about dead assignments?}}
+\DoxyCodeLine{682       \textcolor{keywordflow}{return} \mbox{\hyperlink{ast_8c_abee0bed1ef33696cdd56c143f70082f4}{check\_types}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>assign.expr) != ERROR;}
+\DoxyCodeLine{683 }
+\DoxyCodeLine{684     \textcolor{keywordflow}{case} STMT\_PRINT:}
+\DoxyCodeLine{685       \textcolor{keywordflow}{return} \mbox{\hyperlink{ast_8c_abee0bed1ef33696cdd56c143f70082f4}{check\_types}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>print.expr) != ERROR;}
+\DoxyCodeLine{686 }
+\DoxyCodeLine{687     \textcolor{keywordflow}{case} STMT\_WHILE:}
+\DoxyCodeLine{688       \textcolor{keywordflow}{return} \mbox{\hyperlink{ast_8c_abee0bed1ef33696cdd56c143f70082f4}{check\_types}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>while\_.cond) == BOOLEAN \&\& \mbox{\hyperlink{ast_8c_ade3d40836e1da03efffe8b9fc38ed5b2}{valid\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>while\_.body);}
+\DoxyCodeLine{689 }
+\DoxyCodeLine{690     \textcolor{keywordflow}{case} STMT\_IF:}
+\DoxyCodeLine{691       \textcolor{keywordflow}{return}}
+\DoxyCodeLine{692         \mbox{\hyperlink{ast_8c_abee0bed1ef33696cdd56c143f70082f4}{check\_types}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.cond) == BOOLEAN \&\&}
+\DoxyCodeLine{693         \mbox{\hyperlink{ast_8c_ade3d40836e1da03efffe8b9fc38ed5b2}{valid\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.if\_body) \&\&}
+\DoxyCodeLine{694         (\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.else\_body == NULL || \mbox{\hyperlink{ast_8c_ade3d40836e1da03efffe8b9fc38ed5b2}{valid\_stmt}}(\mbox{\hyperlink{structstmt}{stmt}}-\/>ifelse.else\_body));}
+\DoxyCodeLine{695     \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{696         \textcolor{keywordflow}{return} ERROR;}
+\DoxyCodeLine{697   \}}
+\DoxyCodeLine{698 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{ast_8c_a82dd6f0c1eebf8240397160328b8a520}\label{ast_8c_a82dd6f0c1eebf8240397160328b8a520}} 
@@ -1166,15 +1390,15 @@ struct expr$\ast$ is an expression.
 \end{DoxyReturn}
 
 
-Definition at line 66 of file ast.\+c.
+Definition at line 65 of file ast.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{66                                  \{}
-\DoxyCodeLine{67   \textcolor{keyword}{struct }\mbox{\hyperlink{structexpr}{expr}}* r = malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structexpr}{expr}}));}
-\DoxyCodeLine{68   r-\/>type = VARIABLE;}
-\DoxyCodeLine{69   r-\/>id = id;}
-\DoxyCodeLine{70   \textcolor{keywordflow}{return} r;}
-\DoxyCodeLine{71 \}}
+\DoxyCodeLine{65                                  \{}
+\DoxyCodeLine{66   \textcolor{keyword}{struct }\mbox{\hyperlink{structexpr}{expr}}* r = malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structexpr}{expr}}));}
+\DoxyCodeLine{67   r-\/>type = VARIABLE;}
+\DoxyCodeLine{68   r-\/>id = id;}
+\DoxyCodeLine{69   \textcolor{keywordflow}{return} r;}
+\DoxyCodeLine{70 \}}
 
 \end{DoxyCode}

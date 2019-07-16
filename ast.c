@@ -16,8 +16,8 @@
 
 
 /**
- * @brief It gives the type name of the value type.
- * 
+ * @brief 
+ * It gives the type name of the value type.
  * @param t is a value type.
  * @return const char*  is a type name.
  */
@@ -31,9 +31,9 @@ const char *type_name(enum value_type t) {
 }
 
 /*!
- * @brief allocate a bool litee
- * 
- * @param v 
+ * @brief 
+ * Allocate a boolean literal.
+ * @param v is an integer value.
  * @return struct expr* 
  */
 struct expr* bool_lit(int v) {
@@ -86,14 +86,7 @@ struct expr* binop(struct expr *lhs, int op, struct expr *rhs) {
   return r;
 }
 
-// b = a < b ? a : b
-/*
-      if(a < b){
-        b = a  
-      } else {
-        b = b
-      }
- */
+// TODO:
 struct expr *ternary(struct expr *lhs, struct expr *mhs, struct expr *rhs ){
   struct expr* r = malloc(sizeof(struct expr));
   r->type = TERNARY_OP;
@@ -102,6 +95,59 @@ struct expr *ternary(struct expr *lhs, struct expr *mhs, struct expr *rhs ){
   r->ternary.rhs = rhs;
   return r;
 }
+
+/**
+ * @brief 
+ *  Takes an expression to create a new expression as type pre increment
+ * @param e is an expression
+ * @return struct expr* is an expression
+ */
+struct expr* pre_increment(struct expr *e){
+  struct expr* expr = malloc(sizeof(struct expr));
+  expr->type = PRE_INCREMENT_OP;
+  expr->expr = e;
+  return expr;
+}
+
+/**
+ * @brief 
+ *  Takes an expression to create a new expression as type post increment.
+ * @param e is an expression.
+ * @return struct expr* is an expression.
+ */
+struct expr* post_increment(struct expr *e){
+  struct expr* expr = malloc(sizeof(struct expr));
+  expr->type = POST_INCREMENT_OP;
+  expr->expr = e;
+  return expr;
+}
+
+/**
+ * @brief 
+ *  Takes an expression to create a new expression as type pre decrement.
+ * @param e is an expression.
+ * @return struct expr* is an expression.
+ */
+struct expr* pre_decrement(struct expr *e){
+  struct expr* expr = malloc(sizeof(struct expr));
+  expr->type = PRE_DECREMENT_OP;
+  expr->expr = e;
+  return expr;
+}
+
+/**
+ * @brief 
+ *  Takes an expression to create a new expression as type post decrement.
+ * @param e is an expression.
+ * @return struct expr* is an expression.
+ */
+struct expr* post_decrement(struct expr *e){
+  struct expr* expr = malloc(sizeof(struct expr));
+  expr->type = POST_DECREMENT_OP;
+  expr->expr = e;
+  return expr;
+}
+
 
 /**
  * @brief 
@@ -121,7 +167,12 @@ void print_expr(struct expr *expr) {
     case VARIABLE:
       printf("%s", string_int_rev(&global_ids, expr->id));
       break;
-
+    case PRE_INCREMENT_OP:
+    case POST_INCREMENT_OP:
+    case PRE_DECREMENT_OP:
+    case POST_DECREMENT_OP:
+      print_expr(expr->expr);
+      break;
     case BIN_OP:
       printf("(");
       print_expr(expr->binop.lhs);
@@ -213,19 +264,6 @@ void print_stmt(struct stmt *stmt, int indent) {
       print_indent(indent);
       printf("}\n");
       break;
-
-    case STMT_INCREMENT:
-      print_indent(indent);
-      printf("++");
-      print_expr(stmt->increment.expr);
-      break;
-
-    case STMT_DECREMENT:
-      print_indent(indent);
-      printf("--");
-      print_expr(stmt->decrement.expr);
-      break;
-
     default:
       printf("Default");
       
@@ -247,7 +285,22 @@ void emit_stack_machine(struct expr *expr) {
     case LITERAL:
       printf("load_imm %d\n", expr->value);
       break;
-
+    case PRE_INCREMENT_OP: 
+      printf("++");
+      emit_stack_machine(expr->expr);
+      break;
+    case POST_INCREMENT_OP:
+      emit_stack_machine(expr->expr);
+      printf("++");
+      break;
+    case PRE_DECREMENT_OP:
+      printf("--");
+      emit_stack_machine(expr->expr);
+      break;
+    case POST_DECREMENT_OP:
+      emit_stack_machine(expr->expr);
+      printf("--");
+      break;
     case VARIABLE:
       printf("load_mem %zu # %s\n", expr->id, string_int_rev(&global_ids, expr->id));
       break;
@@ -313,7 +366,7 @@ int emit_reg_machine(struct expr *expr) {
     case VARIABLE:
       printf("r%d = load %zu # %s\n", result_reg, expr->id, string_int_rev(&global_ids, expr->id));
       break;
-
+    
     case BIN_OP: {
       int lhs = emit_reg_machine(expr->binop.lhs);
       int rhs = emit_reg_machine(expr->binop.rhs);
@@ -361,7 +414,11 @@ enum value_type check_types(struct expr *expr) {
 
     case LITERAL:
       return INTEGER;
-
+    case PRE_INCREMENT_OP: 
+    case POST_INCREMENT_OP:
+    case PRE_DECREMENT_OP:
+    case POST_DECREMENT_OP: 
+      return check_types(expr->expr);
     case VARIABLE:{
       LLVMValueRef ptr = vector_get(&global_types, expr->id);
       LLVMTypeRef t = LLVMGetElementType(LLVMTypeOf(ptr));
@@ -468,7 +525,12 @@ void free_expr(struct expr *expr) {
       free_expr(expr->binop.rhs);
       free(expr);
       break;
-
+    case PRE_INCREMENT_OP:
+    case POST_INCREMENT_OP:
+    case PRE_DECREMENT_OP:
+    case POST_DECREMENT_OP:
+       free_expr(expr->expr);
+      break;
     case TERNARY_OP:
       free_expr(expr->ternary.lhs->binop.lhs);
       free_expr(expr->ternary.lhs->binop.rhs);
@@ -491,14 +553,6 @@ struct stmt* make_seq(struct stmt *fst, struct stmt *snd) {
   r->type = STMT_SEQ;
   r->seq.fst = fst;
   r->seq.snd = snd;
-  return r;
-}
-
-
-struct stmt* make_print_stmt(struct stmt *stmt){
-  struct stmt* r = malloc(sizeof(struct stmt));
-  r->type = STMT_PRINT_STMT;
-  r->print_stmt.stmt = stmt;
   return r;
 }
 
@@ -574,31 +628,6 @@ struct stmt* make_print(struct expr *e) {
   return r;
 }
 
-/**
- * @brief 
- * It takes an expression to create a statement.
- * @param e is an expression.
- * @return struct stmt* is a statement.
- */
-struct stmt* make_increment(struct expr *e){
-  struct stmt* r = malloc(sizeof(struct stmt));
-  r->type = STMT_INCREMENT;
-  r->increment.expr = e;
-  return r;
-}
-
-/**
- * @brief 
- * It takes a expression to create a statement.
- * @param e is an expression.
- * @return struct stmt* is a statement.
- */
-struct stmt* make_decrement(struct expr *e){
-    struct stmt* r = malloc(sizeof(struct stmt));
-    r->type = STMT_DECREMENT;
-    r->decrement.expr = e;
-    return r;
-}
 
 /**
  * @brief 
@@ -630,14 +659,6 @@ void free_stmt(struct stmt *stmt) {
       free_stmt(stmt->ifelse.if_body);
       if (stmt->ifelse.else_body)
         free_stmt(stmt->ifelse.else_body);
-      break;
-    case STMT_INCREMENT:
-      free_expr(stmt->increment.expr);
-      break;
-    case STMT_DECREMENT:
-      free_expr(stmt->decrement.expr);
-      break;
-    default:
       break;
   }
 
@@ -671,16 +692,6 @@ int valid_stmt(struct stmt *stmt) {
         check_types(stmt->ifelse.cond) == BOOLEAN &&
         valid_stmt(stmt->ifelse.if_body) &&
         (stmt->ifelse.else_body == NULL || valid_stmt(stmt->ifelse.else_body));
-
-    case STMT_INCREMENT:
-         return check_types(stmt->increment.expr) != ERROR;
-         
-    case STMT_DECREMENT:
-         return check_types(stmt->decrement.expr) != ERROR;
-
-    case STMT_PRINT_STMT:
-         return valid_stmt(stmt->print_stmt.stmt);
-
     default:
         return ERROR;
   }
@@ -705,6 +716,76 @@ LLVMValueRef codegen_expr(struct expr *expr, LLVMModuleRef module, LLVMBuilderRe
     case VARIABLE:
       return LLVMBuildLoad(builder, vector_get(&global_types, expr->id), "loadtmp");
 
+    case PRE_INCREMENT_OP:{
+          switch (expr->expr->type)
+          {
+          case VARIABLE: {           
+             LLVMValueRef exp = codegen_expr(expr->expr,module,builder);
+             LLVMValueRef result =  LLVMBuildAdd(builder,exp,LLVMConstInt(LLVMInt32Type(), 1, 0), "addtmp"); 
+             LLVMBuildStore(builder, result, vector_get(&global_types,expr->expr->id));
+            return result;
+          }
+          case LITERAL:{
+            LLVMValueRef exp = codegen_expr(expr->expr,module,builder);
+            return LLVMBuildAdd(builder,exp,LLVMConstInt(LLVMInt32Type(), 1, 0), "addtmp");
+          }
+          default:
+            return NULL;
+          }
+    } 
+     case POST_INCREMENT_OP:{
+          switch (expr->expr->type)
+          {
+          case VARIABLE: {           
+             LLVMValueRef exp = codegen_expr(expr->expr,module,builder);
+             LLVMValueRef result =  LLVMBuildAdd(builder,exp,LLVMConstInt(LLVMInt32Type(), 1, 0), "addtmp"); 
+             LLVMBuildStore(builder, result, vector_get(&global_types,expr->expr->id));
+            return exp;
+          }
+          case LITERAL:{
+            LLVMValueRef exp = codegen_expr(expr->expr,module,builder);
+            return exp;
+          }
+          default:
+            return NULL;
+          }
+    } 
+   case PRE_DECREMENT_OP:{
+         switch (expr->expr->type)
+          {
+          case VARIABLE:{
+             LLVMValueRef exp = codegen_expr(expr->expr,module,builder);
+             LLVMValueRef result =  LLVMBuildSub(builder,exp,LLVMConstInt(LLVMInt32Type(), 1, 0), "subtmp"); 
+             LLVMBuildStore(builder, result, vector_get(&global_types,expr->expr->id));
+             return result;
+          }
+          case LITERAL:{
+            LLVMValueRef exp = codegen_expr(expr->expr,module,builder);
+            return LLVMBuildSub(builder,exp,LLVMConstInt(LLVMInt32Type(), 1, 0), "subtmp");
+
+          }
+          default:
+            return NULL;
+          }
+    }
+      case POST_DECREMENT_OP:{
+         switch (expr->expr->type)
+          {
+          case VARIABLE:{
+             LLVMValueRef exp = codegen_expr(expr->expr,module,builder);
+             LLVMValueRef result =  LLVMBuildSub(builder,exp,LLVMConstInt(LLVMInt32Type(), 1, 0), "subtmp"); 
+             LLVMBuildStore(builder, result, vector_get(&global_types,expr->expr->id));
+             return expr;
+          }
+          case LITERAL:{
+            LLVMValueRef exp = codegen_expr(expr->expr,module,builder);
+            return exp;
+
+          }
+          default:
+            return NULL;
+          }
+    }
     case BIN_OP: {
       LLVMValueRef lhs = codegen_expr(expr->binop.lhs, module, builder);
       LLVMValueRef rhs = codegen_expr(expr->binop.rhs, module, builder);
@@ -728,11 +809,11 @@ LLVMValueRef codegen_expr(struct expr *expr, LLVMModuleRef module, LLVMBuilderRe
         case REMAINDER: return LLVMBuildSRem(builder,lhs,rhs,"modtmp");
 
         case LEFTSHIFT: return LLVMBuildShl(builder,lhs,rhs,"shifltmp");
-
         case RIGHTSHIFT: return LLVMBuildLShr(builder, lhs,rhs,"shiftrtmp");
       }
 
     }
+
     case TERNARY_OP:{
       LLVMValueRef truth = codegen_expr(expr->ternary.lhs,module,builder);
       LLVMValueRef mhs = codegen_expr(expr->ternary.mhs, module, builder);
@@ -815,40 +896,6 @@ void codegen_stmt(struct stmt *stmt, LLVMModuleRef module, LLVMBuilderRef builde
 
       LLVMPositionBuilderAtEnd(builder, cont_bb);
       break;
-    }
-
-    case STMT_INCREMENT:{
-        switch (stmt->increment.expr->type){
-        case LITERAL:
-            // TODO
-            /* Problem
-               Print function take  an expression when I try to print incrementation of some constant e.g. print(++10)
-               It gives error. 
-             */
-          LLVMBuildStore(builder,  LLVMBuildAdd(builder,LLVMConstInt(LLVMInt32Type(), stmt->increment.expr->value, 0), LLVMConstInt(LLVMInt32Type(), 1, 0), "addtmp"), vector_get(&global_types, stmt->increment.expr->id));
-
-          break;
-        case VARIABLE:
-             LLVMBuildStore(builder, LLVMBuildAdd(builder,LLVMBuildLoad(builder, vector_get(&global_types, stmt->increment.expr->id), "loadtmp"), LLVMConstInt(LLVMInt32Type(), 1, 0), "addtmp"), vector_get(&global_types, stmt->increment.expr->id));
-
-          break;
-        default:
-          break;
-        }  
-      break;
-    }
-
-    case STMT_PRINT_STMT:{
-        switch(stmt->print_stmt.stmt->type){
-          case STMT_INCREMENT:{
-            codegen_stmt(stmt->print_stmt.stmt,module,builder);
-        
-            enum value_type arg_type = check_types(stmt->print_stmt.stmt->increment.expr);
-            LLVMValueRef print_fn = LLVMGetNamedFunction(module, arg_type == BOOLEAN ? "print_i1" : "print_i32");
-            LLVMValueRef args[] = { codegen_expr(stmt->print_stmt.stmt->increment.expr, module, builder) };
-            LLVMBuildCall(builder, print_fn, args, 1, "");  // It calles function by LLVMValueref with parameter
-          }
-        }
     }
 
     default: break;

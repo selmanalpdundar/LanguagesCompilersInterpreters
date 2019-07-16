@@ -34,8 +34,8 @@
 
 %token GE LE EQ NE
 %token FALSE TRUE
-%token INCREMENT
-%token DECREMENT
+%token PLUSPLUS
+%token MINUSMINUS
 %token EXCLAMATION
 %token IF ELSE WHILE PRINT 
 %token BOOL_TYPE INT_TYPE 
@@ -93,16 +93,12 @@ stmts: stmts stmt                           {  $$ = make_seq($1, $2);         }
 
 stmt: '{' stmts '}'                         {  $$ = $2;                       }
       | '(' stmt ')'                        {  $$ = $2;                       }
-      | PRINT stmt ';'                      {  $$ = make_print_stmt($2);      }
       | PRINT expr ';'                      {  $$ = make_print($2);           }    
       | ID '=' expr ';'                     {  $$ = make_assign($1, $3);      }
       | IF '(' expr ')' stmt %prec IF_ALONE {  $$ = make_if($3, $5);          }
       | IF '(' expr ')' stmt ELSE stmt      {  $$ = make_ifelse($3, $5, $7);  }
       | WHILE '(' expr ')' stmt             {  $$ = make_while($3, $5);       }
-      | INCREMENT expr ';'                  {  $$ = make_increment($2);       }
-      | expr INCREMENT ';'                  {  $$ = make_increment($1);       }
-      | DECREMENT expr ';'                  {  $$ = make_decrement($2);       }
-      | expr DECREMENT';'                   {  $$ = make_decrement($1);       }
+     
       
 
 expr: VAL                                   {  $$ = literal($1);              }
@@ -112,7 +108,10 @@ expr: VAL                                   {  $$ = literal($1);              }
       | '(' expr ')'                        {  $$ = $2;                       }
       | expr op expr                        {  $$ = binop($1, $2, $3);        }
       | expr QUESTION_MARK expr COLON expr  {  $$ = ternary($1,$3,$5);        }
-      
+      | PLUSPLUS expr                       {  $$ = pre_increment($2);        }
+      | expr PLUSPLUS                       {  $$ = post_increment($1);       }
+      | MINUSMINUS expr                     {  $$ = pre_decrement($2);        }
+      | expr MINUSMINUS                     {  $$ = post_decrement($1);       }
 
 op: REMAINDER                               {  $$ = REMAINDER;                }
     | '+'                                   {  $$ = '+';                      }

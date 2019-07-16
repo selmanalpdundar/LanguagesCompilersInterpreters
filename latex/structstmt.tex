@@ -15,7 +15,7 @@ Structure of statement for different type. It uses uninon to keep different stat
 \mbox{\Hypertarget{structstmt_af444b77a3c91fa1d5c90c1b55288d00a}\label{structstmt_af444b77a3c91fa1d5c90c1b55288d00a}} 
 enum \mbox{\hyperlink{ast_8h_a73ceb147b5ec13bba6bda439ea5b28a7}{stmt\+\_\+type}} {\bfseries type}
 \item 
-\mbox{\Hypertarget{structstmt_ac40fc27e2910d2ee2e750baec6222bfa}\label{structstmt_ac40fc27e2910d2ee2e750baec6222bfa}} 
+\mbox{\Hypertarget{structstmt_a30cf7ccbea2772b7e5edf4e066b80e80}\label{structstmt_a30cf7ccbea2772b7e5edf4e066b80e80}} 
 \begin{tabbing}
 xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
 union \{\\
@@ -40,11 +40,9 @@ union \{\\
 \>\>struct \mbox{\hyperlink{structexpr}{expr}} $\ast$ {\bfseries expr}\\
 \>\} {\bfseries print}\\
 \>struct \{\\
-\>\>struct \mbox{\hyperlink{structexpr}{expr}} $\ast$ {\bfseries expr}\\
-\>\} {\bfseries increment}\\
-\>struct \{\\
-\>\>struct \mbox{\hyperlink{structexpr}{expr}} $\ast$ {\bfseries expr}\\
-\>\} {\bfseries decrement}\\
+\>\>struct \mbox{\hyperlink{structexpr}{expr}} $\ast$ {\bfseries left}\\
+\>\>struct \mbox{\hyperlink{structexpr}{expr}} $\ast$ {\bfseries right}\\
+\>\} {\bfseries shift}\\
 \}; \\
 
 \end{tabbing}\end{DoxyCompactItemize}
@@ -53,7 +51,7 @@ union \{\\
 \doxysubsection{Detailed Description}
 Structure of statement for different type. It uses uninon to keep different statement type. 
 
-Definition at line 83 of file ast.\+h.
+Definition at line 97 of file ast.\+h.
 
 
 
