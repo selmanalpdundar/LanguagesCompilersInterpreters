@@ -775,7 +775,7 @@ LLVMValueRef codegen_expr(struct expr *expr, LLVMModuleRef module, LLVMBuilderRe
              LLVMValueRef exp = codegen_expr(expr->expr,module,builder);
              LLVMValueRef result =  LLVMBuildSub(builder,exp,LLVMConstInt(LLVMInt32Type(), 1, 0), "subtmp"); 
              LLVMBuildStore(builder, result, vector_get(&global_types,expr->expr->id));
-             return expr;
+             return exp;
           }
           case LITERAL:{
             LLVMValueRef exp = codegen_expr(expr->expr,module,builder);
